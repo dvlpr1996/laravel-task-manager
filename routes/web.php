@@ -2,6 +2,7 @@
 
 // todo : pattern and mw and group and route filing
 use Illuminate\Support\Facades\Route;
+use RealRashid\SweetAlert\Facades\Alert;
 
 Route::get('/login', function () {
 	return view('auth.login');
@@ -19,9 +20,9 @@ Route::get('/forgot-password', function () {
 	return view('auth.forgotPass');
 })->name("forgot-password");
 
-Route::get('/inbox', function () {
-	return view("inbox");
-})->name("inbox");
+Route::get('/todo', function () {
+	return view("todo");
+})->name("todo");
 
 Route::get('/', function () {
 	return view("dashboard");

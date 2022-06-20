@@ -5076,6 +5076,8 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 document.addEventListener('alpine:init', function () {
   alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('dropdown', function () {
@@ -5095,6 +5097,26 @@ document.addEventListener('alpine:init', function () {
       toggle: function toggle() {
         this.sidebarOpen = !this.sidebarOpen;
       }
+    };
+  });
+  alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('modal', function () {
+    var _transition;
+
+    return {
+      showModal: false,
+      toggle: function toggle() {
+        this.showModal = !this.showModal;
+      },
+      close: function close() {
+        this.showModal = false;
+      },
+      transition: (_transition = {}, _defineProperty(_transition, 'x-transition:enter', function xTransitionEnter() {
+        return 'motion-safe:ease-out duration-300';
+      }), _defineProperty(_transition, 'x-transition:enter-start', function xTransitionEnterStart() {
+        return 'opacity-0 scale-90';
+      }), _defineProperty(_transition, 'x-transition:enter-end', function xTransitionEnterEnd() {
+        return 'opacity-100 scale-100';
+      }), _transition)
     };
   });
 });

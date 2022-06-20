@@ -48,26 +48,71 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
 								<i class="fas fa-adjust cursor-pointer" id="theme-toggle" x-on:click="darkMode = !darkMode">
 								</i>
 
-								<div x-data="dropdown" x-on:click.away="away()" class="relative">
+								<div x-data="dropdown" x-on:click.away="away()" class="relative capitalize">
 										<button x-on:click="toggle()">
 												John Doe
 												<i class="fa fa-caret-down"></i>
 										</button>
-										<div x-show="open" x-transition.duration.500ms
-												class="absolute top-10 right-0 z-20 hidden min-w-[170px] space-y-3 rounded-md border border-gray-100 bg-white p-2 text-gray-500 shadow-md dark:border-gray-700 dark:bg-gray-700 dark:text-gray-400"
+
+										<div class="dropdown-content hidden" x-show="open" x-transition.duration.500ms
 												x-bind:class="{ 'hidden': !open }">
 
-												<p class="nav-link m-2 block text-left" id="settings">
-														<i class="fas fa-cog mr-1"></i>
-														Settings
-												</p>
+												<div x-data="modal" x-on:keydown.escape="close()" x-on:click.away="close()">
+														<p x-on:click="toggle()" class="nav-link m-2 block text-left">
+																<i class="fas fa-lock mr-1"></i>
+																Settings
+														</p>
 
-												<a href="movies.html" class="nav-link m-2 block text-left">
-														<i class="fas fa-lock mr-1"></i>
-														Lock Screen
+														<div class="modal-wrapper" x-show="showModal">
+
+																<div class="modal-content hidden" x-on:click.away="close()" x-bind:class="{ 'hidden': !showModal }"
+																		x-bind="transition">
+																		<div class="flex items-center gap-3 py-2">
+																				<h3 class="text-xl font-semibold">profile settings</h3>
+																		</div>
+																		<div>
+																				<form class="form-wrapper p-5">
+
+																						<div>
+																								<input type="text" placeholder="first name" class="form-control">
+																						</div>
+
+																						<div class="mt-5">
+																								<input type="text" placeholder="last name" class="form-control">
+																						</div>
+
+																						<div class="mt-5">
+																								<input type="email" placeholder="email address" class="form-control">
+																						</div>
+
+																						<div class="mt-5">
+																								<input type="password" placeholder="current password" class="form-control">
+																						</div>
+
+																						<div class="mt-5">
+																							<input type="password" placeholder="new password" class="form-control">
+																					</div>
+
+																						<div class="mt-5">
+																								<input type="password" placeholder="Confirm new password" class="form-control">
+																						</div>
+
+																						<div class="mt-5">
+																								<button type="submit" class="btn">save changes</button>
+																						</div>
+
+																				</form>
+																		</div>
+																</div>
+														</div>
+												</div>
+
+												<a href="{{ route('lock-screen') }}" class="nav-link m-2 block text-left">
+														<i class="fas fa-sign-out-alt mr-1"></i>
+														lock screen
 												</a>
 
-												<hr>
+												<hr class="hr">
 
 												<a href="movies.html" class="nav-link m-2 block text-left">
 														<i class="fas fa-sign-out-alt mr-1"></i>
@@ -75,15 +120,16 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
 												</a>
 
 										</div>
+
 								</div>
-								{{-- todo: alt attr ===> dynamic --}}
-								<img src="{{ asset('img/avatar.png') }}" alt="user-name-avatar" class="h-12 w-12 rounded-full" loading="lazy">
+								<img src="{{ asset('img/avatar.png') }}" alt="{{ 'avatar name' }}" class="h-12 w-12 rounded-full"
+										loading="lazy">
 						</div>
 				</nav>
 
 				<section class="relative flex" x-data="sidebar">
 						<aside
-								class="absolute z-10 hidden h-full w-2/6 border bg-gray-100 py-5 px-2  border-gray-200 dark:border-gray-800 dark:bg-gray-800 md:static md:z-0 md:block md:h-[initial] md:w-2/12 lg:p-5"
+								class="absolute z-10 hidden h-full w-2/6 border border-gray-200 bg-gray-100 py-5 px-2 dark:border-gray-800 dark:bg-gray-800 md:static md:z-0 md:block md:h-[initial] md:w-2/12 lg:p-5"
 								x-bind:class="{ 'hidden': !sidebarOpen }">
 								<ul class="space-y-5 capitalize text-gray-500 dark:text-gray-400">
 
@@ -164,6 +210,7 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
 				</section>
 		</div>
 		<script src="{{ asset('js/app.js') }}" defer></script>
+		@include('sweetalert::alert')
 </body>
 
 </html>

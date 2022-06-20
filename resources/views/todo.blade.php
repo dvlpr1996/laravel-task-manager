@@ -52,7 +52,7 @@
 						<button type="button" class="btn curso-pointer w-[initial]" id="add">add new task</button>
 				</div>
 
-				<hr class="border-b border-gray-200 dark:border-gray-800">
+				<hr class="hr">
 
 				<div class="overflow-x-auto rounded-xl bg-white p-2 shadow-md dark:bg-gray-800">
 						<table class="whitespace-no-wrap w-full text-center text-base capitalize text-gray-500 dark:text-gray-400">
