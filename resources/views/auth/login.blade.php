@@ -2,15 +2,15 @@
 @section('pageTitle', 'Task Manager - Login')
 @section('pageContent')
 
-		<main class="p-4 flex min-h-screen flex-col items-center justify-center bg-gray-50 dark:bg-gray-900">
+		<main class="p-4 flex min-h-screen flex-col items-center justify-center bg-gray-200 dark:bg-gray-900">
 
 				<form class="form-wrapper">
 
-						<a href="{{ route('index') }}" class="nav-link">
+						<a href="#" class="nav-link">
 								<img src="{{ asset('img/laravel-task-manager.png') }}" alt="Task Manager" class="mx-auto block h-20 w-20">
 						</a>
 
-						<a href="{{ route('index') }}" class="nav-link mt-2 block text-center text-base">Task Manager</a>
+						<a href="#" class="nav-link mt-2 block text-center text-base">Task Manager</a>
 
 						<div class="mt-5">
 								<input type="email" placeholder="email" class="form-input">
