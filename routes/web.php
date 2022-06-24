@@ -1,8 +1,8 @@
 <?php
 
 // todo : pattern and mw and group and route filing
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
-use RealRashid\SweetAlert\Facades\Alert;
 
 Route::get('/login', function () {
 	return view('auth.login');
@@ -25,5 +25,7 @@ Route::get('/todo', function () {
 })->name("todo");
 
 Route::get('/', function () {
+	$users = User::where("email","edison18@example.com")->get();
+	dd($users);
 	return view("dashboard");
 })->name("dashboard");

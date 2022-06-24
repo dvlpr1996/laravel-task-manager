@@ -13,10 +13,6 @@ return new class extends Migration
 			$table->string('title', 50);
 			$table->boolean('status')->default(0);
 
-			$table->foreignId('user_id')->constrained('users')
-				->onUpdate('cascade')
-				->onDelete('cascade');
-
 			$table->foreignId('tag_id')->constrained('tags')
 				->onUpdate('cascade')
 				->onDelete('cascade');
