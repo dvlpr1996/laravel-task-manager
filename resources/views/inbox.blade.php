@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', strtoupper('home'))
+@section('title', strtoupper('inbox'))
 
 @section('main-content')
 		<section class="space-y-8">
@@ -111,6 +111,4 @@
 				</div>
 
 		</section>
-
-
 @endsection

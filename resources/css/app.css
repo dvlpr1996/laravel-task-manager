@@ -41,11 +41,15 @@
 	}
 
 	.sidebar {
-		@apply shadow z-10 p-5 w-48 border border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-gray-800 absolute lg:static block;
+		@apply shadow z-10 p-5 w-48 border border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-gray-800 absolute 	lg:static block;
 	}
 
 	.aside-items {
 		@apply flex items-baseline gap-3 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200;
+	}
+
+	.box {
+		@apply rounded-xl border border-gray-300 bg-gray-200 p-5 dark:border-gray-800 dark:bg-gray-800;
 	}
 
 	.form-wrapper {
