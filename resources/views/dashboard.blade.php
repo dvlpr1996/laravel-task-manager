@@ -4,36 +4,31 @@
 
 @section('main-content')
 
-		<div class="flex items-center justify-between">
-				<p class="text-xl font-semibold capitalize text-gray-600 dark:text-gray-300">
-						Task Manager - Dashboard
-				</p>
-		</div>
-
-		<section class="grid gap-3 xs:grid-cols-2 sm:grid-cols-4">
+		<h2>Task Manager - Dashboard</h2>
+		<section class="grid gap-2 xs:grid-cols-2 sm:grid-cols-4">
 				<div class="box">
-						<p class="text-sm font-bold leading-6 text-gray-600 dark:text-gray-300">
+						<p>
 								<span class="block text-base font-semibold">555</span>
 								days with us
 						</p>
 				</div>
 
 				<div class="box">
-						<p class="text-sm font-bold leading-6 text-gray-600 dark:text-gray-300">
+						<p>
 								<span class="block text-base font-semibold">17</span>
 								total task
 						</p>
 				</div>
 
 				<div class="box">
-						<p class="text-sm font-bold leading-6 text-gray-600 dark:text-gray-300">
+						<p>
 								<span class="block text-base font-semibold">17</span>
 								undone task
 						</p>
 				</div>
 
 				<div class="box">
-						<p class="text-sm font-bold leading-6 text-gray-600 dark:text-gray-300">
+						<p>
 								<span class="block text-base font-semibold">555</span>
 								total list
 						</p>
@@ -41,9 +36,7 @@
 		</section>
 
 		<section class="space-y-3">
-				<p class="text-xl font-semibold text-gray-600 dark:text-gray-300">
-						your lists
-				</p>
+				<h4>your lists</h4>
 				<div class="overflow-x-auto rounded-xl bg-white p-2 shadow-md dark:bg-gray-800">
 						<table class="whitespace-no-wrap w-full text-center text-sm text-gray-500 dark:text-gray-400">
 								<thead
@@ -81,16 +74,16 @@
 
 		</section>
 
-		<section class="grid gap-3 xs:grid-cols-1 md:grid-cols-2">
+		<section class="grid gap-2 xs:grid-cols-1 md:grid-cols-2">
 				<div class="box">
-						<p class="text-sm font-bold leading-6 text-gray-600 dark:text-gray-300">
+						<p>
 								<span class="block text-base font-semibold">555</span>
 								days with us
 						</p>
 				</div>
 
 				<div class="box">
-						<p class="text-sm font-bold leading-6 text-gray-600 dark:text-gray-300">
+						<p>
 								<span class="block text-base font-semibold">555</span>
 								days with us
 						</p>
@@ -98,9 +91,7 @@
 		</section>
 
 		<section class="space-y-3">
-				<p class="text-xl font-semibold text-gray-600 dark:text-gray-300">
-						Unfinished tasks
-				</p>
+				<h4>Unfinished tasks</h4>
 				<div class="overflow-x-auto rounded-xl bg-white p-2 shadow-md dark:bg-gray-800">
 						<table class="whitespace-no-wrap w-full text-center text-sm text-gray-500 dark:text-gray-400">
 								<thead
@@ -141,12 +132,15 @@
 		</section>
 
 		<section>
-				<div class="space-y-3 box">
-						<h2 class="text-base font-bold text-red-600 dark:text-red-400">delete your account</h2>
-						<hr class="hr">
-						<p class="text-sm font-bold leading-6 text-gray-600 dark:text-gray-300">Once you delete your account, there
+				<div class="box space-y-3">
+						<h2>delete your account</h2>
+						<hr>
+						<p>Once you delete your account, there
 								is no going back. Please be certain.</p>
-						<a href="#" class="btn w-max bg-red-600 hover:bg-red-700 active:bg-red-600">Delete your account</a>
+						<a href="#" onclick="return confirm('are you sure?');"
+						class="btn bg-rose-600 text-base hover:bg-rose-700 py-2 w-full sm:w-max">
+							Delete your account
+						</a>
 				</div>
 		</section>
 

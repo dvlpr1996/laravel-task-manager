@@ -4,16 +4,11 @@
 
 @section('main-content')
 		<section class="space-y-8">
-				<p class="text-xl font-semibold capitalize text-gray-600 dark:text-gray-300">
-					your inbox
-				</p>
+				<h2>your inbox</h2>
 
-				<div class="flex items-center justify-center gap-2 capitalize">
-						<img src="{{ asset('img/logo.png') }}" alt="logo"class="rounded-full w-12 h-12"
-								loading="lazy">
-						<h1 class="text-2xl font-semibold text-gray-600 dark:text-gray-300">
-								task manager
-						</h1>
+				<div class="flex flex-col items-center justify-center gap-3 sm:flex-row">
+						<img src="{{ asset('img/logo.png') }}" alt="logo"class="rounded-full w-12 h-12" loading="lazy">
+						<h1>laravel task manager</h1>
 				</div>
 
 				<div class="relative mx-auto sm:w-4/6 md:w-3/5">
@@ -32,16 +27,82 @@
 
 		</section>
 
-		<section class="space-y-8">
-				<div class="flex items-end justify-between">
-						<div class="flex items-center justify-between gap-1 text-gray-600 dark:text-gray-300 md:gap-2">
+		<section class="space-y-5">
+				<div class="flex flex-col items-center justify-center gap-5 sm:flex-row sm:items-end sm:justify-between">
+						<div class="order-2 flex items-center justify-between gap-2 sm:order-1">
 								<p>Sort :</p>
 								<a href="#"><i class="fas fa-sort-alpha-down ml-1"></i> AS</a>
 								<a href="#"><i class="fas fa-sort-alpha-down-alt ml-1"></i> DS</a>
 								<a href="#"><i class="fas fa-stopwatch ml-1"></i> Due date</a>
 						</div>
 
-						<button type="button" class="btn curso-pointer w-[initial]" id="add">add new task</button>
+						<div x-data="modal" x-on:keydown.escape="close()" x-on:click.away="close()">
+								<button type="button" class="btn order-1 w-full py-2 sm:order-2 sm:w-max" x-on:click="toggle()">
+										add new task
+								</button>
+
+								<div class="modal-wrapper" x-show="showModal">
+										<div class="modal-content hidden" x-on:click.away="close()" x-bind:class="{ 'hidden': !showModal }"
+												x-bind="transition">
+												<h3>add new task</h3>
+												<div>
+														<form class="form-wrapper space-y-5 p-4">
+																<div>
+																		<input type="text" placeholder="task name" class="form-control">
+																</div>
+
+																<div class="mt-5">
+																		<select class="form-control space-y-3">
+																				<option>select list</option>
+																				<option>none</option>
+																				<option>list number one</option>
+																				<option>list number one</option>
+																				<option>list number one</option>
+																				<option>list number one</option>
+																				<option>list number one</option>
+																		</select>
+																</div>
+
+																<div class="mt-5">
+																		<select class="form-control">
+																				<option>select prioraty</option>
+																				<option>none</option>
+																				<option>prioraty 1</option>
+																				<option>prioraty 1</option>
+																				<option>prioraty 1</option>
+																				<option>prioraty 1</option>
+																				<option>prioraty 1</option>
+																		</select>
+																</div>
+
+																<div class="space-y-3">
+																		<label>chose due time:</label>
+																		<input type="date" class="form-control">
+																</div>
+
+																<div class="flex items-center gap-2">
+																		<input type="checkbox" class="form-control h-6 w-6 rounded-full">
+																		<label>set reminder</label>
+																</div>
+
+																<div class="space-y-3">
+																		<label>task description:</label>
+																		<textarea col="10" class="form-control">
+																			</textarea>
+																</div>
+
+																<div class="mt-5">
+																		<button type="submit" class="btn w-full py-2">
+																				save changes
+																		</button>
+																</div>
+
+														</form>
+												</div>
+										</div>
+								</div>
+						</div>
+
 				</div>
 
 				<hr class="hr">
@@ -88,7 +149,7 @@
 						</table>
 				</div>
 
-				<div>
+				{{-- <div>
 						<nav>
 								<ul class="pagination">
 										<li class="page-item">
@@ -108,7 +169,7 @@
 										</li>
 								</ul>
 						</nav>
-				</div>
+				</div> --}}
 
 		</section>
 @endsection

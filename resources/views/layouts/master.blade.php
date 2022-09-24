@@ -3,7 +3,7 @@
 
 <section class="relative flex">
 		<aside id="sidebar" class="sidebar">
-				<ul class="mt-5 space-y-5 capitalize text-gray-500 dark:text-gray-400">
+				<ul class="mt-1 space-y-5">
 						<li class="aside-items">
 								<i class="fas fa-tachometer-alt mr-1"></i>
 								<a href="dashboard.html">dashboard</a>

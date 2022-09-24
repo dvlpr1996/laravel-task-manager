@@ -29,7 +29,7 @@
 			<![endif] -->
 </head>
 
-<body class="bg-gray-200 dark:bg-gray-900 debug-screens" x-data="{ 'darkMode': true }" x-init="darkMode = JSON.parse(localStorage.getItem('darkMode'));
+<body x-data="{ 'darkMode': true }" x-init="darkMode = JSON.parse(localStorage.getItem('darkMode'));
 $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)));">
 
 		<div x-bind:class="{ 'dark': darkMode === true }">
