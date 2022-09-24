@@ -18,8 +18,10 @@ return new class extends Migration
 
 			$table->foreignId('user_id')->constrained('users')
 				->onUpdate('cascade')->onDelete('cascade');
+
 			$table->foreignId('group_id')->constrained('groups')
 				->onUpdate('cascade')->onDelete('cascade');
+				
 				$table->foreignId('priority_id')->constrained('priorities')
 				->onUpdate('cascade')->onDelete('cascade');
 
