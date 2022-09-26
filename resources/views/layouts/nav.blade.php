@@ -15,7 +15,7 @@
 				<div x-data="dropdown" x-on:click.away="away()" class="relative">
 						<button x-on:click="toggle()" class="link">
 								<i class="fa fa-caret-down"></i>
-								John Doe
+								{{ auth()->user()->fullName }}
 						</button>
 
 						<div class="dropdown-content hidden" x-show="open" x-transition.duration.500ms
@@ -47,7 +47,9 @@
 																		</div>
 
 																		<div class="mt-5">
-																				<button type="submit" class="btn w-full py-2">save changes</button>
+																				<button type="submit" class="btn w-full py-2">
+																					save changes
+																				</button>
 																		</div>
 
 																</form>
@@ -63,7 +65,8 @@
 										</p>
 
 										<div class="modal-wrapper" x-show="showModal">
-												<div class="modal-content hidden" x-on:click.away="close()" x-bind:class="{ 'hidden': !showModal }"
+												<div class="modal-content hidden" x-on:click.away="close()"
+												 x-bind:class="{ 'hidden': !showModal }"
 														x-bind="transition">
 														<h3>change your password</h3>
 														<div>
