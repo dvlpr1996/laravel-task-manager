@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+// todo : MustVerifyEmail and Verify mw
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Task;
 use Laravel\Sanctum\HasApiTokens;
@@ -14,7 +15,8 @@ class User extends Authenticatable
 	use HasApiTokens, HasFactory, Notifiable;
 
 	protected $fillable = [
-		'name',
+		'fname',
+		'lname',
 		'email',
 		'password',
 	];

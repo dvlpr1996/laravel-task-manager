@@ -17,11 +17,11 @@
 	::-webkit-scrollbar {
 		width: 10px;
 	}
-	
+
 	::-webkit-scrollbar-track {
 		background: #181818;
 	}
-	
+
 	::-webkit-scrollbar-thumb {
 		background: #6d6b6b;
 		border-radius: 5px;
@@ -40,15 +40,19 @@
 	}
 
 	h2 {
-		@apply text text-2xl sm:text-3xl italic font-semibold text-center sm:text-left;
+		@apply text text-2xl italic font-semibold text-center sm:text-left;
 	}
 
 	h3 {
-		@apply text text-xl sm:text-2xl italic font-semibold text-center sm:text-left;
+		@apply text text-xl italic font-semibold text-center sm:text-left;
+	}
+
+	h4 {
+		@apply text text-lg italic font-semibold text-center sm:text-left;
 	}
 
 	p {
-		@apply text text-lg sm:text-xl font-semibold leading-8;
+		@apply text text-base font-semibold leading-8;
 	}
 
 	.bg-color{
@@ -70,7 +74,7 @@
 	}
 
 	label {
-		@apply capitalize text-sm select-none;
+		@apply capitalize text-sm text-white;
 	}
 
 	main {
@@ -100,7 +104,7 @@
 	}
 
 	.form-control {
-		@apply bg-color round block w-full py-2 px-3 round appearance-none;
+		@apply text bg-color round block w-full py-2 px-3 my-2 round appearance-none;
 	}
 
 	.btn {

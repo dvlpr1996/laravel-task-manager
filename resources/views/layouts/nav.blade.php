@@ -94,7 +94,7 @@
 
 								<hr class="hr">
 
-								<a href="#" class="m-2 block text-left">
+								<a href="{{ route('logout') }}" class="m-2 block text-left">
 										<i class="fas fa-sign-out-alt mr-1"></i>
 										Logout
 								</a>
