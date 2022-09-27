@@ -6,6 +6,12 @@ use App\Http\Requests\TaskRequest;
 
 class TaskController extends Controller
 {
+	public function index()
+	{
+		$allTasks = auth()->user()->tasks()->get();
+		return view('inbox',compact('allTasks'));
+	}
+
 	public function store(TaskRequest $request)
 	{
 		if (!$request->has('reminder'))

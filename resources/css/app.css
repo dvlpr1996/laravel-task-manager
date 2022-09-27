@@ -132,6 +132,26 @@
 		@apply bg-color absolute top-8 right-0 z-10 min-w-[170px] space-y-3 round p-2 shadow-md;
 	}
 
+	table {
+		@apply w-full text-center text-base capitalize text-gray-500 dark:text-gray-400;
+	}
+
+	thead {
+		@apply border-b bg-gray-50 font-bold text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400;
+	}
+
+  tbody {
+	  @apply divide-y bg-white dark:divide-gray-700 dark:bg-gray-800;
+  }
+
+  tbody > tr {
+	  @apply text-gray-700 odd:bg-white even:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 odd:dark:bg-gray-800 even:dark:bg-gray-700 even:rounded-xl;
+  }
+
+	.action-icon {
+		@apply text-purple-600 hover:text-purple-700 focus:outline-none dark:text-gray-400 hover:dark:text-gray-500;
+	}
+
 	/* .invalid-input {
 		@apply border-red-600 dark:text-gray-300 dark:bg-gray-700 focus:border-red-400 focus:outline-none focus:shadow-outline-red form-input;
 	}

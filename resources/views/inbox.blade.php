@@ -53,8 +53,7 @@
 														</span>
 												</div>
 
-												<form class="form-wrapper space-y-3 p-4" method="POST"
-												 action="{{ route('tasks.store') }}">
+												<form class="form-wrapper space-y-3 p-4" method="POST" action="{{ route('tasks.store') }}">
 														@csrf
 														<div>
 																<input type="text" placeholder="task name" name="name" class="form-control">
@@ -70,7 +69,7 @@
 
 														<div class="space-y-3">
 																<label>chose due time:</label>
-																<input type="date" class="form-control" name="dueTime">
+																<input type="date" class="form-control" name="due_date">
 														</div>
 
 														<div class="flex items-center gap-2">
@@ -101,45 +100,51 @@
 				<hr class="hr">
 
 				<div class="overflow-x-auto rounded-xl bg-white p-2 shadow-md dark:bg-gray-800">
-						<table class="whitespace-no-wrap w-full text-center text-base capitalize text-gray-500 dark:text-gray-400">
-
-								<thead
-										class="border-b bg-gray-50 font-bold text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400">
-										<tr>
-												<th scope="col" class="py-3 px-6">#</th>
-												<th scope="col" class="py-3 px-6">task name</th>
-												<th scope="col" class="py-3 px-6">task created</th>
-												<th scope="col" class="py-3 px-6">tag</th>
-												<th scope="col" class="py-3 px-6">list name</th>
-												<th scope="col" class="py-3 px-6">Due date</th>
-												<th scope="col" class="py-3 px-6">action</th>
-										</tr>
-								</thead>
-
-								<tbody x-data="{ data: 10 }" class="divide-y bg-white dark:divide-gray-700 dark:bg-gray-800">
-										<template x-for="td in data">
-												<tr
-														class="text-gray-700 odd:bg-white even:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-														<td class="py-3 px-6" x-text="td"></td>
-														<td class="py-3 px-6">Sliver</td>
-														<td class="py-3 px-6">Laptop</td>
-														<td class="py-3 px-6">Laptop</td>
-														<td class="py-3 px-6">$2999</td>
-														<td class="py-3 px-6">675456</td>
-														<td class="space-x-3 py-3 px-6">
-																<a href="#" id="updateAction">
-																		<i
-																				class="fas fa-edit focus:shadow-outline-gray text-purple-600 hover:text-purple-700 focus:outline-none dark:text-gray-400 hover:dark:text-gray-500"></i>
-																</a>
-																<a href="#" id="deleteAction">
-																		<i
-																				class="fas fa-trash focus:shadow-outline-gray text-purple-600 hover:text-purple-700 focus:outline-none dark:text-gray-400 hover:dark:text-gray-500"></i>
-																</a>
-														</td>
+						@if (!is_null($allTasks) || !empty($allTasks))
+								<table>
+										<thead>
+												<tr>
+														<th class="py-3 px-6">#</th>
+														<th class="py-3 px-6">task</th>
+														<th class="py-3 px-6">list</th>
+														<th class="py-3 px-6">priority</th>
+														<th class="py-3 px-6">status</th>
+														<th class="py-3 px-6">Due date</th>
+														<th class="py-3 px-6">created at</th>
+														<th class="py-3 px-6">action</th>
 												</tr>
-										</template>
-								</tbody>
-						</table>
+										</thead>
+
+										<tbody>
+												@foreach ($allTasks as $index => $task)
+														<tr>
+																<td class="py-3 px-6">{{ ++$index }}</td>
+																<td class="py-3 px-6 text-left">{{ $task->name }}</td>
+																<td class="py-3 px-6">{{ $task->group->name }}</td>
+																<td class="flex items-center py-3 px-6">
+																		<i class="{{ $task->priority->icon }}"></i>
+																		{{ $task->priority->prioritiesName }}
+																</td>
+																<td class="py-3 px-6">{{ $task->showStatus }}</td>
+																<td class="py-3 px-6">{{ $task->showDueDate }}</td>
+																<td class="py-3 px-6">{{ $task->showCreatedAt }}</td>
+																<td class="space-x-3 py-3 px-6">
+																		<a href="#" id="updateAction">
+																				<i class="fas fa-edit action-icon"></i>
+																		</a>
+																		<a href="#" id="deleteAction">
+																				<i class="fas fa-trash action-icon"></i>
+																		</a>
+																</td>
+														</tr>
+												@endforeach
+										</tbody>
+								</table>
+						@else
+								<div class="box">
+										<p class="py-3 px-6 text-center text-2xl">not task added yet</p>
+								</div>
+						@endif
 				</div>
 
 				{{-- <div>

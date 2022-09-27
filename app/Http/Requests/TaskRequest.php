@@ -16,7 +16,7 @@ class TaskRequest extends FormRequest
 		return [
 			'name' => ['required', 'string', 'min:1', 'max:128'],
 			'description'  => ['nullable', 'string', 'min:4', 'max:512'],
-			'dueTime' => ['nullable', 'date'],
+			'due_date' => ['nullable', 'date'],
 			'reminder' => ['nullable'],
 			'group_id' => ['required', 'exists:groups,id'],
 			'priority_id' => ['required', 'exists:priorities,id']

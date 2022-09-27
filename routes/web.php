@@ -5,7 +5,7 @@ use App\Http\Controllers\TaskController;
 
 Route::middleware('auth')->group(function () {
 	Route::view('/', 'dashboard')->name('dashboard.index');
-	Route::view('/inbox', 'inbox')->name('inbox.index');
+	Route::get('/inbox', [TaskController::class, 'index'])->name('inbox.index');
 	Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
 });
 
