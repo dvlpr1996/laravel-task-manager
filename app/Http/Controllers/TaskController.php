@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Http\Requests\TaskRequest;
 
 class TaskController extends Controller
@@ -23,5 +24,16 @@ class TaskController extends Controller
 
 		return redirect()->route('inbox.index')
 			->with('taskSuccessCreated', 'Your Task Successfully Created');
+	}
+
+	public function destroy(Task $task)
+	{
+
+		$task = Task::find($task->id)->delete();
+
+		if (!$task) abort(500, 'Error');
+
+		return redirect()->route('inbox.index')
+			->with('taskSuccessDeleted', 'Your Task Successfully Deleted');
 	}
 }

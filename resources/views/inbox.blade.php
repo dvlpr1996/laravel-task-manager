@@ -121,7 +121,7 @@
 																<td class="py-3 px-6">{{ ++$index }}</td>
 																<td class="py-3 px-6 text-left">{{ $task->name }}</td>
 																<td class="py-3 px-6">{{ $task->group->name }}</td>
-																<td class="flex items-center py-3 px-6">
+																<td class="flex items-center py-3 px-6 gap-2">
 																		<i class="{{ $task->priority->icon }}"></i>
 																		{{ $task->priority->prioritiesName }}
 																</td>
@@ -132,7 +132,7 @@
 																		<a href="#" id="updateAction">
 																				<i class="fas fa-edit action-icon"></i>
 																		</a>
-																		<a href="#" id="deleteAction">
+																		<a href="{{ route('tasks.destroy', $task->id) }}" id="deleteAction">
 																				<i class="fas fa-trash action-icon"></i>
 																		</a>
 																</td>
