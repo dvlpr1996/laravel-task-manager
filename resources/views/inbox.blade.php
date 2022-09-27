@@ -36,6 +36,8 @@
 								<a href="#"><i class="fas fa-stopwatch ml-1"></i> Due date</a>
 						</div>
 
+						<x-auth-validation-errors class="round mb-2 bg-red-400 p-2" :errors="$errors" />
+
 						<div x-data="modal" x-on:keydown.escape="close()" x-on:click.away="close()">
 								<button type="button" class="btn order-1 w-full py-2 sm:order-2 sm:w-max" x-on:click="toggle()">
 										add new task
@@ -44,63 +46,54 @@
 								<div class="modal-wrapper" x-show="showModal">
 										<div class="modal-content hidden" x-on:click.away="close()" x-bind:class="{ 'hidden': !showModal }"
 												x-bind="transition">
-												<h3>add new task</h3>
-												<div>
-														<form class="form-wrapper space-y-5 p-4">
-																<div>
-																		<input type="text" placeholder="task name" class="form-control">
-																</div>
-
-																<div class="mt-5">
-																		<select class="form-control space-y-3">
-																				<option>select list</option>
-																				<option>none</option>
-																				<option>list number one</option>
-																				<option>list number one</option>
-																				<option>list number one</option>
-																				<option>list number one</option>
-																				<option>list number one</option>
-																		</select>
-																</div>
-
-																<div class="mt-5">
-																		<select class="form-control">
-																				<option>select prioraty</option>
-																				<option>none</option>
-																				<option>prioraty 1</option>
-																				<option>prioraty 1</option>
-																				<option>prioraty 1</option>
-																				<option>prioraty 1</option>
-																				<option>prioraty 1</option>
-																		</select>
-																</div>
-
-																<div class="space-y-3">
-																		<label>chose due time:</label>
-																		<input type="date" class="form-control">
-																</div>
-
-																<div class="flex items-center gap-2">
-																		<input type="checkbox" class="form-control h-6 w-6 rounded-full">
-																		<label>set reminder</label>
-																</div>
-
-																<div class="space-y-3">
-																		<label>task description:</label>
-																		<textarea col="10" class="form-control">
-																			</textarea>
-																</div>
-
-																<div class="mt-5">
-																		<button type="submit" class="btn w-full py-2">
-																				save changes
-																		</button>
-																</div>
-
-														</form>
+												<div class="flex items-center justify-between">
+														<h3>add new task</h3>
+														<span x-on:click="close()" class="cursor-pointer font-bold text-red-600 hover:text-rose-700">
+																X
+														</span>
 												</div>
+
+												<form class="form-wrapper space-y-3 p-4" method="POST"
+												 action="{{ route('tasks.store') }}">
+														@csrf
+														<div>
+																<input type="text" placeholder="task name" name="name" class="form-control">
+														</div>
+
+														<div class="mt-5">
+																<x-groups></x-groups>
+														</div>
+
+														<div class="mt-5">
+																<x-priorities></x-priorities>
+														</div>
+
+														<div class="space-y-3">
+																<label>chose due time:</label>
+																<input type="date" class="form-control" name="dueTime">
+														</div>
+
+														<div class="flex items-center gap-2">
+																<input type="checkbox" class="form-control h-6 w-6 rounded-full" name="reminder" value="1">
+																<label>set reminder</label>
+														</div>
+
+														<div class="space-y-3">
+																<label>task description:</label>
+																<textarea name="description" col="10" class="form-control">
+																		</textarea>
+														</div>
+
+														<div class="mt-5">
+																<button type="submit" class="btn w-full py-2">
+																		save changes
+																</button>
+														</div>
+
+												</form>
 										</div>
 								</div>
+
 						</div>
 
 				</div>

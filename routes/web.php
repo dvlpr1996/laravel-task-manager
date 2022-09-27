@@ -1,15 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
 
 Route::middleware('auth')->group(function () {
-	Route::get('/', function () {
-		return view('dashboard');
-	})->name('dashboard.index');
-
-	Route::get('/inbox', function () {
-		return view('inbox');
-	})->name('inbox.index');
+	Route::view('/', 'dashboard')->name('dashboard.index');
+	Route::view('/inbox', 'inbox')->name('inbox.index');
+	Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
 });
 
 

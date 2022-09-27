@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Priority extends Model
 {
@@ -12,5 +13,12 @@ class Priority extends Model
 	public function tasks()
 	{
 		return $this->hasMany(Task::class);
+	}
+
+	protected function prioritiesName(): Attribute
+	{
+		return Attribute::make(
+			get: fn ($value) => str_replace('_', ' ', $this->level)
+		);
 	}
 }

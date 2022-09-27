@@ -14,7 +14,7 @@ return new class extends Migration
 			$table->string('description', 512);
 			$table->tinyInteger('status')->comment('0: undone, 1: done')->default(0);
 			$table->date('due_date')->nullable();
-			$table->date('reminder')->nullable();
+			$table->tinyInteger('reminder')->comment('0: unset, 1: set')->default(0);
 
 			$table->foreignId('user_id')->constrained('users')
 				->onUpdate('cascade')->onDelete('cascade');

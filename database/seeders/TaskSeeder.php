@@ -8,8 +8,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class TaskSeeder extends Seeder
 {
-    public function run()
-    {
-			Task::factory()->count(20)->create();
-    }
+	public function run()
+	{
+		Task::factory()->count(20)->create();
+	}
 }

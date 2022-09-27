@@ -4,7 +4,7 @@
 
 		<main class="flex min-h-screen flex-col items-center justify-center">
 
-				<div class="form-wrapper w-[300px] px-5">
+				<div class="form-wrapper w-[330px] px-5">
 
 						<div class="mb-7 text-center">
 								{{-- <x-app-logo class="mx-auto block"></x-app-logo> --}}
