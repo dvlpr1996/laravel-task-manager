@@ -167,8 +167,7 @@
 
 																										<div class="flex items-center gap-2">
 																												<input type="checkbox" class="form-control h-6 w-6 rounded-full" name="reminder"
-																														id="reminderUpdate" 
-																														{{ ($task->reminder == 1) ? 'checked' : ''  }}>
+																														id="reminderUpdate" {{ $task->reminder == 1 ? 'checked' : '' }}>
 																												<label for="reminderUpdate">set reminder</label>
 																										</div>
 
@@ -204,6 +203,7 @@
 										<p class="py-3 px-6 text-center text-2xl">not task added yet</p>
 								</div>
 						@endif
+						{{ $allTasks->links('components.pagination') }}
 				</div>
 
 				{{-- <div>

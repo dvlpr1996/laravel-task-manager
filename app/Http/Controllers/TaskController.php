@@ -10,7 +10,7 @@ class TaskController extends Controller
 {
 	public function index()
 	{
-		$allTasks = auth()->user()->tasks()->get();
+		$allTasks = auth()->user()->tasks()->paginate(10);
 		return view('inbox', compact('allTasks'));
 	}
 
