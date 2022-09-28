@@ -38,62 +38,55 @@
 
 						<x-auth-validation-errors class="round mb-2 bg-red-400 p-2" :errors="$errors" />
 
-						<div x-data="modal" x-on:keydown.escape="close()" x-on:click.away="close()">
-								<button type="button" class="btn order-1 w-full py-2 sm:order-2 sm:w-max" x-on:click="toggle()">
-										add new task
-								</button>
+						<x-modal-box>
+								<x-slot:modalBtn>
+										<button type="button" class="btn order-1 w-full py-2 sm:order-2 sm:w-max" x-on:click="toggle()">
+												add new task
+										</button>
+								</x-slot:modalBtn>
 
-								<div class="modal-wrapper" x-show="showModal">
-										<div class="modal-content hidden" x-on:click.away="close()" x-bind:class="{ 'hidden': !showModal }"
-												x-bind="transition">
-												<div class="flex items-center justify-between">
-														<h3>add new task</h3>
-														<span x-on:click="close()" class="cursor-pointer font-bold text-red-600 hover:text-rose-700">
-																X
-														</span>
+								<x-slot:modalTitle>add your task</x-slot:modalTitle>
+
+								<x-slot:modalContent>
+										<form class="form-wrapper space-y-3 p-4" method="POST" action="{{ route('tasks.store') }}">
+												@csrf
+												<div>
+														<input type="text" placeholder="task name" name="name" class="form-control">
 												</div>
 
-												<form class="form-wrapper space-y-3 p-4" method="POST" action="{{ route('tasks.store') }}">
-														@csrf
-														<div>
-																<input type="text" placeholder="task name" name="name" class="form-control">
-														</div>
+												<div class="mt-5">
+														<x-groups></x-groups>
+												</div>
 
-														<div class="mt-5">
-																<x-groups></x-groups>
-														</div>
+												<div class="mt-5">
+														<x-priorities></x-priorities>
+												</div>
 
-														<div class="mt-5">
-																<x-priorities></x-priorities>
-														</div>
+												<div class="space-y-3">
+														<label>chose due time:</label>
+														<input type="date" class="form-control" name="due_date">
+												</div>
 
-														<div class="space-y-3">
-																<label>chose due time:</label>
-																<input type="date" class="form-control" name="due_date">
-														</div>
+												<div class="flex items-center gap-2">
+														<input type="checkbox" class="form-control h-6 w-6 rounded-full" name="reminder" value="1">
+														<label>set reminder</label>
+												</div>
 
-														<div class="flex items-center gap-2">
-																<input type="checkbox" class="form-control h-6 w-6 rounded-full" name="reminder" value="1">
-																<label>set reminder</label>
-														</div>
+												<div class="space-y-3">
+														<label>task description:</label>
+														<textarea name="description" col="10" class="form-control">
+													</textarea>
+												</div>
 
-														<div class="space-y-3">
-																<label>task description:</label>
-																<textarea name="description" col="10" class="form-control">
-																		</textarea>
-														</div>
+												<div class="mt-5">
+														<button type="submit" class="btn w-full py-2">
+																add new task
+														</button>
+												</div>
 
-														<div class="mt-5">
-																<button type="submit" class="btn w-full py-2">
-																		add new task
-																</button>
-														</div>
-
-												</form>
-										</div>
-								</div>
-
-						</div>
+										</form>
+								</x-slot:modalContent>
+						</x-modal-box>
 
 				</div>
 
@@ -129,66 +122,61 @@
 																<td class="py-3 px-6 text-left">{{ $task->due_date }}</td>
 																<td class="py-3 px-6 text-left">{{ $task->created_at }}</td>
 																<td class="flex items-center space-x-3 py-3 px-6">
-																		<div x-data="modal" x-on:keydown.escape="close()" x-on:click.away="close()">
-																				<i class="fas fa-edit action-icon" x-on:click="toggle()">
-																				</i>
-																				<div class="modal-wrapper" x-show="showModal">
-																						<div class="modal-content hidden" x-on:click.away="close()" x-bind:class="{ 'hidden': !showModal }"
-																								x-bind="transition">
-																								<div class="flex items-center justify-between">
-																										<h3>update your task</h3>
-																										<span x-on:click="close()" class="cursor-pointer font-bold text-red-600 hover:text-rose-700">
-																												X
-																										</span>
+
+																		<x-modal-box>
+																				<x-slot:modalBtn>
+																						<i class="fas fa-edit action-icon" x-on:click="toggle()">
+																						</i>
+																				</x-slot:modalBtn>
+
+																				<x-slot:modalTitle>update your task</x-slot:modalTitle>
+
+																				<x-slot:modalContent>
+																						<form class="form-wrapper space-y-3 p-4" method="POST"
+																								action="{{ route('tasks.update', $task->id) }}">
+																								@csrf
+																								@method('PUT')
+																								<div>
+																										<input type="text" placeholder="task name" name="name" class="form-control"
+																												value="{{ $task->name }}">
 																								</div>
 
-																								<form class="form-wrapper space-y-3 p-4" method="POST"
-																										action="{{ route('tasks.update', $task->id) }}">
-																										@csrf
-																										@method('PUT')
-																										<div>
-																												<input type="text" placeholder="task name" name="name" class="form-control"
-																														value="{{ $task->name }}">
-																										</div>
+																								<div class="mt-5">
+																										<x-groups :select="$task->group_id"></x-groups>
+																								</div>
 
-																										<div class="mt-5">
-																												<x-groups :select="$task->group_id"></x-groups>
-																										</div>
+																								<div class="mt-5">
+																										<x-priorities :select="$task->priority_id"></x-priorities>
+																								</div>
 
-																										<div class="mt-5">
-																												<x-priorities :select="$task->priority_id"></x-priorities>
-																										</div>
+																								<div class="space-y-3">
+																										<label>chose due time:</label>
+																										<input type="date" class="form-control" name="due_date"
+																												value="{{ date('Y-m-d', strtotime($task->due_date)) }}">
+																								</div>
 
-																										<div class="space-y-3">
-																												<label>chose due time:</label>
-																												<input type="date" class="form-control" name="due_date"
-																														value="{{ date('Y-m-d', strtotime($task->due_date)) }}">
-																										</div>
+																								<div class="flex items-center gap-2">
+																										<input type="checkbox" class="form-control h-6 w-6 rounded-full" name="reminder"
+																												id="reminderUpdate" {{ $task->reminder == 1 ? 'checked' : '' }}>
+																										<label for="reminderUpdate">set reminder</label>
+																								</div>
 
-																										<div class="flex items-center gap-2">
-																												<input type="checkbox" class="form-control h-6 w-6 rounded-full" name="reminder"
-																														id="reminderUpdate" {{ $task->reminder == 1 ? 'checked' : '' }}>
-																												<label for="reminderUpdate">set reminder</label>
-																										</div>
-
-																										<div class="space-y-3">
-																												<label>task description:</label>
-																												<textarea name="description" col="10" class="form-control">
+																								<div class="space-y-3">
+																										<label>task description:</label>
+																										<textarea name="description" col="10" class="form-control">
 																													{{ $task->description }}
 																													</textarea>
-																										</div>
+																								</div>
 
-																										<div class="mt-5">
-																												<button type="submit" class="btn w-full py-2">
-																														save changes
-																												</button>
-																										</div>
+																								<div class="mt-5">
+																										<button type="submit" class="btn w-full py-2">
+																												save changes
+																										</button>
+																								</div>
 
-																								</form>
-																						</div>
-																				</div>
-
-																		</div>
+																						</form>
+																				</x-slot:modalContent>
+																		</x-modal-box>
 
 																		<a href="{{ route('tasks.destroy', $task->id) }}">
 																				<i class="fas fa-trash action-icon"></i>
