@@ -8,8 +8,10 @@ use Illuminate\View\Component;
 class Groups extends Component
 {
 	public $allGroups;
-	public function __construct()
+	public $select;
+	public function __construct($select='')
 	{
+		$this->select = $select;
 		$this->allGroups = Group::select(['id','name'])->get();
 	}
 

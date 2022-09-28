@@ -38,24 +38,24 @@ class Task extends Model
 		return $this->belongsTo(Group::class);
 	}
 
-	protected function showStatus(): Attribute
+	protected function status(): Attribute
 	{
 		return Attribute::make(
-			get: fn ($value) => ($this->status == 0) ? $this->status = 'undone' : $this->status = 'done'
+			get: fn ($value) => ($value == 0) ? $value = 'undone' : $value = 'done'
 		);
 	}
 
-	protected function showDueDate(): Attribute
+	protected function dueDate(): Attribute
 	{
 		return Attribute::make(
-			get: fn ($value) => $this->due_date = date('y-M-d', strtotime($this->due_date)) ?? '-'
+			get: fn ($value) => $value = date('y-M-d', strtotime($value)) ?? '-'
 		);
 	}
 
-	protected function showCreatedAt(): Attribute
+	protected function createdAt(): Attribute
 	{
 		return Attribute::make(
-			get: fn ($value) => date_format($this->created_at, 'y-M-d')
+			get: fn ($value) => date('y-M-d', strtotime($value))
 		);
 	}
 }

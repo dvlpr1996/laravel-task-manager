@@ -85,7 +85,7 @@
 
 														<div class="mt-5">
 																<button type="submit" class="btn w-full py-2">
-																		save changes
+																		add new task
 																</button>
 														</div>
 
@@ -104,35 +104,94 @@
 								<table>
 										<thead>
 												<tr>
-														<th class="py-3 px-6">#</th>
-														<th class="py-3 px-6">task</th>
-														<th class="py-3 px-6">list</th>
-														<th class="py-3 px-6">priority</th>
-														<th class="py-3 px-6">status</th>
-														<th class="py-3 px-6">Due date</th>
-														<th class="py-3 px-6">created at</th>
-														<th class="py-3 px-6">action</th>
+														<th class="py-3 px-6 text-left">#</th>
+														<th class="py-3 px-6 text-left">task</th>
+														<th class="py-3 px-6 text-left">list</th>
+														<th class="py-3 px-6 text-left">priority</th>
+														<th class="py-3 px-6 text-left">status</th>
+														<th class="py-3 px-6 text-left">Due date</th>
+														<th class="py-3 px-6 text-left">created at</th>
+														<th class="py-3 px-6 text-left">action</th>
 												</tr>
 										</thead>
 
 										<tbody>
 												@foreach ($allTasks as $index => $task)
 														<tr>
-																<td class="py-3 px-6">{{ ++$index }}</td>
+																<td class="py-3 px-6 text-left">{{ ++$index }}</td>
 																<td class="py-3 px-6 text-left">{{ $task->name }}</td>
-																<td class="py-3 px-6">{{ $task->group->name }}</td>
-																<td class="flex items-center py-3 px-6 gap-2">
+																<td class="py-3 px-6 text-left">{{ $task->group->name }}</td>
+																<td class="flex items-center gap-2 py-3 px-6 text-left">
 																		<i class="{{ $task->priority->icon }}"></i>
 																		{{ $task->priority->prioritiesName }}
 																</td>
-																<td class="py-3 px-6">{{ $task->showStatus }}</td>
-																<td class="py-3 px-6">{{ $task->showDueDate }}</td>
-																<td class="py-3 px-6">{{ $task->showCreatedAt }}</td>
-																<td class="space-x-3 py-3 px-6">
-																		<a href="#" id="updateAction">
-																				<i class="fas fa-edit action-icon"></i>
-																		</a>
-																		<a href="{{ route('tasks.destroy', $task->id) }}" id="deleteAction">
+																<td class="py-3 px-6 text-left">{{ $task->status }}</td>
+																<td class="py-3 px-6 text-left">{{ $task->due_date }}</td>
+																<td class="py-3 px-6 text-left">{{ $task->created_at }}</td>
+																<td class="flex items-center space-x-3 py-3 px-6">
+																		<div x-data="modal" x-on:keydown.escape="close()" x-on:click.away="close()">
+																				<i class="fas fa-edit action-icon" x-on:click="toggle()">
+																				</i>
+																				<div class="modal-wrapper" x-show="showModal">
+																						<div class="modal-content hidden" x-on:click.away="close()" x-bind:class="{ 'hidden': !showModal }"
+																								x-bind="transition">
+																								<div class="flex items-center justify-between">
+																										<h3>update your task</h3>
+																										<span x-on:click="close()" class="cursor-pointer font-bold text-red-600 hover:text-rose-700">
+																												X
+																										</span>
+																								</div>
+
+																								<form class="form-wrapper space-y-3 p-4" method="POST"
+																										action="{{ route('tasks.update', $task->id) }}">
+																										@csrf
+																										@method('PUT')
+																										<div>
+																												<input type="text" placeholder="task name" name="name" class="form-control"
+																														value="{{ $task->name }}">
+																										</div>
+
+																										<div class="mt-5">
+																												<x-groups :select="$task->group_id"></x-groups>
+																										</div>
+
+																										<div class="mt-5">
+																												<x-priorities :select="$task->priority_id"></x-priorities>
+																										</div>
+
+																										<div class="space-y-3">
+																												<label>chose due time:</label>
+																												<input type="date" class="form-control" name="due_date"
+																														value="{{ date('Y-m-d', strtotime($task->due_date)) }}">
+																										</div>
+
+																										<div class="flex items-center gap-2">
+																												<input type="checkbox" class="form-control h-6 w-6 rounded-full" name="reminder"
+																														id="reminderUpdate" 
+																														{{ ($task->reminder == 1) ? 'checked' : ''  }}>
+																												<label for="reminderUpdate">set reminder</label>
+																										</div>
+
+																										<div class="space-y-3">
+																												<label>task description:</label>
+																												<textarea name="description" col="10" class="form-control">
+																													{{ $task->description }}
+																													</textarea>
+																										</div>
+
+																										<div class="mt-5">
+																												<button type="submit" class="btn w-full py-2">
+																														save changes
+																												</button>
+																										</div>
+
+																								</form>
+																						</div>
+																				</div>
+
+																		</div>
+
+																		<a href="{{ route('tasks.destroy', $task->id) }}">
 																				<i class="fas fa-trash action-icon"></i>
 																		</a>
 																</td>

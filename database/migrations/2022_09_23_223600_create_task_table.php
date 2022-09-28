@@ -11,7 +11,7 @@ return new class extends Migration
 		Schema::create('tasks', function (Blueprint $table) {
 			$table->id();
 			$table->string('name', 128);
-			$table->string('description', 512);
+			$table->string('description', 512)->nullable();
 			$table->tinyInteger('status')->comment('0: undone, 1: done')->default(0);
 			$table->date('due_date')->nullable();
 			$table->tinyInteger('reminder')->comment('0: unset, 1: set')->default(0);

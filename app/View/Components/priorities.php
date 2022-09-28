@@ -8,9 +8,11 @@ use Illuminate\View\Component;
 class priorities extends Component
 {
 	public $allPriority;
+	public $select;
 
-	public function __construct()
+	public function __construct($select='')
 	{
+		$this->select=$select;
 		$this->allPriority = Priority::select(['id','level'])->get();
 	}
 
