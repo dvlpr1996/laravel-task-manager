@@ -15,10 +15,10 @@ class Priority extends Model
 		return $this->hasMany(Task::class);
 	}
 
-	protected function prioritiesName(): Attribute
+	protected function level(): Attribute
 	{
 		return Attribute::make(
-			get: fn ($value) => str_replace('_', ' ', $this->level)
+			get: fn ($value) => str_replace('_', ' ', $value)
 		);
 	}
 }

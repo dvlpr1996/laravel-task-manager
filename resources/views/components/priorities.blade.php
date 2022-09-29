@@ -2,7 +2,7 @@
 		<option>select prioraty</option>
 		@forelse ($allPriority as $priority)
 				<option value="{{ $priority->id }}" {{ $priority->id == $select ? 'selected' : '' }}>
-					{{ $priority->prioritiesName }}
+					{{ $priority->level }}
 				</option>
 		@empty
 				<option>No Priority Level Found</option>

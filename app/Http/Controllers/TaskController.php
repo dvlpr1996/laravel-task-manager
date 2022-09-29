@@ -33,28 +33,25 @@ class TaskController extends Controller
 
 		if (!$task) abort(500, 'Error');
 
-		return redirect()->route('inbox.index')
-			->with('taskSuccessDeleted', 'Your Task Successfully Deleted');
+		return back()->with('taskSuccessDeleted', 'Your Task Successfully Deleted');
 	}
 
 	public function update(TaskUpdateRequest $request, Task $task)
 	{
-
-		($request->has('reminder')) ? $reminder = $request->reminder : $reminder = Task::find($task->id)->reminder;
+		// ($request->has('reminder')) ? $reminder = $request->reminder : $reminder = Task::find($task->id)->reminder;
 
 		$task = $task->update([
 			'name' => $request->name,
 			'user_id' => auth()->user()->id,
 			'description' => $request->description,
 			'due_date' => $request->due_date,
-			'reminder' => $reminder,
+			'reminder' => 1,
 			'group_id' => $request->group_id,
 			'priority_id' => $request->priority_id
 		]);
 
 		if (!$task) abort(500, 'Error');
 
-		return redirect()->route('inbox.index')
-			->with('taskSuccessUpdated', 'Your Task Successfully Updated');
+		return back()->with('taskSuccessUpdated', 'Your Task Successfully Updated');
 	}
 }

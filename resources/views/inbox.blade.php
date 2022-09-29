@@ -116,7 +116,7 @@
 																<td class="py-3 px-6 text-left">{{ $task->group->name }}</td>
 																<td class="flex items-center gap-2 py-3 px-6 text-left">
 																		<i class="{{ $task->priority->icon }}"></i>
-																		{{ $task->priority->prioritiesName }}
+																		{{ $task->priority->level }}
 																</td>
 																<td class="py-3 px-6 text-left">{{ $task->status }}</td>
 																<td class="py-3 px-6 text-left">{{ $task->due_date }}</td>
@@ -125,7 +125,7 @@
 
 																		<x-modal-box>
 																				<x-slot:modalBtn>
-																						<i class="fas fa-edit action-icon" x-on:click="toggle()">
+																						<i class="fas fa-edit" x-on:click="toggle()">
 																						</i>
 																				</x-slot:modalBtn>
 
@@ -178,8 +178,9 @@
 																				</x-slot:modalContent>
 																		</x-modal-box>
 
-																		<a href="{{ route('tasks.destroy', $task->id) }}">
-																				<i class="fas fa-trash action-icon"></i>
+																		<a href="{{ route('tasks.destroy', $task->id) }}"
+																			onclick="return confirm('Are you sure?')">
+																				<i class="fas fa-trash"></i>
 																		</a>
 																</td>
 														</tr>
@@ -193,6 +194,7 @@
 						@endif
 						{{ $allTasks->links('components.pagination') }}
 				</div>
+
 
 				{{-- <div>
 						<nav>

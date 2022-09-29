@@ -16,7 +16,7 @@
 
 						<li class="aside-items">
 								<i class="fas fa-star mr-1"></i>
-								<a href="#">today</a>
+								<a href="{{ route('today.index') }}">today</a>
 						</li>
 
 						<li class="aside-items">

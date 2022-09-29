@@ -58,4 +58,11 @@ class Task extends Model
 			get: fn ($value) => date('y-M-d', strtotime($value))
 		);
 	}
+
+	protected function reminder(): Attribute
+	{
+		return Attribute::make(
+			get: fn ($value) => ($value == 1) ? $value = 'yes' : $value = 'no'
+		);
+	}
 }
