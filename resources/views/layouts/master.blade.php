@@ -21,7 +21,7 @@
 
 						<li class="aside-items">
 								<i class="fas fa-calendar-week mr-1"></i>
-								<a href="#">tomorrow</a>
+								<a href="{{ route('tomorrow.index') }}">tomorrow</a>
 						</li>
 
 						<li class="aside-items">
