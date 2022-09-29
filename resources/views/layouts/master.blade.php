@@ -36,7 +36,7 @@
 
 						<li class="aside-items">
 								<i class="fas fa-check-circle mr-1"></i>
-								<a href="#">completed</a>
+								<a href="{{ route('completed.index') }}">completed</a>
 						</li>
 
 						<li class="aside-items">

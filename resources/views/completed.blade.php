@@ -1,8 +1,8 @@
 @extends('layouts.master')
-@section('title', strtoupper('Tomorrow tasks'))
+@section('title', strtoupper('completed tasks'))
 @section('main-content')
 		<section class="space-y-8">
-				<h2>your tomorrow tasks</h2>
+				<h2>your completed tasks</h2>
 
 				<div class="flex flex-col items-center justify-center gap-3 sm:flex-row">
 						<img src="{{ asset('img/logo.png') }}" alt="logo"class="rounded-full w-12 h-12" loading="lazy">
@@ -34,6 +34,6 @@
 
 		<hr class="hr">
 
-		<x-tomorrow-tasks></x-tomorrow-tasks>
+		<x-completed-tasks></x-completed-tasks>
 
 @endsection

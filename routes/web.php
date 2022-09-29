@@ -13,14 +13,14 @@ Route::middleware('auth')->group(function () {
 
 	Route::view('/today', 'today')->name('today.index');
 	Route::view('/tomorrow', 'tomorrow')->name('tomorrow.index');
+
+	Route::view('/completed', 'completed')->name('completed.index');
 });
 
 
 Route::GET('/test', function () {
-	$tomorrowTasks = auth()->user()->tasks()->where('status', '!=', '1')
-			->where('due_date', Carbon::tomorrow())
-			->get();
-dd($tomorrowTasks);
+	$completedTasks = auth()->user()->tasks()->where('status','1')->get();
+	dd(count($completedTasks));
 });
 
 require __DIR__ . '/auth.php';

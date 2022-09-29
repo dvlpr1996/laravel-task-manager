@@ -189,7 +189,7 @@
 								</table>
 						@else
 								<div class="box">
-										<p class="py-3 px-6 text-center text-2xl">not task added yet</p>
+									<p class="py-2 px-5 text-center text-xl">not task added yet</p>
 								</div>
 						@endif
 						{{ $allTasks->links('components.pagination') }}
