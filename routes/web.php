@@ -1,8 +1,8 @@
 <?php
 
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\GroupController;
 
 Route::middleware('auth')->group(function () {
 	Route::view('/', 'dashboard')->name('dashboard.index');
@@ -15,12 +15,13 @@ Route::middleware('auth')->group(function () {
 	Route::view('/tomorrow', 'tomorrow')->name('tomorrow.index');
 
 	Route::view('/completed', 'completed')->name('completed.index');
+
+	Route::GET('/lists/delete/{group}', [GroupController::class, 'destroy'])->name('lists.destroy');
+	Route::PUT('/lists/update/{group}', [GroupController::class, 'update'])->name('lists.update');
 });
 
-
 Route::GET('/test', function () {
-	$completedTasks = auth()->user()->tasks()->where('status','1')->get();
-	dd(count($completedTasks));
+	
 });
 
 require __DIR__ . '/auth.php';

@@ -93,34 +93,34 @@
 				<hr class="hr">
 
 				<div class="overflow-x-auto rounded-xl bg-white p-2 shadow-md dark:bg-gray-800">
-						@if (!is_null($allTasks) || !empty($allTasks))
+						@if (count($allTasks) > 0)
 								<table>
 										<thead>
 												<tr>
-														<th class="py-3 px-6 text-left">#</th>
-														<th class="py-3 px-6 text-left">task</th>
-														<th class="py-3 px-6 text-left">list</th>
-														<th class="py-3 px-6 text-left">priority</th>
-														<th class="py-3 px-6 text-left">status</th>
-														<th class="py-3 px-6 text-left">Due date</th>
-														<th class="py-3 px-6 text-left">created at</th>
-														<th class="py-3 px-6 text-left">action</th>
+														<th class="py-3 px-6">#</th>
+														<th class="py-3 px-6">task</th>
+														<th class="py-3 px-6">list</th>
+														<th class="py-3 px-6">priority</th>
+														<th class="py-3 px-6">status</th>
+														<th class="py-3 px-6">Due date</th>
+														<th class="py-3 px-6">created at</th>
+														<th class="py-3 px-6">action</th>
 												</tr>
 										</thead>
 
 										<tbody>
 												@foreach ($allTasks as $index => $task)
 														<tr>
-																<td class="py-3 px-6 text-left">{{ ++$index }}</td>
-																<td class="py-3 px-6 text-left">{{ $task->name }}</td>
-																<td class="py-3 px-6 text-left">{{ $task->group->name }}</td>
-																<td class="flex items-center gap-2 py-3 px-6 text-left">
+																<td class="py-3 px-6">{{ ++$index }}</td>
+																<td class="py-3 px-6">{{ $task->name }}</td>
+																<td class="py-3 px-6">{{ $task->group->name }}</td>
+																<td class="flex items-center gap-2 py-3 px-6">
 																		<i class="{{ $task->priority->icon }}"></i>
 																		{{ $task->priority->level }}
 																</td>
-																<td class="py-3 px-6 text-left">{{ $task->status }}</td>
-																<td class="py-3 px-6 text-left">{{ $task->due_date }}</td>
-																<td class="py-3 px-6 text-left">{{ $task->created_at }}</td>
+																<td class="py-3 px-6">{{ $task->status }}</td>
+																<td class="py-3 px-6">{{ $task->due_date }}</td>
+																<td class="py-3 px-6">{{ $task->created_at }}</td>
 																<td class="flex items-center space-x-3 py-3 px-6">
 
 																		<x-modal-box>
@@ -178,8 +178,7 @@
 																				</x-slot:modalContent>
 																		</x-modal-box>
 
-																		<a href="{{ route('tasks.destroy', $task->id) }}"
-																			onclick="return confirm('Are you sure?')">
+																		<a href="{{ route('tasks.destroy', $task->id) }}" onclick="return confirm('Are you sure?')">
 																				<i class="fas fa-trash"></i>
 																		</a>
 																</td>
@@ -189,7 +188,7 @@
 								</table>
 						@else
 								<div class="box">
-									<p class="py-2 px-5 text-center text-xl">not task added yet</p>
+										<p class="py-2 px-5 text-center text-xl">not task added yet</p>
 								</div>
 						@endif
 						{{ $allTasks->links('components.pagination') }}

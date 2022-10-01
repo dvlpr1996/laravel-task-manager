@@ -89,6 +89,10 @@
 		@apply border-b bg-gray-50 font-bold text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400;
 	}
 
+	tr {
+		@apply text-left;
+	}
+	
   tbody {
 	  @apply divide-y bg-white dark:divide-gray-700 dark:bg-gray-800;
   }
