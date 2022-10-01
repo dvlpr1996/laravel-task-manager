@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\DashboardController;
 
 Route::middleware('auth')->group(function () {
@@ -20,6 +21,7 @@ Route::middleware('auth')->group(function () {
 	Route::view('/tomorrow', 'tomorrow')->name('tomorrow.index');
 
 	Route::view('/completed', 'completed')->name('completed.index');
+	Route::Get('/priorities/{priority}', [PriorityController::class, 'index'])->name('priorities.index');
 
 	Route::Get('/lists/{group:name}', [GroupController::class, 'index'])->name('lists.index');
 	Route::GET('/lists/delete/{group}', [GroupController::class, 'destroy'])->name('lists.destroy');
@@ -28,7 +30,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::GET('/test', function () {
-	return view('destroyUser');
+	
 });
 
 require __DIR__ . '/auth.php';

@@ -77,8 +77,10 @@
 						</span>
 
 						<span class="tag" title="priority level">
+							<a href="{{ route('priorities.index', $task->priority->id) }}">
 								<i class="{{ $task->priority->icon }} mr-2"></i>
-								{{ $task->priority->level }}
+							{{ $task->priority->level }}
+						</a>
 						</span>
 
 						<span class="tag" title="reminder">

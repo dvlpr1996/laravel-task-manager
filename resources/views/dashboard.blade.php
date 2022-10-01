@@ -8,7 +8,7 @@
 				<div class="box">
 						<p>
 								<span class="block text-base font-semibold">
-									{{ auth()->user()->calculateDaysWithUs() }}
+										{{ auth()->user()->calculateDaysWithUs() }}
 								</span>
 								with us
 						</p>
@@ -17,7 +17,7 @@
 				<div class="box">
 						<p>
 								<span class="block text-base font-semibold">
-									{{ auth()->user()->calculateTotalTask() }}
+										{{ auth()->user()->calculateTotalTask() }}
 								</span>
 								total task
 						</p>
@@ -26,7 +26,7 @@
 				<div class="box">
 						<p>
 								<span class="block text-base font-semibold">
-									{{ auth()->user()->calculateUnDoneTask() }}
+										{{ auth()->user()->calculateUnDoneTask() }}
 								</span>
 								undone task
 						</p>
@@ -35,7 +35,7 @@
 				<div class="box">
 						<p>
 								<span class="block text-base font-semibold">
-									{{ auth()->user()->calculateTotalList() }}
+										{{ auth()->user()->calculateTotalList() }}
 								</span>
 								total list
 						</p>
@@ -89,8 +89,10 @@
 																		</a>
 																</td>
 																<td class="flex items-center gap-2 py-3 px-6">
-																		<i class="{{ $task->priority->icon }}"></i>
-																		{{ $task->priority->level }}
+																		<a href="{{ route('priorities.index', $task->priority->level) }}">
+																				<i class="{{ $task->priority->icon }}"></i>
+																				{{ $task->priority->level }}
+																		</a>
 																</td>
 																<td class="py-3 px-6">{{ $task->status }}</td>
 																<td class="py-3 px-6">{{ $task->due_date }}</td>
@@ -175,7 +177,7 @@
 						<hr>
 						<p>Once you delete your account, there
 								is no going back. Please be certain.</p>
-						<a href="{{ route('dashboard.destroyUser' , auth()->user()->id) }}" onclick="return confirm('are you sure?');"
+						<a href="{{ route('dashboard.destroyUser', auth()->user()->id) }}" onclick="return confirm('are you sure?');"
 								class="btn w-full bg-rose-600 py-2 text-base hover:bg-rose-700 sm:w-max">
 								Delete your account
 						</a>

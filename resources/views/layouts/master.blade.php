@@ -25,11 +25,6 @@
 						</li>
 
 						<li class="aside-items">
-								<i class="fas fa-hashtag mr-1"></i>
-								<a href="#">priorities</a>
-						</li>
-
-						<li class="aside-items">
 								<i class="fas fa-check-circle mr-1"></i>
 								<a href="{{ route('completed.index') }}">completed</a>
 						</li>
