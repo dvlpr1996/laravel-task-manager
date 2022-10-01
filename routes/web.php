@@ -2,16 +2,21 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\DashboardController;
 
 Route::middleware('auth')->group(function () {
-	Route::view('/', 'dashboard')->name('dashboard.index');
+	Route::Get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+	Route::Get('/user/{user}/delete', [UserController::class, 'destroyUser'])->name('dashboard.destroyUser');
+
 	Route::GET('/inbox', [TaskController::class, 'index'])->name('inbox.index');
 	Route::POST('/tasks', [TaskController::class, 'store'])->name('tasks.store');
 	Route::GET('/tasks/delete/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 	Route::PUT('/tasks/update/{task}', [TaskController::class, 'update'])->name('tasks.update');
 
 	Route::view('/today', 'today')->name('today.index');
+	Route::view('/deleteAccount', 'destroyUser')->name('destroyUser.index');
 	Route::view('/tomorrow', 'tomorrow')->name('tomorrow.index');
 
 	Route::view('/completed', 'completed')->name('completed.index');
@@ -23,7 +28,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::GET('/test', function () {
-
+	return view('destroyUser');
 });
 
 require __DIR__ . '/auth.php';

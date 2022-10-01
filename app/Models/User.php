@@ -4,6 +4,7 @@ namespace App\Models;
 
 // todo : MustVerifyEmail and Verify mw
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use App\Models\Task;
 use App\Models\Group;
 use Laravel\Sanctum\HasApiTokens;
@@ -47,5 +48,21 @@ class User extends Authenticatable
 		return Attribute::make(
 			get: fn ($value) => $this->fname . ' '.$this->lname,
 		);
+	}
+
+	public function calculateDaysWithUs() {
+		return (new Carbon($this->attributes['created_at']))->longAbsoluteDiffForHumans();
+	}
+
+	public function calculateTotalTask() {
+		return $this->tasks()->count();
+	}
+
+	public function calculateUnDoneTask() {
+		return $this->tasks()->where('status','!=','1')->count();
+	}
+
+	public function calculateTotalList() {
+		return $this->groups()->count();
 	}
 }
