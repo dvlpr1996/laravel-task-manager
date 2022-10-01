@@ -5,6 +5,7 @@ namespace App\Models;
 // todo : MustVerifyEmail and Verify mw
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Task;
+use App\Models\Group;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -34,6 +35,11 @@ class User extends Authenticatable
 	public function tasks()
 	{
 		return $this->hasMany(Task::class)->orderByDesc('created_at');
+	}
+
+	public function groups()
+	{
+		return $this->hasMany(Group::class);
 	}
 
 	protected function fullName(): Attribute
