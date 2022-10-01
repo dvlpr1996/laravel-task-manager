@@ -30,11 +30,6 @@
 						</li>
 
 						<li class="aside-items">
-								<i class="fas fa-clipboard-list mr-2"></i>
-								<a href="#">lists</a>
-						</li>
-
-						<li class="aside-items">
 								<i class="fas fa-check-circle mr-1"></i>
 								<a href="{{ route('completed.index') }}">completed</a>
 						</li>

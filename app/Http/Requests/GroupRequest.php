@@ -14,7 +14,7 @@ class GroupRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'name' => ['required', 'string', 'min:1', 'max:128'],
+			'name' => ['required', 'string', 'min:1', 'max:128','unique:groups,name'],
 			'user_id' => ['exists:users,id']
 		];
 	}

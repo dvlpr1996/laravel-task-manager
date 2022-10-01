@@ -2,7 +2,6 @@
 
 namespace App\View\Components;
 
-use App\Models\Group;
 use Illuminate\View\Component;
 
 class Groups extends Component
@@ -12,7 +11,7 @@ class Groups extends Component
 	public function __construct($select='')
 	{
 		$this->select = $select;
-		$this->allGroups = Group::select(['id','name'])->get();
+		$this->allGroups = auth()->user()->groups()->select(['id','name'])->get();
 	}
 
 	public function render()

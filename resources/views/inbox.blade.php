@@ -113,7 +113,11 @@
 														<tr>
 																<td class="py-3 px-6">{{ ++$index }}</td>
 																<td class="py-3 px-6">{{ $task->name }}</td>
-																<td class="py-3 px-6">{{ $task->group->name }}</td>
+																<td class="py-3 px-6">
+																	<a href="{{ route('lists.index', $task->group->name) }}">
+																		{{ $task->group->name }}
+																	</a>
+																</td>
 																<td class="flex items-center gap-2 py-3 px-6">
 																		<i class="{{ $task->priority->icon }}"></i>
 																		{{ $task->priority->level }}
