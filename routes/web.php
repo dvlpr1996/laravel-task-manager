@@ -11,6 +11,8 @@ Route::middleware('auth')->group(function () {
 	Route::Get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 	Route::Get('/user/{user}/delete', [UserController::class, 'destroyUser'])->name('dashboard.destroyUser');
 
+	Route::PUT('/user/update/{user}', [UserController::class, 'update'])->name('user.update');
+
 	Route::GET('/inbox', [TaskController::class, 'index'])->name('inbox.index');
 	Route::POST('/tasks', [TaskController::class, 'store'])->name('tasks.store');
 	Route::GET('/tasks/delete/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -13,9 +14,22 @@ class UserController extends Controller
 		Auth::logout($user);
 		$request->session()->invalidate();
 		$request->session()->regenerateToken();
-		User::find($user->id)->delete();
+		User::findOrFail($user->id)->delete();
 		// send email
 		// cant return back
 		return redirect()->route('destroyUser.index');
+	}
+
+	public function update(UserRequest $request, User $user)
+	{
+		$user = $user->update([
+			'fname' => $request->fname,
+			'lname' => $request->lname,
+			'email' => $request->email
+		]);
+
+		if (!$user) abort(500, 'Error');
+
+		return back()->with('userSuccessUpdated', 'Your information Successfully Updated');
 	}
 }

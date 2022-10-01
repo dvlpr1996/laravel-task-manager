@@ -46,23 +46,33 @@ class User extends Authenticatable
 	protected function fullName(): Attribute
 	{
 		return Attribute::make(
-			get: fn ($value) => $this->fname . ' '.$this->lname,
+			get: fn ($value) => $this->fname . ' ' . $this->lname,
 		);
 	}
 
-	public function calculateDaysWithUs() {
+	public function calculateDaysWithUs()
+	{
 		return (new Carbon($this->attributes['created_at']))->longAbsoluteDiffForHumans();
 	}
 
-	public function calculateTotalTask() {
+	public function calculateTotalTask()
+	{
 		return $this->tasks()->count();
 	}
 
-	public function calculateUnDoneTask() {
-		return $this->tasks()->where('status','!=','1')->count();
+	public function calculateUnDoneTask()
+	{
+		return $this->tasks()->where('status', '!=', '1')->count();
 	}
 
-	public function calculateTotalList() {
+	public function calculateTotalList()
+	{
 		return $this->groups()->count();
+	}
+
+	public function gravatar()
+	{
+		$hash = md5(strtolower($this->attributes['email']));
+		return "http://s.gravatar.com/avatar/$hash";
 	}
 }
