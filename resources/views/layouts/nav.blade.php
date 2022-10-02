@@ -83,26 +83,19 @@
 										<x-slot:modalTitle>profile settings</x-slot:modalTitle>
 
 										<x-slot:modalContent>
-												<form class="form-wrapper p-4" method="POST"
-												 action="{{ route('user.update',auth()->user()->id) }}">
-													@csrf
-													@method('put')
+												<form class="form-wrapper p-4" method="POST" action="{{ route('user.update', auth()->user()->id) }}">
+														@csrf
+														@method('put')
 														<div>
-																<input type="text" name="fname"
-																value="{{ auth()->user()->fname }}"
-																class="form-control">
+																<input type="text" name="fname" value="{{ auth()->user()->fname }}" class="form-control">
 														</div>
 
 														<div class="mt-5">
-																<input type="text" name="lname"
-																value="{{ auth()->user()->lname }}"
-																 class="form-control">
+																<input type="text" name="lname" value="{{ auth()->user()->lname }}" class="form-control">
 														</div>
 
 														<div class="mt-5">
-																<input type="email" name="email"
-																value="{{ auth()->user()->email }}"
-																class="form-control">
+																<input type="email" name="email" value="{{ auth()->user()->email }}" class="form-control">
 														</div>
 
 														<div class="mt-5">
@@ -126,17 +119,20 @@
 										<x-slot:modalTitle>change your password</x-slot:modalTitle>
 
 										<x-slot:modalContent>
-												<form class="form-wrapper p-4">
+												<form class="form-wrapper p-4" action="{{ route('user.updatePassword') }}" method="POST">
+														@csrf
+														@method('PUT')
 														<div class="mt-5">
-																<input type="password" placeholder="current password" class="form-control">
+																<input type="password" placeholder="current password" class="form-control" name="oldPassword">
 														</div>
 
 														<div class="mt-5">
-																<input type="password" placeholder="new password" class="form-control">
+																<input type="password" placeholder="new password" class="form-control" name="newPassword">
 														</div>
 
 														<div class="mt-5">
-																<input type="password" placeholder="Confirm new password" class="form-control">
+																<input type="password" placeholder="Confirm new password" class="form-control"
+																		name="newPassword_confirmation">
 														</div>
 
 														<div class="mt-5">

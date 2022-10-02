@@ -14,6 +14,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	->name('dashboard.destroyUser');
 
 	Route::PUT('/user/update/{user}', [UserController::class, 'update'])->name('user.update');
+	Route::PUT('/user/update-password', [UserController::class, 'updatePassword'])->name('user.updatePassword');
 
 	Route::GET('/inbox', [TaskController::class, 'index'])->name('inbox.index');
 	Route::POST('/tasks', [TaskController::class, 'store'])->name('tasks.store');

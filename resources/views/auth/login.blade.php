@@ -8,7 +8,7 @@
 
 						<div class="mb-7 text-center">
 								{{-- <x-app-logo class="mx-auto block"></x-app-logo> --}}
-								<span class="text italic">Join task manager</span>
+								<span class="text italic">Entering task manager</span>
 						</div>
 
 						<x-auth-session-status class="mb-4" :status="session('status')" />
