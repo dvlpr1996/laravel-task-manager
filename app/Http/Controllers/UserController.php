@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Events\DeleteAccount;
 use App\Events\changePassword;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
@@ -23,13 +24,13 @@ class UserController extends Controller
 
 	public function update(UserRequest $request, User $user)
 	{
-		$user = $user->update([
+		$user->update([
 			'fname' => $request->fname,
 			'lname' => $request->lname,
 			'email' => $request->email
 		]);
 
-		if (!$user) abort(500, 'Error');
+		event(new DeleteAccount($user));
 
 		return back()->with('userSuccessUpdated', 'Your information Successfully Updated');
 	}
