@@ -193,8 +193,8 @@
 										</tbody>
 								</table>
 						@else
-								<div class="box">
-										<p class="py-2 px-5 text-center text-xl">not task added yet</p>
+								<div class="rounded-lg bg-slate-700 p-5 text-center">
+										<p>not task added yet</p>
 								</div>
 						@endif
 						{{ $allTasks->links('components.pagination') }}

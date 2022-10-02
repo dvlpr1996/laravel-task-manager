@@ -5,40 +5,20 @@
 @section('main-content')
 		<h2>Task Manager - Dashboard</h2>
 		<section class="grid gap-2 xs:grid-cols-2 sm:grid-cols-4">
-				<div class="box">
-						<p>
-								<span class="block text-base font-semibold">
-										{{ auth()->user()->calculateDaysWithUs() }}
-								</span>
-								with us
-						</p>
+				<div class="box text-center">
+						<p>{{ auth()->user()->calculateDaysWithUs() }} with us</p>					
 				</div>
 
-				<div class="box">
-						<p>
-								<span class="block text-base font-semibold">
-										{{ auth()->user()->calculateTotalTask() }}
-								</span>
-								total task
-						</p>
+				<div class="box text-center">
+						<p>{{ auth()->user()->calculateTotalTask() }} total task</p>
 				</div>
 
-				<div class="box">
-						<p>
-								<span class="block text-base font-semibold">
-										{{ auth()->user()->calculateUnDoneTask() }}
-								</span>
-								undone task
-						</p>
+				<div class="box text-center">
+						<p>{{ auth()->user()->calculateUnDoneTask() }} undone task</p>
 				</div>
 
-				<div class="box">
-						<p>
-								<span class="block text-base font-semibold">
-										{{ auth()->user()->calculateTotalList() }}
-								</span>
-								total list
-						</p>
+				<div class="box text-center">
+						<p>{{ auth()->user()->calculateTotalList() }} total list</p>
 				</div>
 		</section>
 
@@ -163,8 +143,8 @@
 										</tbody>
 								</table>
 						@else
-								<div class="box">
-										<p class="py-2 px-5 text-center text-xl">not task added yet</p>
+								<div class="rounded-lg bg-slate-700 p-5 text-center">
+										<p>not task added yet</p>
 								</div>
 						@endif
 						{{ $unfinishedTasks->links('components.pagination') }}
