@@ -101,7 +101,7 @@
 
 														<div class="mt-5">
 																<input type="email" name="email"
-																value="{{ auth()->user()->email }}" 
+																value="{{ auth()->user()->email }}"
 																class="form-control">
 														</div>
 

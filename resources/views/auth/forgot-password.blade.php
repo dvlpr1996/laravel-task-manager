@@ -1,36 +1,35 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.authMaster')
+@section('title', 'Forgot password')
+@section('authContent')
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-        </div>
+		<main class="flex min-h-screen flex-col items-center justify-center">
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('password.email') }}">
-            @csrf
+				<div class="form-wrapper w-[450px] bg-slate-800">
 
-            <!-- Email Address -->
-            <div>
-                <x-input-label for="email" :value="__('Email')" />
+						<x-auth-validation-errors class="round mb-4 bg-red-400 p-4" :errors="$errors" />
+						<x-auth-session-status class="mb-4" :status="session('status')" />
+						<h3 class="text-center">forgot password</h3>
 
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
+						<form class="space-y-4" method="POST" action="{{ route('password.email') }}">
+								@csrf
+								<div>
+										<label>
+												email address
+												<input type="email" placeholder="type your username" class="form-control" onclick="this.value=''"
+														name="email">
+										</label>
+								</div>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-primary-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-primary-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+								<div>
+										<button type="submit" class="btn w-full py-2">send</button>
+								</div>
+
+								<p class="text-center text-sm">
+										we will email you a password reset link will allow you to choose a new one
+								</p>
+						</form>
+				</div>
+		</main>
+@endsection

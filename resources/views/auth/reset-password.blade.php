@@ -1,48 +1,45 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.authMaster')
+@section('title', 'Reset Password')
+@section('authContent')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+		<main class="flex min-h-screen flex-col items-center justify-center">
 
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
+				<div class="form-wrapper w-[450px] bg-slate-800">
 
-            <!-- Password Reset Token -->
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+						<x-auth-validation-errors class="mb-4 bg-red-400 p-4 round" :errors="$errors" />
+						<h3 class="text-center">Reset Password</h3>
 
-            <!-- Email Address -->
-            <div>
-                <x-input-label for="email" :value="__('Email')" />
+						<form class="space-y-4" method="POST" action="{{ route('password.update') }}">
+								@method('put')
+								@csrf
+								<!-- Password Reset Token -->
+								<input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
-            </div>
+								<div>
+										<label>
+												email address
+												<input type="email" placeholder="type your username" class="form-control" onclick="this.value=''"
+														name="email" value={{ $request->email }}>
+										</label>
+								</div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
+								<div>
+										<label>
+												password
+												<input type="password" name="password" placeholder="password" class="form-control" minlength="6"
+														maxlength="128">
+										</label>
+								</div>
 
-                <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-            </div>
+								<div>
+										<label>
+												confirm password
+												<input type="password" name="password_confirmation" placeholder="password" class="form-control" minlength="6"
+														maxlength="128">
+										</label>
+								</div>
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-primary-button>
-                    {{ __('Reset Password') }}
-                </x-primary-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+								<div>
+										<button type="submit" class="btn w-full py-2">Reset Password</button>
+								</div>
+						@endsection
