@@ -119,7 +119,9 @@
 										<x-slot:modalTitle>change your password</x-slot:modalTitle>
 
 										<x-slot:modalContent>
-												<form class="form-wrapper p-4" action="{{ route('user.updatePassword') }}" method="POST">
+												<form class="form-wrapper p-4"
+												 action="{{ route('user.updatePassword', auth()->user()->id) }}"
+														method="POST">
 														@csrf
 														@method('PUT')
 														<div class="mt-5">

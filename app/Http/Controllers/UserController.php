@@ -4,21 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Events\changePassword;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\updatePassword;
 
 class UserController extends Controller
 {
 	public function destroyUser(Request $request, User $user)
 	{
-		Auth::logout($user);
-		$request->session()->invalidate();
-		$request->session()->regenerateToken();
+		$this->logOut($user, $request);
+
 		User::findOrFail($user->id)->delete();
-		// send email
-		// cant return back
-		return redirect()->route('destroyUser.index');
+
+		return redirect()->route('login.create');
 	}
 
 	public function update(UserRequest $request, User $user)
@@ -34,28 +34,30 @@ class UserController extends Controller
 		return back()->with('userSuccessUpdated', 'Your information Successfully Updated');
 	}
 
-	public function updatePassword(Request $request)
+	public function updatePassword(updatePassword $request, User $user)
 	{
-
-		$request->validate([
-			'oldPassword' => ['required', 'min:6'],
-			'newPassword' => ['required', 'confirmed', 'min:6']
-		]);
-
-		if (!Hash::check($request->oldPassword, auth()->user()->password)) {
+		if (!Hash::check($request->oldPassword, $user->password)) {
 			return back()->with("error", "Old Password Doesn't match!");
 		}
 
-		if (Hash::check($request->newPassword, auth()->user()->password)) {
+		if (Hash::check($request->newPassword, $user->password)) {
 			return back()->with("error", "Old Password and new Password are same");
 		}
 
-		$user = User::whereId(auth()->user()->id)->update([
+		User::whereId($user->id)->update([
 			'password' => Hash::make($request->newPassword)
 		]);
 
-		if (!$user) abort(500, 'Error');
+		event(new changePassword($user));
 
-		return back()->with("status", "Password changed successfully!");
+		$this->logOut($user, $request);
+
+		return redirect()->route('login.create');
+	}
+
+	private function logOut($user, $request)
+	{
+		Auth::logout($user);
+		$request->session()->invalidate();
 	}
 }

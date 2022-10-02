@@ -13,7 +13,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::Get('user/{user}/delete', 'destroyUser')->middleware(['password.confirm'])
 			->name('dashboard.destroyUser');
 		Route::PUT('user/update/{user}', 'update')->name('user.update');
-		Route::PUT('user/update-password', 'updatePassword')->name('user.updatePassword');
+		Route::PUT('user/{user}/update-password', 'updatePassword')->name('user.updatePassword');
 	});
 
 	Route::controller(TaskController::class)->group(function () {
