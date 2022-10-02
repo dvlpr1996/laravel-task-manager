@@ -1,36 +1,34 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.authMaster')
+@section('title', 'Confirm Password')
+@section('authContent')
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
-        </div>
+		<main class="flex min-h-screen flex-col items-center justify-center">
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+				<div class="form-wrapper w-[450px] bg-slate-800 space-y-5">
+						<x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('password.confirm') }}">
-            @csrf
+						<h3 class="text-center">Confirm your Password</h3>
 
-            <!-- Password -->
-            <div>
-                <x-input-label for="password" :value="__('Password')" />
+						<p class="text-center text-base text-red-500">
+							This is a secure area of the application. Please confirm your password before continuing.
+						</p>
 
-                <x-text-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
+						<form class="space-y-4" method="POST" action="{{ route('password.confirm') }}">
+							@csrf
+								<div>
+										<label>
+												password
+												<input type="password" placeholder="type your password" class="form-control" onclick="this.value=''"
+														name="password">
+										</label>
+								</div>
 
-            <div class="flex justify-end mt-4">
-                <x-primary-button>
-                    {{ __('Confirm') }}
-                </x-primary-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+								<div>
+										<button type="submit" class="btn w-full py-2">send</button>
+								</div>
+						</form>
+
+						<a href="{{ route('logout') }}" class="inline-block">logout</a>
+				</div>
+		</main>
+@endsection

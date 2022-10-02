@@ -9,7 +9,9 @@ use App\Http\Controllers\DashboardController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
 	Route::Get('/', [DashboardController::class, 'index'])->name('dashboard.index');
-	Route::Get('/user/{user}/delete', [UserController::class, 'destroyUser'])->name('dashboard.destroyUser');
+	Route::Get('/user/{user}/delete', [UserController::class, 'destroyUser'])
+	->middleware(['password.confirm'])
+	->name('dashboard.destroyUser');
 
 	Route::PUT('/user/update/{user}', [UserController::class, 'update'])->name('user.update');
 
