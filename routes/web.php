@@ -7,7 +7,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\DashboardController;
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 	Route::Get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 	Route::Get('/user/{user}/delete', [UserController::class, 'destroyUser'])->name('dashboard.destroyUser');
 
@@ -32,7 +32,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::GET('/test', function () {
-	
 });
 
 require __DIR__ . '/auth.php';
