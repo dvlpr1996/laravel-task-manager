@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\DeleteAccount;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendEmailDeleteAccountNotification
 {
@@ -16,7 +14,7 @@ class SendEmailDeleteAccountNotification
 	public function handle(DeleteAccount $event)
 	{
 		if ($event->user->hasVerifiedEmail()) {
-			$event->user->sendEmailVerificationNotification();
+			$event->user->notify(new \App\Notifications\DeleteAccount());
 		}
 	}
 }
