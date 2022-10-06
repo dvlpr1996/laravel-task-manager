@@ -38,11 +38,11 @@ class UserController extends Controller
 	public function updatePassword(updatePassword $request, User $user)
 	{
 		if (!Hash::check($request->oldPassword, $user->password)) {
-			return back()->with("error", "Old Password Doesn't match!");
+			return back()->with("status", "Old Password Doesn't match!");
 		}
 
 		if (Hash::check($request->newPassword, $user->password)) {
-			return back()->with("error", "Old Password and new Password are same");
+			return back()->with("status", "Old Password and new Password are same");
 		}
 
 		User::whereId($user->id)->update([
@@ -51,9 +51,7 @@ class UserController extends Controller
 
 		event(new changePassword($user));
 
-		$this->logOut($user, $request);
-
-		return redirect()->route('login.create');
+		return back();
 	}
 
 	private function logOut($user, $request)

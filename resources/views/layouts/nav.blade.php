@@ -161,3 +161,6 @@
 						class="h-12 w-12 rounded-full" loading="lazy">
 		</div>
 </nav>
+
+<x-auth-validation-errors class="mb-4 bg-red-400 p-4 round" :errors="$errors" />
+<x-auth-session-status class="mb-4" :status="session('status')" />
