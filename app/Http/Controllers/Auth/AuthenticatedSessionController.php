@@ -28,6 +28,6 @@ class AuthenticatedSessionController extends Controller
 
 		$request->session()->regenerateToken();
 
-		return redirect()->route('login.create')->with('successLogout','You Successfully Logout');
+		return redirect()->route('login.create')->with(__('app.successLogout'));
 	}
 }

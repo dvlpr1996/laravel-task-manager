@@ -22,7 +22,7 @@ class GroupController extends Controller
 
 		if (!$group) abort(500, 'Error');
 
-		return back()->with('groupSuccessDeleted', 'Your List Successfully Deleted');
+		return back()->with(__('app.listSuccessDeleted'));
 	}
 
 	public function update(GroupRequest $request, Group $group)
@@ -34,7 +34,7 @@ class GroupController extends Controller
 
 		if (!$group) abort(500, 'Error');
 
-		return back()->with('listSuccessUpdated', 'Your List Successfully Updated');
+		return back()->with(__('app.listSuccessUpdated'));
 	}
 
 	public function store(GroupRequest $request)
@@ -43,6 +43,6 @@ class GroupController extends Controller
 
 		if (!$group) abort(500, 'Error');
 
-		return back()->with('listSuccessCreated', 'Your List Successfully created');
+		return back()->with(__('app.listSuccessCreated'));
 	}
 }

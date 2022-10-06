@@ -32,7 +32,7 @@ class UserController extends Controller
 
 		event(new DeleteAccount($user));
 
-		return back()->with('userSuccessUpdated', 'Your information Successfully Updated');
+		return back()->with(__('app.userSuccessUpdated'));
 	}
 
 	public function updatePassword(updatePassword $request, User $user)
