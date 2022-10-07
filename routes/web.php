@@ -41,7 +41,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::GET('/test', function () {
-	dd(__('app.groupSuccessDelete'));
+	abort(404, 'Error');
 });
 
 require __DIR__ . '/auth.php';

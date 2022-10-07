@@ -20,132 +20,135 @@
 
 						<div class="dropdown-content hidden" x-show="open" x-transition.duration.500ms
 								x-bind:class="{ 'hidden': !open }">
+								@can('create', App\Models\Task::class)
+										<x-modal-box>
+												<x-slot:modalBtn>
+														<p x-on:click="toggle()" class="link m-2 block text-left">
+																<i class="fas fa-plus mr-1"></i>
+																new task
+														</p>
+												</x-slot:modalBtn>
 
-								<x-modal-box>
-										<x-slot:modalBtn>
-												<p x-on:click="toggle()" class="link m-2 block text-left">
-														<i class="fas fa-plus mr-1"></i>
-														new task
-												</p>
-										</x-slot:modalBtn>
+												<x-slot:modalTitle>add your task</x-slot:modalTitle>
 
-										<x-slot:modalTitle>add your task</x-slot:modalTitle>
+												<x-slot:modalContent>
+														<form class="form-wrapper space-y-3 p-4" method="POST" action="{{ route('tasks.store') }}">
+																@csrf
+																<div>
+																		<input type="text" placeholder="task name" name="name" class="form-control">
+																</div>
 
-										<x-slot:modalContent>
-												<form class="form-wrapper space-y-3 p-4" method="POST" action="{{ route('tasks.store') }}">
-														@csrf
-														<div>
-																<input type="text" placeholder="task name" name="name" class="form-control">
-														</div>
+																<div class="mt-5">
+																		<x-groups></x-groups>
+																</div>
 
-														<div class="mt-5">
-																<x-groups></x-groups>
-														</div>
+																<div class="mt-5">
+																		<x-priorities></x-priorities>
+																</div>
 
-														<div class="mt-5">
-																<x-priorities></x-priorities>
-														</div>
+																<div class="space-y-3">
+																		<label>chose due time:</label>
+																		<input type="date" class="form-control" name="due_date">
+																</div>
 
-														<div class="space-y-3">
-																<label>chose due time:</label>
-																<input type="date" class="form-control" name="due_date">
-														</div>
+																<div class="flex items-center gap-2">
+																		<input type="checkbox" class="form-control h-6 w-6 rounded-full" name="reminder" value="1">
+																		<label>set reminder</label>
+																</div>
 
-														<div class="flex items-center gap-2">
-																<input type="checkbox" class="form-control h-6 w-6 rounded-full" name="reminder" value="1">
-																<label>set reminder</label>
-														</div>
+																<div class="space-y-3">
+																		<label>task description:</label>
+																		<textarea name="description" col="10" class="form-control"></textarea>
+																</div>
 
-														<div class="space-y-3">
-																<label>task description:</label>
-																<textarea name="description" col="10" class="form-control">
-														</textarea>
-														</div>
+																<div class="mt-5">
+																		<button type="submit" class="btn w-full py-2">
+																				add new task
+																		</button>
+																</div>
 
-														<div class="mt-5">
-																<button type="submit" class="btn w-full py-2">
-																		add new task
-																</button>
-														</div>
+														</form>
+												</x-slot:modalContent>
+										</x-modal-box>
+								@endcan
 
-												</form>
-										</x-slot:modalContent>
-								</x-modal-box>
+								@can('update', auth()->user())
+										<x-modal-box>
+												<x-slot:modalBtn>
+														<p x-on:click="toggle()" class="link m-2 block text-left">
+																<i class="fas fa-lock mr-1"></i>
+																Settings
+														</p>
+												</x-slot:modalBtn>
 
-								<x-modal-box>
-										<x-slot:modalBtn>
-												<p x-on:click="toggle()" class="link m-2 block text-left">
-														<i class="fas fa-lock mr-1"></i>
-														Settings
-												</p>
-										</x-slot:modalBtn>
+												<x-slot:modalTitle>profile settings</x-slot:modalTitle>
 
-										<x-slot:modalTitle>profile settings</x-slot:modalTitle>
+												<x-slot:modalContent>
+														<form class="form-wrapper p-4" method="POST" action="{{ route('user.update', auth()->user()->id) }}">
+																@csrf
+																@method('put')
+																<div>
+																		<input type="text" name="fname" value="{{ auth()->user()->fname }}" class="form-control">
+																</div>
 
-										<x-slot:modalContent>
-												<form class="form-wrapper p-4" method="POST" action="{{ route('user.update', auth()->user()->id) }}">
-														@csrf
-														@method('put')
-														<div>
-																<input type="text" name="fname" value="{{ auth()->user()->fname }}" class="form-control">
-														</div>
+																<div class="mt-5">
+																		<input type="text" name="lname" value="{{ auth()->user()->lname }}" class="form-control">
+																</div>
 
-														<div class="mt-5">
-																<input type="text" name="lname" value="{{ auth()->user()->lname }}" class="form-control">
-														</div>
+																<div class="mt-5">
+																		<input type="email" name="email" value="{{ auth()->user()->email }}" class="form-control">
+																</div>
 
-														<div class="mt-5">
-																<input type="email" name="email" value="{{ auth()->user()->email }}" class="form-control">
-														</div>
+																<div class="mt-5">
+																		<button type="submit" class="btn w-full py-2">
+																				save changes
+																		</button>
+																</div>
 
-														<div class="mt-5">
-																<button type="submit" class="btn w-full py-2">
-																		save changes
-																</button>
-														</div>
+														</form>
+												</x-slot:modalContent>
+										</x-modal-box>
+								@endcan
 
-												</form>
-										</x-slot:modalContent>
-								</x-modal-box>
+								@can('update', auth()->user())
+										<x-modal-box>
+												<x-slot:modalBtn>
+														<p x-on:click="toggle()" class="link m-2 block text-left">
+																<i class="fas fa-sign-out-alt mr-1"></i>
+																password
+														</p>
+												</x-slot:modalBtn>
 
-								<x-modal-box>
-										<x-slot:modalBtn>
-												<p x-on:click="toggle()" class="link m-2 block text-left">
-														<i class="fas fa-sign-out-alt mr-1"></i>
-														password
-												</p>
-										</x-slot:modalBtn>
+												<x-slot:modalTitle>change your password</x-slot:modalTitle>
 
-										<x-slot:modalTitle>change your password</x-slot:modalTitle>
+												<x-slot:modalContent>
+														<form class="form-wrapper p-4" action="{{ route('user.updatePassword', auth()->user()->id) }}"
+																method="POST">
+																@csrf
+																@method('PUT')
+																<div class="mt-5">
+																		<input type="password" placeholder="current password" class="form-control" name="oldPassword">
+																</div>
 
-										<x-slot:modalContent>
-												<form class="form-wrapper p-4"
-												 action="{{ route('user.updatePassword', auth()->user()->id) }}"
-														method="POST">
-														@csrf
-														@method('PUT')
-														<div class="mt-5">
-																<input type="password" placeholder="current password" class="form-control" name="oldPassword">
-														</div>
+																<div class="mt-5">
+																		<input type="password" placeholder="new password" class="form-control" name="newPassword">
+																</div>
 
-														<div class="mt-5">
-																<input type="password" placeholder="new password" class="form-control" name="newPassword">
-														</div>
+																<div class="mt-5">
+																		<input type="password" placeholder="Confirm new password" class="form-control"
+																				name="newPassword_confirmation">
+																</div>
 
-														<div class="mt-5">
-																<input type="password" placeholder="Confirm new password" class="form-control"
-																		name="newPassword_confirmation">
-														</div>
+																<div class="mt-5">
+																		<button type="submit" class="btn w-full py-2">
+																				change password
+																		</button>
+																</div>
 
-														<div class="mt-5">
-																<button type="submit" class="btn w-full py-2">
-																		change password
-																</button>
-														</div>
-
-												</form>
-										</x-slot:modalContent>
-								</x-modal-box>
+														</form>
+												</x-slot:modalContent>
+										</x-modal-box>
+								@endcan
 
 								<hr class="hr">
 

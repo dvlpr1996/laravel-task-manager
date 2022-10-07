@@ -57,36 +57,39 @@
 														<td class="px-4 py-3">{{ $list->created_at }}</td>
 														<td class="px-4 py-3">{{ $list->updated_at }}</td>
 														<td class="flex items-center gap-3 px-4 py-3">
-																<x-modal-box>
-																		<x-slot:modalBtn>
-																				<i class="fas fa-edit" x-on:click="toggle()">
-																				</i>
-																		</x-slot:modalBtn>
+																@can('update', $list)
+																		<x-modal-box>
+																				<x-slot:modalBtn>
+																						<i class="fas fa-edit" x-on:click="toggle()">
+																						</i>
+																				</x-slot:modalBtn>
 
-																		<x-slot:modalTitle>update your lists name</x-slot:modalTitle>
+																				<x-slot:modalTitle>update your lists name</x-slot:modalTitle>
 
-																		<x-slot:modalContent>
-																				<form class="form-wrapper space-y-3 p-4" method="POST"
-																						action="{{ route('lists.update', $list->id) }}">
-																						@csrf
-																						@method('PUT')
-																						<div>
-																								<input type="text" placeholder="list name" name="name" class="form-control"
-																										value="{{ $list->name }}">
-																						</div>
-																						<div class="mt-5">
-																								<button type="submit" class="btn w-full py-2">
-																										save changes
-																								</button>
-																						</div>
+																				<x-slot:modalContent>
+																						<form class="form-wrapper space-y-3 p-4" method="POST"
+																								action="{{ route('lists.update', $list->id) }}">
+																								@csrf
+																								@method('PUT')
+																								<div>
+																										<input type="text" placeholder="list name" name="name" class="form-control"
+																												value="{{ $list->name }}">
+																								</div>
+																								<div class="mt-5">
+																										<button type="submit" class="btn w-full py-2">
+																												save changes
+																										</button>
+																								</div>
 
-																				</form>
-																		</x-slot:modalContent>
-																</x-modal-box>
-
-																<a href="{{ route('lists.destroy', $list->id) }}" onclick="return confirm('Are you sure?')">
-																		<i class="fas fa-trash"></i>
-																</a>
+																						</form>
+																				</x-slot:modalContent>
+																		</x-modal-box>
+																@endcan
+																@can('delete', $list)
+																		<a href="{{ route('lists.destroy', $list->id) }}" onclick="return confirm('Are you sure?')">
+																				<i class="fas fa-trash"></i>
+																		</a>
+																@endcan
 														</td>
 												</tr>
 										@endforeach

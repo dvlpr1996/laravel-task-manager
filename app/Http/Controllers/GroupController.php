@@ -10,38 +10,37 @@ class GroupController extends Controller
 	public function index(Group $group)
 	{
 		$tasks = auth()->user()->tasks()->where('group_id', $group->id)->get();
-
-		if (!$tasks) abort(500, 'Error');
-
 		return view('lists', compact('tasks'));
 	}
 
 	public function destroy(Group $group)
 	{
-		$group = Group::find($group->id)->delete();
-
-		if (!$group) abort(500, 'Error');
-
+		$this->authorize('delete', $group);
+		Group::findOrFail($group->id)->delete();
 		return back()->with(__('app.listSuccessDeleted'));
 	}
 
 	public function update(GroupRequest $request, Group $group)
 	{
+		$this->authorize('update', $group);
+
 		$group = $group->update([
 			'name' => $request->name,
 			'user_id' => auth()->user()->id,
 		]);
 
-		if (!$group) abort(500, 'Error');
+		if (!$group) abort(404);
 
 		return back()->with(__('app.listSuccessUpdated'));
 	}
 
 	public function store(GroupRequest $request)
 	{
+		$this->authorize('create', Group::class);
+		
 		$group = auth()->user()->groups()->create($request->all());
 
-		if (!$group) abort(500, 'Error');
+		if (!$group) abort(404);
 
 		return back()->with(__('app.listSuccessCreated'));
 	}

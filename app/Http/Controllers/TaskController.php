@@ -16,28 +16,28 @@ class TaskController extends Controller
 
 	public function store(TaskRequest $request)
 	{
+		$this->authorize('create', Task::class);
+
 		if (!$request->has('reminder'))
 			$request->reminder = 0;
 
 		$task = auth()->user()->tasks()->create($request->all());
 
-		if (!$task) abort(500, 'Error');
+		if (!$task) abort(404);
 
-		return redirect()->route('inbox.index')
-			->with(__('app.taskSuccessCreated'));
+		return redirect()->route('inbox.index')->with(__('app.taskSuccessCreated'));
 	}
 
 	public function destroy(Task $task)
 	{
-		$task = Task::find($task->id)->delete();
-
-		if (!$task) abort(500, 'Error');
-
+		$this->authorize('delete', $task);
+		$task = Task::findOrFail($task->id)->delete();
 		return back()->with(__('app.taskSuccessDeleted'));
 	}
 
 	public function update(TaskUpdateRequest $request, Task $task)
 	{
+		$this->authorize('update', $task);
 		// ($request->has('reminder')) ? $reminder = $request->reminder : $reminder = Task::find($task->id)->reminder;
 
 		$task = $task->update([
@@ -50,7 +50,7 @@ class TaskController extends Controller
 			'priority_id' => $request->priority_id
 		]);
 
-		if (!$task) abort(500, 'Error');
+		if (!$task) abort(404);
 
 		return back()->with(__('app.taskSuccessUpdated'));
 	}

@@ -11,63 +11,67 @@
 
 		<div class="mt-5 flex items-center justify-between">
 				<div class="flex gap-3">
-						<a href="{{ route('tasks.destroy', $task->id) }}" onclick="return confirm('Are you sure?')">
-								<i class="fas fa-trash"></i>
-						</a>
+					@can('delete', $task)
+								<a href="{{ route('tasks.destroy', $task->id) }}" onclick="return confirm('Are you sure?')">
+										<i class="fas fa-trash"></i>
+								</a>
+						@endcan
 
-						<x-modal-box>
-								<x-slot:modalBtn>
-										<i class="fas fa-edit" x-on:click="toggle()">
-										</i>
-								</x-slot:modalBtn>
+						@can('update', $task)
+								<x-modal-box>
+										<x-slot:modalBtn>
+												<i class="fas fa-edit" x-on:click="toggle()">
+												</i>
+										</x-slot:modalBtn>
 
-								<x-slot:modalTitle>update your task</x-slot:modalTitle>
+										<x-slot:modalTitle>update your task</x-slot:modalTitle>
 
-								<x-slot:modalContent>
-										<form class="form-wrapper space-y-3 p-4" method="POST" action="{{ route('tasks.update', $task->id) }}">
-												@csrf
-												@method('PUT')
-												<div>
-														<input type="text" placeholder="task name" name="name" class="form-control"
-																value="{{ $task->name }}">
-												</div>
+										<x-slot:modalContent>
+												<form class="form-wrapper space-y-3 p-4" method="POST" action="{{ route('tasks.update', $task->id) }}">
+														@csrf
+														@method('PUT')
+														<div>
+																<input type="text" placeholder="task name" name="name" class="form-control"
+																		value="{{ $task->name }}">
+														</div>
 
-												<div class="mt-5">
-														<x-groups :select="$task->group_id"></x-groups>
-												</div>
+														<div class="mt-5">
+																<x-groups :select="$task->group_id"></x-groups>
+														</div>
 
-												<div class="mt-5">
-														<x-priorities :select="$task->priority_id"></x-priorities>
-												</div>
+														<div class="mt-5">
+																<x-priorities :select="$task->priority_id"></x-priorities>
+														</div>
 
-												<div class="space-y-3">
-														<label>chose due time:</label>
-														<input type="date" class="form-control" name="due_date"
-																value="{{ date('Y-m-d', strtotime($task->due_date)) }}">
-												</div>
+														<div class="space-y-3">
+																<label>chose due time:</label>
+																<input type="date" class="form-control" name="due_date"
+																		value="{{ date('Y-m-d', strtotime($task->due_date)) }}">
+														</div>
 
-												<div class="flex items-center gap-2">
-														<input type="checkbox" class="form-control h-6 w-6 rounded-full" name="reminder" id="reminderUpdate"
-																{{ $task->reminder == 1 ? 'checked' : '' }}>
-														<label for="reminderUpdate">set reminder</label>
-												</div>
+														<div class="flex items-center gap-2">
+																<input type="checkbox" class="form-control h-6 w-6 rounded-full" name="reminder" id="reminderUpdate"
+																		{{ $task->reminder == 1 ? 'checked' : '' }}>
+																<label for="reminderUpdate">set reminder</label>
+														</div>
 
-												<div class="space-y-3">
-														<label>task description:</label>
-														<textarea name="description" col="10" class="form-control">
-																{{ $task->description }}
-																</textarea>
-												</div>
+														<div class="space-y-3">
+																<label>task description:</label>
+																<textarea name="description" col="10" class="form-control">
+															{{ $task->description }}
+															</textarea>
+														</div>
 
-												<div class="mt-5">
-														<button type="submit" class="btn w-full py-2">
-																save changes
-														</button>
-												</div>
+														<div class="mt-5">
+																<button type="submit" class="btn w-full py-2">
+																		save changes
+																</button>
+														</div>
 
-										</form>
-								</x-slot:modalContent>
-						</x-modal-box>
+												</form>
+										</x-slot:modalContent>
+								</x-modal-box>
+						@endcan
 				</div>
 
 				<div class="hidden items-center justify-center gap-2 sm:flex md:justify-end">
@@ -77,10 +81,10 @@
 						</span>
 
 						<span class="tag" title="priority level">
-							<a href="{{ route('priorities.index', $task->priority->id) }}">
-								<i class="{{ $task->priority->icon }} mr-2"></i>
-							{{ $task->priority->level }}
-						</a>
+								<a href="{{ route('priorities.index', $task->priority->id) }}">
+										<i class="{{ $task->priority->icon }} mr-2"></i>
+										{{ $task->priority->level }}
+								</a>
 						</span>
 
 						<span class="tag" title="reminder">
