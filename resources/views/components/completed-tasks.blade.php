@@ -10,7 +10,7 @@
 										<th class="py-3 px-6 text-left">status</th>
 										<th class="py-3 px-6 text-left">Due date</th>
 										<th class="py-3 px-6 text-left">created at</th>
-										<th class="py-3 px-6 text-left">action</th>
+										<th class="py-3 px-6 text-center">action</th>
 								</tr>
 						</thead>
 
@@ -27,7 +27,7 @@
 												<td class="py-3 px-6 text-left">{{ $task->status }}</td>
 												<td class="py-3 px-6 text-left">{{ $task->due_date }}</td>
 												<td class="py-3 px-6 text-left">{{ $task->created_at }}</td>
-												<td class="flex items-center space-x-3 py-3 px-6">
+												<td class="text-center py-3 px-6">
 
 														<a href="{{ route('tasks.destroy', $task->id) }}" onclick="return confirm('Are you sure?')">
 																<i class="fas fa-trash"></i>

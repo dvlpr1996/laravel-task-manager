@@ -4,7 +4,7 @@
 
 @section('main-content')
 		<section class="space-y-8">
-				<h2>your inbox</h2>
+				<h2>your inbox - all your tasks</h2>
 
 				<div class="flex flex-col items-center justify-center gap-3 sm:flex-row">
 						<img src="{{ asset('img/logo.png') }}" alt="logo"class="rounded-full w-12 h-12" loading="lazy">

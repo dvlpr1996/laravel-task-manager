@@ -1,6 +1,12 @@
 <div class="bg-color text space-y-5 rounded-lg p-4 font-medium">
 		<div>
-				<h2 class="text-left font-semibold">{{ $task->name }}</h2>
+				<div class="flex items-center gap-3">
+						<a href="{{ route('tasks.done', $task->id) }}" class="select-none hover:text-green-600">
+								<i class="fas fa-check-circle"></i>
+						</a>
+
+						<h2 class="text-left font-semibold">{{ $task->name }}</h2>
+				</div>
 
 				<p class="line-clamp-2 my-3 text-left">
 						{{ $task->description ?? 'Not Defined Description For This Task' }}
@@ -11,7 +17,7 @@
 
 		<div class="mt-5 flex items-center justify-between">
 				<div class="flex gap-3">
-					@can('delete', $task)
+						@can('delete', $task)
 								<a href="{{ route('tasks.destroy', $task->id) }}" onclick="return confirm('Are you sure?')">
 										<i class="fas fa-trash"></i>
 								</a>
@@ -77,7 +83,7 @@
 				<div class="hidden items-center justify-center gap-2 sm:flex md:justify-end">
 						<span class="tag" title="due date">
 								<i class="fas fa-stopwatch mr-2"></i>
-								{{ $task->due_date }}
+								{{ $task->dueDate }}
 						</span>
 
 						<span class="tag" title="priority level">
@@ -88,9 +94,11 @@
 						</span>
 
 						<span class="tag" title="reminder">
-								<i class="fas fa-bell mr-2"></i>
-								{{-- <i class="fas fa-bell-slash"></i> --}}
-								{{ $task->reminder }}
+								<a href="{{ route('tasks.setReminder', $task->id) }}" class="select-none">
+										<i class="fas fa-bell mr-2"></i>
+										{{ $task->reminder }}
+								</a>
+
 						</span>
 				</div>
 

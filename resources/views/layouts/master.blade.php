@@ -1,8 +1,9 @@
 @include('layouts.header')
 @include('layouts.nav')
 
-<section class="relative flex">
-		<aside id="sidebar" class="sidebar">
+<section class="relative flex min-h-screen flex-row">
+
+		<aside id="sidebar">
 				<ul class="mt-1 space-y-5">
 						<li class="aside-items">
 								<i class="fas fa-tachometer-alt mr-1"></i>

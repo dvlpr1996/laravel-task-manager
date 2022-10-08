@@ -32,7 +32,7 @@
 	}
 
 	body {
-		@apply capitalize debug-screens bg-slate-900;
+		@apply capitalize debug-screens bg-slate-900 max-h-screen;
 	}
 
 	h1 {
@@ -107,9 +107,10 @@
 	  @apply bg-color flex justify-between items-center p-4;
   }
 
-	.sidebar {
-		@apply bg-color shadow z-10 p-5 w-48 absolute lg:static block;
+	aside {
+		@apply z-10 lg:z-0 p-5 w-48 absolute bottom-0 top-0 lg:static block bg-color shadow overflow-hidden;
 	}
+
 
 	.aside-items {
 		@apply flex items-baseline gap-3 transition-colors duration-150;

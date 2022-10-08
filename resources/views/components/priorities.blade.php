@@ -1,5 +1,5 @@
-<select class="form-control" name="priority_id">
-		<option>select prioraty</option>
+<select class="form-control appearance-none" name="priority_id">
+		<option selected>select prioraty</option>
 		@forelse ($allPriority as $priority)
 				<option value="{{ $priority->id }}" {{ $priority->id == $select ? 'selected' : '' }}>
 					{{ $priority->level }}

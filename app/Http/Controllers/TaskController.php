@@ -54,4 +54,24 @@ class TaskController extends Controller
 
 		return back()->with(__('app.taskSuccessUpdated'));
 	}
+
+	public function done(Task $task)
+	{
+		$task = $task->update(['status' => 1]);
+		if (!$task) abort(404);
+		return back();
+	}
+
+	public function toggleReminder(Task $task)
+	{
+		$reminderStatus = $task->reminder;
+
+		if ($reminderStatus === 'no')
+			$task->update(['reminder' => 1]);
+
+		if ($reminderStatus === 'yes')
+			$task->update(['reminder' => 0]);
+
+		return back();
+	}
 }

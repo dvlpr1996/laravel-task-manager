@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Group;
 use App\Models\Priority;
@@ -18,6 +19,7 @@ class Task extends Model
 		'description',
 		'due_date',
 		'reminder',
+		'status',
 		'user_id',
 		'group_id',
 		'priority_id',
@@ -41,28 +43,29 @@ class Task extends Model
 	protected function status(): Attribute
 	{
 		return Attribute::make(
-			get: fn ($value) => ($value == 0) ? $value = 'undone' : $value = 'done'
+			get: fn ($value) => ($value == 0) ? $value = 'undone' : $value = 'done',
+			set: fn ($value) => ($value == 'undone') ? $value = 0 : $value = 1
 		);
 	}
 
 	protected function dueDate(): Attribute
 	{
 		return Attribute::make(
-			get: fn ($value) => $value = date('y-M-d', strtotime($value)) ?? '-'
+			get: fn ($value) => ($value != null) ? Carbon::create($value)->toFormattedDateString() : 'not defined'
 		);
 	}
 
 	protected function createdAt(): Attribute
 	{
 		return Attribute::make(
-			get: fn ($value) => date('y-M-d', strtotime($value))
+			get: fn ($value) => Carbon::create($value)->toFormattedDateString()
 		);
 	}
 
 	protected function reminder(): Attribute
 	{
 		return Attribute::make(
-			get: fn ($value) => ($value == 1) ? $value = 'yes' : $value = 'no'
+			get: fn ($value) => ($value == 1) ? $value = 'yes' : $value = 'no',
 		);
 	}
 }

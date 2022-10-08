@@ -21,6 +21,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		Route::POST('/tasks', 'store')->name('tasks.store');
 		Route::GET('/tasks/delete/{task}', 'destroy')->name('tasks.destroy');
 		Route::PUT('/tasks/update/{task}', 'update')->name('tasks.update');
+		Route::GET('/tasks/done/{task}', 'done')->name('tasks.done');
+		Route::GET('/tasks/setReminder/{task}', 'toggleReminder')->name('tasks.setReminder');
 	});
 
 	Route::controller(GroupController::class)->group(function () {
@@ -41,7 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::GET('/test', function () {
-	abort(404, 'Error');
+
 });
 
 require __DIR__ . '/auth.php';

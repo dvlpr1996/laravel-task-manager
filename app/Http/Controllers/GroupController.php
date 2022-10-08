@@ -9,8 +9,9 @@ class GroupController extends Controller
 {
 	public function index(Group $group)
 	{
-		$tasks = auth()->user()->tasks()->where('group_id', $group->id)->get();
-		return view('lists', compact('tasks'));
+		$tasks = auth()->user()->tasks()->where('group_id', $group->id)->where('status', '!=', 1)
+		->get();
+		return view('lists', compact('tasks', 'group'));
 	}
 
 	public function destroy(Group $group)
@@ -37,7 +38,7 @@ class GroupController extends Controller
 	public function store(GroupRequest $request)
 	{
 		$this->authorize('create', Group::class);
-		
+
 		$group = auth()->user()->groups()->create($request->all());
 
 		if (!$group) abort(404);
