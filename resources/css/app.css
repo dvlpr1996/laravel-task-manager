@@ -32,7 +32,7 @@
 	}
 
 	body {
-		@apply capitalize debug-screens bg-slate-900 max-h-screen;
+		@apply capitalize bg-gray-100 dark:bg-slate-900 max-h-screen;
 	}
 
 	h1 {
@@ -56,17 +56,21 @@
 	}
 
 	.bg-color{
-		@apply bg-slate-800;
+		@apply dark:bg-slate-800 bg-white shadow-md;
 	}
 
 	.text {
-		@apply text-gray-300;
+		@apply text-gray-500 dark:text-gray-400;
 	}
 
 	a,
 	i,
 	.link {
-		@apply text cursor-pointer text-base font-medium transition-colors duration-150 hover:opacity-50;
+		@apply text cursor-pointer text-base font-medium transition-colors duration-150 dark:hover:opacity-50 hover:opacity-70;
+	}
+
+	.hr {
+		@apply border-b dark:border-b-white border-b-slate-500;
 	}
 
 	.round {
@@ -78,15 +82,15 @@
 	}
 
 	main {
-		@apply p-5 w-full space-y-8;
+		@apply p-5 w-full space-y-8 bg-gray-50 dark:bg-slate-900;
 	}
 
 	table {
-		@apply w-full text-base capitalize text-gray-500 dark:text-gray-400;
+		@apply text w-full text-base capitalize;
 	}
 
 	thead {
-		@apply border-b bg-gray-50 font-bold text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400;
+		@apply border-b bg-gray-100 font-bold dark:border-gray-700 dark:bg-gray-800;
 	}
 
 	tr {
@@ -98,19 +102,23 @@
   }
 
   tbody > tr {
-	  @apply text-gray-700 odd:bg-white even:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 odd:dark:bg-gray-800 even:dark:bg-gray-700 even:rounded-xl;
+	  @apply odd:bg-white even:bg-gray-100 dark:bg-gray-800 odd:dark:bg-gray-800 even:dark:bg-gray-700 even:rounded-xl;
   }
+
+	table a {
+		@apply decoration-slate-800 dark:decoration-slate-400 underline underline-offset-8;
+	}
+
+	aside {
+		@apply z-10 lg:z-0 p-5 w-48 absolute bottom-0 top-0 lg:static bg-color shadow overflow-hidden
+		hidden lg:block;
+	}
 }
 
 @layer components {
   .navbar {
-	  @apply bg-color flex justify-between items-center p-4;
+	  @apply bg-color flex justify-between items-center p-3 shadow;
   }
-
-	aside {
-		@apply z-10 lg:z-0 p-5 w-48 absolute bottom-0 top-0 lg:static bg-color shadow overflow-hidden;
-	}
-
 
 	.aside-items {
 		@apply flex items-baseline gap-3 transition-colors duration-150;
@@ -125,11 +133,16 @@
 	}
 
 	.form-control {
-		@apply text bg-color round block w-full py-2 px-3 my-2 round appearance-none;
+		@apply text bg-color round block w-full py-2 px-3 my-2 round appearance-none 
+		border-none dark:border;
 	}
 
 	.btn {
 		@apply block w-max px-5 py-3 font-medium leading-5 text-center transition-colors duration-150  rounded-lg bg-sky-600 text-base hover:bg-sky-700 text-white focus:outline-none focus:ring-2 cursor-pointer capitalize hover:opacity-100;
+	}
+
+	.btn i {
+		@apply text-white;
 	}
 
 	/* .pagination {
@@ -154,7 +167,7 @@
 	}
 
 	.tag {
-		@apply bg-slate-900 py-2 px-3 rounded-lg text-sm;
+		@apply bg-gray-100 dark:bg-slate-900 py-2 px-3 rounded-lg text-sm shadow;
 	}
 
 	.modal-btn {

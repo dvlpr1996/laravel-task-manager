@@ -9,7 +9,7 @@
 				<x-single-task :task="$task"></x-all-tasktask>
 				@empty
 						<div class="box">
-								<p class="py-2 px-5 text-center text-xl">
+								<p class="py-2 px-5 text-center text-lg">
 									not tasks found for this priority
 								</p>
 						</div>

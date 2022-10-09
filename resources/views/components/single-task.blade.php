@@ -13,7 +13,7 @@
 				</p>
 		</div>
 
-		<hr>
+		<hr class="hr">
 
 		<div class="mt-5 flex items-center justify-between">
 				<div class="flex gap-3">
@@ -123,9 +123,10 @@
 												</span>
 
 												<span title="reminder">
-														<i class="fas fa-bell mr-2"></i>
-														{{-- <i class="fas fa-bell-slash"></i> --}}
-														{{ $task->reminder }}
+														<a href="{{ route('tasks.setReminder', $task->id) }}" class="select-none">
+																<i class="fas fa-bell mr-2"></i>
+																{{ $task->reminder }}
+														</a>
 												</span>
 										</div>
 								</div>

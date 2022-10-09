@@ -154,7 +154,7 @@
 										</tbody>
 								</table>
 						@else
-								<div class="rounded-lg bg-slate-700 p-5 text-center">
+								<div class="box text-center">
 										<p>not task added yet</p>
 								</div>
 						@endif

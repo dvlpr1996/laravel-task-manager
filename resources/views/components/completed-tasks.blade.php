@@ -27,7 +27,7 @@
 												<td class="py-3 px-6 text-left">{{ $task->status }}</td>
 												<td class="py-3 px-6 text-left">{{ $task->due_date }}</td>
 												<td class="py-3 px-6 text-left">{{ $task->created_at }}</td>
-												<td class="text-center py-3 px-6">
+												<td class="py-3 px-6 text-center">
 
 														<a href="{{ route('tasks.destroy', $task->id) }}" onclick="return confirm('Are you sure?')">
 																<i class="fas fa-trash"></i>
@@ -38,7 +38,7 @@
 						</tbody>
 				</table>
 		@else
-				<div class="rounded-lg bg-slate-700 p-5 text-center">
+				<div class="box text-center">
 						<p>not task completed yet</p>
 				</div>
 		@endif

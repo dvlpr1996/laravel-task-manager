@@ -36,15 +36,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::view('/deleteAccount', 'destroyUser')->name('destroyUser.index');
 	Route::view('/tomorrow', 'tomorrow')->name('tomorrow.index');
 	Route::view('/completed', 'completed')->name('completed.index');
-	
+
 	Route::Get('/priorities/{priority}', [PriorityController::class, 'index'])->name('priorities.index');
 	Route::Get('/', [DashboardController::class, 'index'])->name('dashboard.index');
-
-	Route::Get('/se', [DashboardController::class, 'index'])->name('dashboard.index');
 });
 
 Route::GET('/test', function () {
-
 });
 
 require __DIR__ . '/auth.php';

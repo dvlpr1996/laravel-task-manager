@@ -20,6 +20,7 @@
 
 						<div class="dropdown-content hidden" x-show="open" x-transition.duration.500ms
 								x-bind:class="{ 'hidden': !open }">
+
 								@can('create', App\Models\Task::class)
 										<x-add-task modalType="modal-btn"></x-add-task>
 								@endcan
@@ -113,7 +114,7 @@
 						</div>
 
 				</div>
-				<img src="{{ auth()->user()->gravatar() }}" alt="gravatar" title="{{ auth()->user()->fullName }}"
+				<img src="{{ auth()->user()->gravatar() }}" alt="{{ auth()->user()->fullName }}" title="{{ auth()->user()->fullName }}"
 						class="h-12 w-12 rounded-full" loading="lazy">
 		</div>
 </nav>
