@@ -65,7 +65,8 @@ class Task extends Model
 	protected function reminder(): Attribute
 	{
 		return Attribute::make(
-			get: fn ($value) => ($value == 1) ? $value = 'yes' : $value = 'no',
+			get: fn ($value) => ($value == 1) ? $value = 'on' : $value = 'off',
+			set: fn ($value) => ($value == 'on') ? $value = 1 : $value = 0,
 		);
 	}
 }

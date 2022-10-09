@@ -12,8 +12,9 @@
 				</div>
 
 				<div class="relative mx-auto sm:w-4/6 md:w-3/5">
-						<form>
-								<input type="text" name="search" class="form-control" placeholder="Search Your Tasks" autocomplete="off">
+						<form action="#" method="GET">
+								@csrf
+								<input type="text" name="q" class="form-control" placeholder="Search Your Tasks" autocomplete="off">
 						</form>
 
 						<div class="pointer-events-none absolute inset-y-0 right-2 flex items-center pl-3">
@@ -28,65 +29,25 @@
 		</section>
 
 		<section class="space-y-5">
-				<div class="flex flex-col items-center justify-center gap-5 sm:flex-row sm:items-end sm:justify-between">
-						<div class="order-2 flex items-center justify-between gap-2 sm:order-1">
+				<div class="flex flex-col justify-center gap-5 sm:flex-row sm:items-end sm:justify-between">
+						<div class="order-2 flex items-center justify-center gap-2 sm:order-1">
 								<p>Sort :</p>
-								<a href="#"><i class="fas fa-sort-alpha-down ml-1"></i> AS</a>
-								<a href="#"><i class="fas fa-sort-alpha-down-alt ml-1"></i> DS</a>
-								<a href="#"><i class="fas fa-stopwatch ml-1"></i> Due date</a>
+								<a href="#">
+										<i class="fas fa-sort-alpha-down ml-1"></i> AS
+								</a>
+								<a href="#">
+										<i class="fas fa-sort-alpha-down-alt ml-1"></i> DS
+								</a>
+								<a href="#">
+										<i class="fas fa-stopwatch ml-1"></i> Due date
+								</a>
 						</div>
 
 						<x-auth-validation-errors class="round mb-2 bg-red-400 p-2" :errors="$errors" />
 
-						<x-modal-box>
-								<x-slot:modalBtn>
-										<button type="button" class="btn order-1 w-full py-2 sm:order-2 sm:w-max" x-on:click="toggle()">
-												add new task
-										</button>
-								</x-slot:modalBtn>
-
-								<x-slot:modalTitle>add your task</x-slot:modalTitle>
-
-								<x-slot:modalContent>
-										<form class="form-wrapper space-y-3 p-4" method="POST" action="{{ route('tasks.store') }}">
-												@csrf
-												<div>
-														<input type="text" placeholder="task name" name="name" class="form-control">
-												</div>
-
-												<div class="mt-5">
-														<x-groups></x-groups>
-												</div>
-
-												<div class="mt-5">
-														<x-priorities></x-priorities>
-												</div>
-
-												<div class="space-y-3">
-														<label>chose due time:</label>
-														<input type="date" class="form-control" name="due_date">
-												</div>
-
-												<div class="flex items-center gap-2">
-														<input type="checkbox" class="form-control h-6 w-6 rounded-full" name="reminder" value="1">
-														<label>set reminder</label>
-												</div>
-
-												<div class="space-y-3">
-														<label>task description:</label>
-														<textarea name="description" col="10" class="form-control">
-													</textarea>
-												</div>
-
-												<div class="mt-5">
-														<button type="submit" class="btn w-full py-2">
-																add new task
-														</button>
-												</div>
-
-										</form>
-								</x-slot:modalContent>
-						</x-modal-box>
+						@can('create', App\Models\Task::class)
+								<x-add-task modalType="btn order-1 py-2 sm:order-2 sm:w-max w-full"></x-add-task>
+						@endcan
 
 				</div>
 

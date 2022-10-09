@@ -3,7 +3,7 @@
 @section('title', strtoupper('lists'))
 
 @section('main-content')
-		<h2>{{ $group->name }} list</h2>
+		<h2>{{ $group->name }} list tasks</h2>
 
 		@forelse ($tasks as $task)
 				<x-single-task :task="$task"></x-all-tasktask>

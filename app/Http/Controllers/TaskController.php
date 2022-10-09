@@ -38,14 +38,16 @@ class TaskController extends Controller
 	public function update(TaskUpdateRequest $request, Task $task)
 	{
 		$this->authorize('update', $task);
-		// ($request->has('reminder')) ? $reminder = $request->reminder : $reminder = Task::find($task->id)->reminder;
+
+		if ($request->has('reminder') && $request->reminder == 'on')
+			$request->reminder = 'on';
 
 		$task = $task->update([
 			'name' => $request->name,
 			'user_id' => auth()->user()->id,
 			'description' => $request->description,
 			'due_date' => $request->due_date,
-			'reminder' => 1,
+			'reminder' => $request->reminder,
 			'group_id' => $request->group_id,
 			'priority_id' => $request->priority_id
 		]);
@@ -66,11 +68,11 @@ class TaskController extends Controller
 	{
 		$reminderStatus = $task->reminder;
 
-		if ($reminderStatus === 'no')
-			$task->update(['reminder' => 1]);
+		if ($reminderStatus === 'off')
+			$task->update(['reminder' => 'on']);
 
-		if ($reminderStatus === 'yes')
-			$task->update(['reminder' => 0]);
+		if ($reminderStatus === 'on')
+			$task->update(['reminder' => 'off']);
 
 		return back();
 	}
