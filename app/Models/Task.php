@@ -7,8 +7,10 @@ use App\Models\User;
 use App\Models\Group;
 use App\Models\Priority;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use PHPUnit\Framework\MockObject\Stub\ReturnStub;
 
 class Task extends Model
 {
@@ -68,5 +70,38 @@ class Task extends Model
 			get: fn ($value) => ($value == 1) ? $value = 'on' : $value = 'off',
 			set: fn ($value) => ($value == 'on') ? $value = 1 : $value = 0,
 		);
+	}
+
+	public function scopeSort(Builder $query, array $params)
+	{
+		if (isset($params['q']))
+			$query->where('name', 'like', "%" . $params['q'] . "%");
+
+		if (isset($params['sort']) && $params['sort'] == 'ascending')
+			$query->orderBy('name', 'asc');
+
+		if (isset($params['sort']) && $params['sort'] == 'descending')
+			$query->orderByDesc('name');
+
+		if (isset($params['sort']) && $params['sort'] == 'dueDate')
+			$query->orderByDesc('due_date');
+
+		return $query;
+	}
+
+	public static function authUser()
+	{
+		$user = auth()->user()->id;
+		return Task::with('user')->where('tasks.user_id', $user);
+	}
+
+	public static function scopeUndone(Builder $query)
+	{
+		return $query->where('status', '!=', '1');
+	}
+
+	public static function scopeDone(Builder $query)
+	{
+		return $query->where('status', '1');
 	}
 }

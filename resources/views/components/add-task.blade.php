@@ -30,7 +30,7 @@
 
 					<div class="flex items-center gap-2">
 							<input type="checkbox" class="form-control h-6 w-6 rounded-full" name="reminder" value="1">
-							<label>set reminder</label>
+							<label class="text">set reminder</label>
 					</div>
 
 					<div class="space-y-3">

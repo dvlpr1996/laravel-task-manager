@@ -78,7 +78,7 @@
 	}
 
 	label {
-		@apply capitalize text-sm text-white select-none;
+		@apply capitalize text-sm text select-none;
 	}
 
 	main {
@@ -133,8 +133,7 @@
 	}
 
 	.form-control {
-		@apply text bg-color round block w-full py-2 px-3 my-2 round appearance-none 
-		border-none dark:border;
+		@apply text bg-color round block w-full py-2 px-3 my-2 round appearance-none;
 	}
 
 	.btn {

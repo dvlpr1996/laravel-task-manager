@@ -16,9 +16,8 @@ class UserController extends Controller
 	public function destroyUser(Request $request, User $user)
 	{
 		$this->authorize('delete', $user);
-
 		$this->logOut($user, $request);
-
+		
 		User::findOrFail($user->id)->delete();
 
 		event(new DeleteAccount($user));

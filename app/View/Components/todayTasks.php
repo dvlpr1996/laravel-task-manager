@@ -2,16 +2,16 @@
 
 namespace App\View\Components;
 
+use App\Models\Task;
+use Illuminate\Http\Request;
 use Illuminate\View\Component;
 
 class todayTasks extends Component
 {
 	public $todayTasks;
-	public function __construct()
+	public function __construct(Request $request)
 	{
-		$this->todayTasks = auth()->user()->tasks()->where('status', '!=', '1')
-			->where('due_date', date('Y-m-d'))
-			->paginate(10);
+		$this->todayTasks = Task::authUser()->unDone()->where('due_date', date('Y-m-d'))->sort($request->all())->paginate(10);
 	}
 
 	public function render()

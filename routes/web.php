@@ -41,7 +41,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::Get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 });
 
+
 Route::GET('/test', function () {
+
 });
 
 require __DIR__ . '/auth.php';

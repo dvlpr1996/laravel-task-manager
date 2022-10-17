@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Models\Group;
 use App\Http\Requests\GroupRequest;
 
@@ -9,8 +10,7 @@ class GroupController extends Controller
 {
 	public function index(Group $group)
 	{
-		$tasks = auth()->user()->tasks()->where('group_id', $group->id)->where('status', '!=', 1)
-		->get();
+		$tasks = Task::authUser()->undone()->where('group_id', $group->id)->get();
 		return view('lists', compact('tasks', 'group'));
 	}
 

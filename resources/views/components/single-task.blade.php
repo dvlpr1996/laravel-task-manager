@@ -2,7 +2,7 @@
 		<div>
 				<div class="flex items-center gap-3">
 						<a href="{{ route('tasks.done', $task->id) }}" class="select-none hover:text-green-600">
-								<i class="fas fa-check-circle"></i>
+								<i class="fas fa-dot-circle hover:fa-check-circle"></i>
 						</a>
 
 						<h2 class="text-left font-semibold">{{ $task->name }}</h2>

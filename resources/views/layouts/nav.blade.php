@@ -29,7 +29,7 @@
 										<x-modal-box>
 												<x-slot:modalBtn>
 														<p x-on:click="toggle()" class="link m-2 block text-left">
-																<i class="fas fa-lock mr-1"></i>
+															<i class="fas fa-tools mr-1"></i>
 																Settings
 														</p>
 												</x-slot:modalBtn>
@@ -68,7 +68,7 @@
 										<x-modal-box>
 												<x-slot:modalBtn>
 														<p x-on:click="toggle()" class="link m-2 block text-left">
-																<i class="fas fa-sign-out-alt mr-1"></i>
+															<i class="fas fa-key mr-1"></i>
 																password
 														</p>
 												</x-slot:modalBtn>
