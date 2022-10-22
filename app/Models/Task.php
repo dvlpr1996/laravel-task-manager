@@ -94,7 +94,7 @@ class Task extends Model
 		$user = auth()->user()->id;
 		return Task::with('user')->where('tasks.user_id', $user);
 	}
-
+	
 	public static function scopeUndone(Builder $query)
 	{
 		return $query->where('status', '!=', '1');

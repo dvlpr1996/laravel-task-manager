@@ -21,6 +21,7 @@
 		"nesbot/carbon": "^2.62"
 	},
 	"require-dev": {
+		"barryvdh/laravel-debugbar": "^3.7",
 		"fakerphp/faker": "^1.9.1",
 		"laravel/breeze": "^1.13",
 		"laravel/pint": "^1.0",

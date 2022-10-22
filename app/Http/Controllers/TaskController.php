@@ -24,7 +24,7 @@ class TaskController extends Controller
 
 		$task = auth()->user()->tasks()->create($request->all());
 
-		if ($task) abort(404);
+		if (!$task) abort(404);
 
 		return redirect()->route('inbox.index')->with(__('app.taskSuccessCreated'));
 	}
@@ -34,7 +34,7 @@ class TaskController extends Controller
 		$this->authorize('delete', $task);
 
 		$task = Task::findOrFail($task->id)->delete();
-		
+
 		return back()->with(__('app.taskSuccessDeleted'));
 	}
 
