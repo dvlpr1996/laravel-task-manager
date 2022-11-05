@@ -23,23 +23,7 @@
 		</section>
 
 		<x-all-lists></x-all-lists>
-
-		<section class="grid gap-2 xs:grid-cols-1 md:grid-cols-2">
-				<div class="box">
-						<p>
-								<span class="block text-base font-semibold">555</span>
-								days with us
-						</p>
-				</div>
-
-				<div class="box">
-						<p>
-								<span class="block text-base font-semibold">555</span>
-								days with us
-						</p>
-				</div>
-		</section>
-
+		
 		<section class="space-y-3">
 				<h4>Unfinished tasks</h4>
 				<div class="overflow-x-auto rounded-xl bg-white p-2 shadow-md dark:bg-gray-800">

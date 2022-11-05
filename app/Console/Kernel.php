@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
 	protected function schedule(Schedule $schedule)
 	{
 		$schedule->command('auto:AutoDailyTasks')->dailyAt('06:00');
+		$schedule->command('auto:AutoReminderTasks')->dailyAt('06:00');
 	}
 
 	/**
