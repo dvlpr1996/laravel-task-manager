@@ -32,9 +32,13 @@ Todo list Laravel web application for managing daily tasks
  ![VS Code](https://img.shields.io/badge/-VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=fff)
 </div>
 
-## issues
+## Issues
 
 If you discover any issues, please using the issue tracker.
+
+## Screenshots
+
+Screenshots [Screenshots](Screenshots) for more information.
 
 ## Credits
 

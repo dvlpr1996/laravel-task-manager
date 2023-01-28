@@ -42,8 +42,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
-Route::GET('/test', function () {
-	
+Route::fallback(function () {
+	return view('fallback');
 });
 
 require __DIR__ . '/auth.php';
