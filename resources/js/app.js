@@ -1,5 +1,10 @@
 import './bootstrap';
 import './custom';
+import.meta.glob([
+  '../images/**',
+  '../fonts/**',
+]);
+
 import Alpine from 'alpinejs';
 
 document.addEventListener('alpine:init', () => {

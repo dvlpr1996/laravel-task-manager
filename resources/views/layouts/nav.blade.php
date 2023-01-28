@@ -3,7 +3,7 @@
 				<i id="sidebarToggle" class="fas fa-bars text-2xl font-semibold"></i>
 
 				<a href="#" class="flex items-center gap-2">
-						<img src="{{ asset('img/logo.png') }}" alt="logo" class="h-12 w-12 rounded-full" loading="lazy">
+						<img src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo" class="h-12 w-12 rounded-full" loading="lazy">
 						<span class="hidden md:block">Laravel Task Manager</span>
 				</a>
 		</div>
