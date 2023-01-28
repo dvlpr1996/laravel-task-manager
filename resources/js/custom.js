@@ -1,6 +1,6 @@
 window.addEventListener("load", () => {
 	window.addEventListener("offline", () => {
-		alert("you are seem offline. check your internet connection");
+		alert("you appear to be offline. check your internet connection");
 	});
 });
 

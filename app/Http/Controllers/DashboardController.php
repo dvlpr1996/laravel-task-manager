@@ -11,5 +11,4 @@ class DashboardController extends Controller
 		$unfinishedTasks = Task::authUser()->undone()->paginate(10);
 		return view('dashboard', compact('unfinishedTasks'));
 	}
-
 }

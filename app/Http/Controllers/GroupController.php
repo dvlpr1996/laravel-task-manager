@@ -40,7 +40,7 @@ class GroupController extends Controller
 		$this->authorize('create', Group::class);
 
 		$group = auth()->user()->groups()->create($request->all());
-
+		
 		if (!$group) abort(404);
 
 		return back()->with(__('app.listSuccessCreated'));
