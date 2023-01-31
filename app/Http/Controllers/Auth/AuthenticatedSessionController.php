@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
 		$request->session()->regenerate();
 
 		return redirect()->intended(RouteServiceProvider::HOME)
-			->with('successLogin','Welcome Back Dear' . ' ' . auth()->user()->fullName);
+			->withToastSuccess('Welcome Back Dear' . ' ' . auth()->user()->fullName);
 	}
 
 	public function destroy(Request $request)
@@ -28,6 +28,6 @@ class AuthenticatedSessionController extends Controller
 
 		$request->session()->regenerateToken();
 
-		return redirect()->route('login.create')->with(__('app.successLogout'));
+		return redirect()->route('login.create')->withToastSuccess(__('app.successLogout'));
 	}
 }

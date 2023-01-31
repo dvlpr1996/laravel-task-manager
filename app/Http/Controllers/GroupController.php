@@ -18,7 +18,7 @@ class GroupController extends Controller
 	{
 		$this->authorize('delete', $group);
 		Group::findOrFail($group->id)->delete();
-		return back()->with(__('app.listSuccessDeleted'));
+		return back()->withToastSuccess(__('app.listSuccessDeleted'));
 	}
 
 	public function update(GroupRequest $request, Group $group)
@@ -32,7 +32,7 @@ class GroupController extends Controller
 
 		if (!$group) abort(404);
 
-		return back()->with(__('app.listSuccessUpdated'));
+		return back()->withToastSuccess(__('app.listSuccessUpdated'));
 	}
 
 	public function store(GroupRequest $request)
@@ -40,9 +40,9 @@ class GroupController extends Controller
 		$this->authorize('create', Group::class);
 
 		$group = auth()->user()->groups()->create($request->all());
-		
+
 		if (!$group) abort(404);
 
-		return back()->with(__('app.listSuccessCreated'));
+		return back()->withToastSuccess(__('app.listSuccessCreated'));
 	}
 }

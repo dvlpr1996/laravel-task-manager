@@ -10,10 +10,10 @@ class priorities extends Component
 	public $allPriority;
 	public $select;
 
-	public function __construct($select='')
+	public function __construct($select = '')
 	{
-		$this->select=$select;
-		$this->allPriority = Priority::select(['id','level'])->get();
+		$this->select = $select;
+		$this->allPriority = Priority::select(['id', 'level'])->get();
 	}
 
 	public function render()

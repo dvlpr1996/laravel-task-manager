@@ -17,7 +17,7 @@ class UserController extends Controller
 	{
 		$this->authorize('delete', $user);
 		$this->logOut($user, $request);
-		
+
 		User::findOrFail($user->id)->delete();
 
 		event(new DeleteAccount($user));
@@ -35,7 +35,7 @@ class UserController extends Controller
 			'email' => $request->email
 		]);
 
-		return back()->with(__('app.userSuccessUpdated'));
+		return back()->withToastSuccess(__('app.userSuccessUpdated'));
 	}
 
 	public function updatePassword(updatePassword $request, User $user)

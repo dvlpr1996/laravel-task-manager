@@ -74,4 +74,9 @@ class User extends Authenticatable implements MustVerifyEmail
 		$hash = md5(strtolower($this->attributes['email']));
 		return "http://s.gravatar.com/avatar/$hash";
 	}
+
+	public static function authUser()
+	{
+		return auth()->user();
+	}
 }

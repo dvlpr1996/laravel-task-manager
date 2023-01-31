@@ -39,6 +39,6 @@ class RegisteredUserController extends Controller
 		Auth::login($user);
 
 		return redirect(RouteServiceProvider::HOME . auth()->user()->slug)
-			->with('Welcome To Task Manager');
+			->withToastSuccess('Welcome To Task Manager');
 	}
 }

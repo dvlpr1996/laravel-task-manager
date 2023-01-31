@@ -26,7 +26,7 @@ class TaskController extends Controller
 
 		if (!$task) abort(404);
 
-		return redirect()->route('inbox.index')->with(__('app.taskSuccessCreated'));
+		return redirect()->route('inbox.index')->withToastSuccess(__('app.taskSuccessCreated'));
 	}
 
 	public function destroy(Task $task)
@@ -35,7 +35,7 @@ class TaskController extends Controller
 
 		$task = Task::findOrFail($task->id)->delete();
 
-		return back()->with(__('app.taskSuccessDeleted'));
+		return back()->withToastSuccess(__('app.taskSuccessDeleted'));
 	}
 
 	public function update(TaskUpdateRequest $request, Task $task)
@@ -57,7 +57,7 @@ class TaskController extends Controller
 
 		if (!$task) abort(404);
 
-		return back()->with(__('app.taskSuccessUpdated'));
+		return back()->withToastSuccess(__('app.taskSuccessUpdated'));
 	}
 
 	public function done(Task $task)
