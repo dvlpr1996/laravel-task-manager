@@ -38,7 +38,7 @@ If you discover any issues, please using the issue tracker.
 
 ## Screenshots
 
-Screenshots [Screenshots](Screenshots) for more information.
+[Screenshots](Screenshots) for more information.
 
 ## Credits
 
