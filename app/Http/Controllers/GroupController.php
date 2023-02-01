@@ -2,47 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
-use App\Models\Group;
 use App\Http\Requests\GroupRequest;
+use App\Models\Group;
+use App\Models\Task;
 
 class GroupController extends Controller
 {
-	public function index(Group $group)
-	{
-		$tasks = Task::authUser()->undone()->where('group_id', $group->id)->get();
-		return view('lists', compact('tasks', 'group'));
-	}
+    public function index(Group $group)
+    {
+        $tasks = Task::authUser()->undone()->where('group_id', $group->id)->get();
 
-	public function destroy(Group $group)
-	{
-		$this->authorize('delete', $group);
-		Group::findOrFail($group->id)->delete();
-		return back()->withToastSuccess(__('app.listSuccessDeleted'));
-	}
+        return view('lists', compact('tasks', 'group'));
+    }
 
-	public function update(GroupRequest $request, Group $group)
-	{
-		$this->authorize('update', $group);
+    public function destroy(Group $group)
+    {
+        $this->authorize('delete', $group);
+        Group::findOrFail($group->id)->delete();
 
-		$group = $group->update([
-			'name' => $request->name,
-			'user_id' => auth()->user()->id,
-		]);
+        return back()->withToastSuccess(__('app.listSuccessDeleted'));
+    }
 
-		if (!$group) abort(404);
+    public function update(GroupRequest $request, Group $group)
+    {
+        $this->authorize('update', $group);
 
-		return back()->withToastSuccess(__('app.listSuccessUpdated'));
-	}
+        $group = $group->update([
+            'name' => $request->name,
+            'user_id' => auth()->user()->id,
+        ]);
 
-	public function store(GroupRequest $request)
-	{
-		$this->authorize('create', Group::class);
+        if (! $group) {
+            abort(404);
+        }
 
-		$group = auth()->user()->groups()->create($request->all());
+        return back()->withToastSuccess(__('app.listSuccessUpdated'));
+    }
 
-		if (!$group) abort(404);
+    public function store(GroupRequest $request)
+    {
+        $this->authorize('create', Group::class);
 
-		return back()->withToastSuccess(__('app.listSuccessCreated'));
-	}
+        $group = auth()->user()->groups()->create($request->all());
+
+        if (! $group) {
+            abort(404);
+        }
+
+        return back()->withToastSuccess(__('app.listSuccessCreated'));
+    }
 }

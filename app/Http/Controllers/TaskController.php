@@ -2,81 +2,93 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
-use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
 use App\Http\Requests\TaskUpdateRequest;
+use App\Models\Task;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-	public function index(Request $request)
-	{
-		$allTasks = Task::authUser()->sort($request->all())->paginate(10)->withQueryString();
-		return view('inbox', compact('allTasks'));
-	}
+    public function index(Request $request)
+    {
+        $allTasks = Task::authUser()->sort($request->all())->paginate(10)->withQueryString();
 
-	public function store(TaskRequest $request)
-	{
-		$this->authorize('create', Task::class);
+        return view('inbox', compact('allTasks'));
+    }
 
-		if (!$request->has('reminder'))
-			$request->reminder = 0;
+    public function store(TaskRequest $request)
+    {
+        $this->authorize('create', Task::class);
 
-		$task = auth()->user()->tasks()->create($request->all());
+        if (! $request->has('reminder')) {
+            $request->reminder = 0;
+        }
 
-		if (!$task) abort(404);
+        $task = auth()->user()->tasks()->create($request->all());
 
-		return redirect()->route('inbox.index')->withToastSuccess(__('app.taskSuccessCreated'));
-	}
+        if (! $task) {
+            abort(404);
+        }
 
-	public function destroy(Task $task)
-	{
-		$this->authorize('delete', $task);
+        return redirect()->route('inbox.index')->withToastSuccess(__('app.taskSuccessCreated'));
+    }
 
-		$task = Task::findOrFail($task->id)->delete();
+    public function destroy(Task $task)
+    {
+        $this->authorize('delete', $task);
 
-		return back()->withToastSuccess(__('app.taskSuccessDeleted'));
-	}
+        $task = Task::findOrFail($task->id)->delete();
 
-	public function update(TaskUpdateRequest $request, Task $task)
-	{
-		$this->authorize('update', $task);
+        return back()->withToastSuccess(__('app.taskSuccessDeleted'));
+    }
 
-		if ($request->has('reminder') && $request->reminder == 'on')
-			$request->reminder = 'on';
+    public function update(TaskUpdateRequest $request, Task $task)
+    {
+        $this->authorize('update', $task);
 
-		$task = $task->update([
-			'name' => $request->name,
-			'user_id' => auth()->user()->id,
-			'description' => $request->description,
-			'due_date' => $request->due_date,
-			'reminder' => $request->reminder,
-			'group_id' => $request->group_id,
-			'priority_id' => $request->priority_id
-		]);
+        if ($request->has('reminder') && $request->reminder == 'on') {
+            $request->reminder = 'on';
+        }
 
-		if (!$task) abort(404);
+        $task = $task->update([
+            'name' => $request->name,
+            'user_id' => auth()->user()->id,
+            'description' => $request->description,
+            'due_date' => $request->due_date,
+            'reminder' => $request->reminder,
+            'group_id' => $request->group_id,
+            'priority_id' => $request->priority_id,
+        ]);
 
-		return back()->withToastSuccess(__('app.taskSuccessUpdated'));
-	}
+        if (! $task) {
+            abort(404);
+        }
 
-	public function done(Task $task)
-	{
-		$task = $task->update(['status' => 1]);
-		if (!$task) abort(404);
-		return back();
-	}
+        return back()->withToastSuccess(__('app.taskSuccessUpdated'));
+    }
 
-	public function toggleReminder(Task $task)
-	{
-		$reminderStatus = $task->reminder;
+    public function done(Task $task)
+    {
+        $task = $task->update(['status' => 1]);
+        if (! $task) {
+            abort(404);
+        }
 
-		if ($reminderStatus === 'off')
-			$task->update(['reminder' => 'on']);
+        return back();
+    }
 
-		if ($reminderStatus === 'on')
-			$task->update(['reminder' => 'off']);
+    public function toggleReminder(Task $task)
+    {
+        $reminderStatus = $task->reminder;
 
-		return back();
-	}
+        if ($reminderStatus === 'off') {
+            $task->update(['reminder' => 'on']);
+        }
+
+        if ($reminderStatus === 'on') {
+            $task->update(['reminder' => 'off']);
+        }
+
+        return back();
+    }
 }

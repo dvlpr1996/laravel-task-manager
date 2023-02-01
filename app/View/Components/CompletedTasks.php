@@ -8,14 +8,15 @@ use Illuminate\View\Component;
 
 class CompletedTasks extends Component
 {
-	public $completedTasks;
-	public function __construct(Request $request)
-	{
-		$this->completedTasks = Task::authUser()->done()->sort($request->all())->paginate(10);
-	}
+    public $completedTasks;
 
-	public function render()
-	{
-		return view('components.completed-tasks');
-	}
+    public function __construct(Request $request)
+    {
+        $this->completedTasks = Task::authUser()->done()->sort($request->all())->paginate(10);
+    }
+
+    public function render()
+    {
+        return view('components.completed-tasks');
+    }
 }

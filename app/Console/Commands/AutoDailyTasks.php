@@ -2,32 +2,34 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Task;
 use App\Mail\DailyTask;
+use App\Models\Task;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
 class AutoDailyTasks extends Command
 {
-	protected $signature = 'auto:AutoDailyTasks';
-	protected $description = 'sending email for user who today have tasks to do';
+    protected $signature = 'auto:AutoDailyTasks';
 
-	public function handle()
-	{
-		$tasks = Task::select('name', 'user_id','due_date')->get();
-		if ($tasks->count() > 0) {
-			foreach ($tasks->unique('user_id') as $task) {
-				Mail::to($task->user)->send(new DailyTask(
-					$task->user,
-					$task->user->tasks()->where('due_date', date('Y-m-d'))->unDone()->get()
-				));
-			}
-			$this->info('The command was successful!');
-		}
+    protected $description = 'sending email for user who today have tasks to do';
 
-		if ($tasks->count() <= 0)
-			$this->error('Something went wrong!');
-			
-		return 0;
-	}
+    public function handle()
+    {
+        $tasks = Task::select('name', 'user_id', 'due_date')->get();
+        if ($tasks->count() > 0) {
+            foreach ($tasks->unique('user_id') as $task) {
+                Mail::to($task->user)->send(new DailyTask(
+                    $task->user,
+                    $task->user->tasks()->where('due_date', date('Y-m-d'))->unDone()->get()
+                ));
+            }
+            $this->info('The command was successful!');
+        }
+
+        if ($tasks->count() <= 0) {
+            $this->error('Something went wrong!');
+        }
+
+        return 0;
+    }
 }

@@ -6,14 +6,15 @@ use Illuminate\View\Component;
 
 class addTask extends Component
 {
-	public $modalType;
-	public function __construct($modalType = '')
-	{
-		$this->modalType = $modalType;
-	}
+    public $modalType;
 
-	public function render()
-	{
-		return view('components.add-task');
-	}
+    public function __construct($modalType = '')
+    {
+        $this->modalType = $modalType;
+    }
+
+    public function render()
+    {
+        return view('components.add-task');
+    }
 }

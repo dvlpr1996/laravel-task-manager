@@ -7,17 +7,18 @@ use Illuminate\View\Component;
 
 class priorities extends Component
 {
-	public $allPriority;
-	public $select;
+    public $allPriority;
 
-	public function __construct($select = '')
-	{
-		$this->select = $select;
-		$this->allPriority = Priority::select(['id', 'level'])->get();
-	}
+    public $select;
 
-	public function render()
-	{
-		return view('components.priorities');
-	}
+    public function __construct($select = '')
+    {
+        $this->select = $select;
+        $this->allPriority = Priority::select(['id', 'level'])->get();
+    }
+
+    public function render()
+    {
+        return view('components.priorities');
+    }
 }

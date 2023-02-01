@@ -2,32 +2,34 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Task;
 use App\Mail\ReminderTasks;
+use App\Models\Task;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
 class AutoReminderTasks extends Command
 {
-	protected $signature = 'auto:AutoReminderTasks';
-	protected $description = 'sending reminder email for users';
+    protected $signature = 'auto:AutoReminderTasks';
 
-	public function handle()
-	{
-		$tasks = Task::select('name', 'user_id', 'reminder', 'status')->get();
-		if ($tasks->count() > 0) {
-			foreach ($tasks->unique('user_id') as $task) {
-				Mail::to($task->user)->send(new ReminderTasks(
-					$task->user,
-					$task->user->tasks()->unDone()->where('reminder', 1)->get()
-				));
-			}
-			$this->info('The command was successful!');
-		}
+    protected $description = 'sending reminder email for users';
 
-		if ($tasks->count() <= 0)
-			$this->error('Something went wrong!');
+    public function handle()
+    {
+        $tasks = Task::select('name', 'user_id', 'reminder', 'status')->get();
+        if ($tasks->count() > 0) {
+            foreach ($tasks->unique('user_id') as $task) {
+                Mail::to($task->user)->send(new ReminderTasks(
+                    $task->user,
+                    $task->user->tasks()->unDone()->where('reminder', 1)->get()
+                ));
+            }
+            $this->info('The command was successful!');
+        }
 
-		return 0;
-	}
+        if ($tasks->count() <= 0) {
+            $this->error('Something went wrong!');
+        }
+
+        return 0;
+    }
 }

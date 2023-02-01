@@ -8,14 +8,15 @@ use Illuminate\View\Component;
 
 class todayTasks extends Component
 {
-	public $todayTasks;
-	public function __construct(Request $request)
-	{
-		$this->todayTasks = Task::authUser()->unDone()->where('due_date', date('Y-m-d'))->sort($request->all())->paginate(10);
-	}
+    public $todayTasks;
 
-	public function render()
-	{
-		return view('components.today-tasks');
-	}
+    public function __construct(Request $request)
+    {
+        $this->todayTasks = Task::authUser()->unDone()->where('due_date', date('Y-m-d'))->sort($request->all())->paginate(10);
+    }
+
+    public function render()
+    {
+        return view('components.today-tasks');
+    }
 }

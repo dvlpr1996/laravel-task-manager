@@ -10,24 +10,24 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
-	public function store(LoginRequest $request)
-	{
-		$request->authenticate();
+    public function store(LoginRequest $request)
+    {
+        $request->authenticate();
 
-		$request->session()->regenerate();
+        $request->session()->regenerate();
 
-		return redirect()->intended(RouteServiceProvider::HOME)
-			->withToastSuccess('Welcome Back Dear' . ' ' . auth()->user()->fullName);
-	}
+        return redirect()->intended(RouteServiceProvider::HOME)
+            ->withToastSuccess('Welcome Back Dear'.' '.auth()->user()->fullName);
+    }
 
-	public function destroy(Request $request)
-	{
-		Auth::guard('web')->logout();
+    public function destroy(Request $request)
+    {
+        Auth::guard('web')->logout();
 
-		$request->session()->invalidate();
+        $request->session()->invalidate();
 
-		$request->session()->regenerateToken();
+        $request->session()->regenerateToken();
 
-		return redirect()->route('login.create')->withToastSuccess(__('app.successLogout'));
-	}
+        return redirect()->route('login.create')->withToastSuccess(__('app.successLogout'));
+    }
 }

@@ -3,36 +3,34 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class ChangePassword extends Notification
 {
-	use Queueable;
+    use Queueable;
 
-	public function __construct()
-	{
+    public function __construct()
+    {
+    }
 
-	}
+    public function via($notifiable)
+    {
+        return ['mail'];
+    }
 
-	public function via($notifiable)
-	{
-		return ['mail'];
-	}
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+            ->greeting('Hi!')
+            ->line('Your Password Successfully Changed')
+            ->line('Thank you for using Laravel task manager');
+    }
 
-	public function toMail($notifiable)
-	{
-		return (new MailMessage)
-			->greeting('Hi!')
-			->line('Your Password Successfully Changed')
-			->line('Thank you for using Laravel task manager');
-	}
-
-	public function toArray($notifiable)
-	{
-		return [
-			//
-		];
-	}
+    public function toArray($notifiable)
+    {
+        return [
+            //
+        ];
+    }
 }
