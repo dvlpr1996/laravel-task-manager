@@ -6,6 +6,7 @@ Todo list Laravel web application for managing daily tasks
 
 - Users can prioritize their tasks
 - Users can define reminders for their tasks
+- Sending Daily Task and Reminder Tasks emails to users
 - Users can define lists for easier access and organize their tasks
 
 ## Language And Tools

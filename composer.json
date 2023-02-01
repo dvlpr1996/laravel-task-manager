@@ -1,7 +1,7 @@
 {
 	"name": "dvlpr1996/laravel-task-manager",
 	"type": "project",
-	"description": "todo list Laravel web application for managing daily tasks",
+	"description": "laravel task manager web application for managing daily tasks",
 	"keywords": [
 		"framework",
 		"laravel",
