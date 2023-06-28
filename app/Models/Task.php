@@ -3,37 +3,33 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\Trait\ModelTrait;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    use HasFactory;
+    use HasFactory, ModelTrait;
 
     protected $fillable = [
-        'name',
-        'description',
-        'due_date',
-        'reminder',
-        'status',
-        'user_id',
-        'group_id',
-        'priority_id',
+        'name', 'description', 'due_date', 'reminder', 'status', 'user_id',
+        'group_id', 'priority_id',
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function priority()
+    public function priority(): BelongsTo
     {
         return $this->belongsTo(Priority::class);
     }
 
-    public function group()
+    public function group(): BelongsTo
     {
         return $this->belongsTo(Group::class);
     }
@@ -47,13 +43,6 @@ class Task extends Model
     }
 
     protected function dueDate(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => ($value != null) ? Carbon::create($value)->toFormattedDateString() : 'not defined'
-        );
-    }
-
-    protected function createdAt(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => Carbon::create($value)->toFormattedDateString()
@@ -71,7 +60,7 @@ class Task extends Model
     public function scopeSort(Builder $query, array $params)
     {
         if (isset($params['q'])) {
-            $query->where('name', 'like', '%'.$params['q'].'%');
+            $query->where('name', 'like', '%' . $params['q'] . '%');
         }
 
         if (isset($params['sort']) && $params['sort'] == 'ascending') {

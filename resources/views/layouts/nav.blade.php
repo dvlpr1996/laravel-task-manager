@@ -3,7 +3,8 @@
 				<i id="sidebarToggle" class="fas fa-bars text-2xl font-semibold"></i>
 
 				<a href="#" class="flex items-center gap-2">
-						<img src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo" class="h-12 w-12 rounded-full" loading="lazy">
+						<img src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo" class="h-12 w-12 rounded-full"
+								loading="lazy">
 						<span class="hidden md:block">Laravel Task Manager</span>
 				</a>
 		</div>
@@ -15,7 +16,7 @@
 				<div x-data="dropdown" x-on:click.away="away()" class="relative">
 						<button x-on:click="toggle()" class="link">
 								<i class="fa fa-caret-down"></i>
-								{{ auth()->user()->fullName }}
+								{{ auth()->user()->fullName() }}
 						</button>
 
 						<div class="dropdown-content hidden" x-show="open" x-transition.duration.500ms
@@ -29,7 +30,7 @@
 										<x-modal-box>
 												<x-slot:modalBtn>
 														<p x-on:click="toggle()" class="link m-2 block text-left">
-															<i class="fas fa-tools mr-1"></i>
+																<i class="fas fa-tools mr-1"></i>
 																Settings
 														</p>
 												</x-slot:modalBtn>
@@ -68,7 +69,7 @@
 										<x-modal-box>
 												<x-slot:modalBtn>
 														<p x-on:click="toggle()" class="link m-2 block text-left">
-															<i class="fas fa-key mr-1"></i>
+																<i class="fas fa-key mr-1"></i>
 																password
 														</p>
 												</x-slot:modalBtn>
@@ -114,7 +115,7 @@
 						</div>
 
 				</div>
-				<img src="{{ auth()->user()->gravatar() }}" alt="{{ auth()->user()->fullName }}" title="{{ auth()->user()->fullName }}"
-						class="h-12 w-12 rounded-full" loading="lazy">
+				<img src="{{ auth()->user()->gravatar() }}" alt="{{ auth()->user()->fullName() }}"
+						title="{{ auth()->user()->fullName() }}" class="h-12 w-12 rounded-full" loading="lazy">
 		</div>
 </nav>

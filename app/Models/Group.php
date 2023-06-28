@@ -2,40 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Trait\ModelTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Group extends Model
 {
-    use HasFactory;
+    use HasFactory, ModelTrait;
 
     protected $fillable = [
-        'name',
-        'user_id',
+        'name', 'user_id'
     ];
 
-    public function tasks()
+    public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    protected function createdAt(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => $value = date('y-M-d', strtotime($value)) ?? '-'
-        );
-    }
-
-    protected function updatedAt(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => $value = date('y-M-d', strtotime($value)) ?? '-'
-        );
     }
 }
