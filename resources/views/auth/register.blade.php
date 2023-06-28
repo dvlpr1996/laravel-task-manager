@@ -1,4 +1,5 @@
-@extends('layouts.authMaster')
+@extends('auth.layouts.master')
+
 @section('title', 'Register')
 @section('authContent')
 

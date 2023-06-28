@@ -1,18 +1,21 @@
-@extends('layouts.authMaster')
+@extends('auth.layouts.master')
+
 @section('title', 'Reset Password')
+
 @section('authContent')
 
 		<main class="flex min-h-screen flex-col items-center justify-center">
 
 				<div class="form-wrapper w-[450px] bg-slate-800">
 
-						<x-auth-validation-errors class="mb-4 bg-red-400 p-4 round" :errors="$errors" />
+						<x-auth-validation-errors class="round mb-4 bg-red-400 p-4" :errors="$errors" />
+
 						<h3 class="text-center">Reset Password</h3>
 
 						<form class="space-y-4" method="POST" action="{{ route('password.update') }}">
-								@method('put')
 								@csrf
-								<!-- Password Reset Token -->
+								@method('put')
+								{{-- Password Reset Token --}}
 								<input type="hidden" name="token" value="{{ $request->route('token') }}">
 
 								<div>

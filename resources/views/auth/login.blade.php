@@ -1,4 +1,5 @@
-@extends('layouts.authMaster')
+@extends('auth.layouts.master')
+
 @section('title', 'Login')
 @section('authContent')
 
@@ -52,5 +53,4 @@
 						</form>
 				</div>
 		</main>
-		</div>
 @endsection

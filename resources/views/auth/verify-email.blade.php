@@ -1,5 +1,7 @@
-@extends('layouts.authMaster')
+@extends('auth.layouts.master')
+
 @section('title', 'verify email address')
+
 @section('authContent')
 		<main class="flex min-h-screen flex-col items-center justify-center">
 				<div class="form-wrapper w-[450px] space-y-5 bg-slate-800">

@@ -1,10 +1,13 @@
-@extends('layouts.authMaster')
+@extends('auth.layouts.master')
+
 @section('title', 'Confirm Password')
+
 @section('authContent')
 
 		<main class="flex min-h-screen flex-col items-center justify-center">
 
 				<div class="form-wrapper w-[450px] bg-slate-800 space-y-5">
+          
 						<x-auth-validation-errors class="mb-4" :errors="$errors" />
 
 						<h3 class="text-center">Confirm your Password</h3>

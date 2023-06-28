@@ -1,15 +1,15 @@
-@extends('layouts.authMaster')
+@extends('auth.layouts.master')
+
 @section('title', 'Forgot password')
 @section('authContent')
 
 		<main class="flex min-h-screen flex-col items-center justify-center">
 
-
-
 				<div class="form-wrapper w-[450px] bg-slate-800">
 
 						<x-auth-validation-errors class="round mb-4 bg-red-400 p-4" :errors="$errors" />
 						<x-auth-session-status class="mb-4" :status="session('status')" />
+            
 						<h3 class="text-center">forgot password</h3>
 
 						<form class="space-y-4" method="POST" action="{{ route('password.email') }}">
