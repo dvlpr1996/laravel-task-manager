@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\GroupRequest;
-use App\Models\Group;
 use App\Models\Task;
+use App\Models\Group;
+use App\Http\Requests\Group\GroupRequest;
 
 class GroupController extends Controller
 {

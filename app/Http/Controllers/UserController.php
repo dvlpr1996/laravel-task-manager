@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\changePassword;
-use App\Events\DeleteAccount;
-use App\Http\Requests\updatePassword;
-use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Events\DeleteAccount;
+use App\Events\changePassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Auth\updatePassword;
+use App\Http\Requests\Auth\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -25,7 +25,7 @@ class UserController extends Controller
         return redirect()->route('login.create');
     }
 
-    public function update(UserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
         $this->authorize('update', $user);
 

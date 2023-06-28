@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Trait\RequestTrait;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -13,6 +14,8 @@ use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
 {
+    use RequestTrait;
+
     public function create()
     {
         return view('auth.register');
@@ -23,8 +26,11 @@ class RegisteredUserController extends Controller
         $request->validate([
             'fname' => ['required', 'string', 'max:16'],
             'lname' => ['required', 'string', 'max:32'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'pass' => ['required', 'confirmed', Rules\Password::defaults()],
+            'email' => array_merge($this->emailRule, ['unique:users']),
+            'pass' => array_merge(
+                $this->passwordRule,
+                ['confirmed', Rules\Password::defaults()]
+            ),
         ]);
 
         $user = User::create([
@@ -38,7 +44,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME.auth()->user()->slug)
+        return redirect(RouteServiceProvider::HOME . auth()->user()->slug)
             ->withToastSuccess('Welcome To Task Manager');
     }
 }

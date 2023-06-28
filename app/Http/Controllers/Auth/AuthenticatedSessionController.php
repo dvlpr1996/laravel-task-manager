@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::HOME)
-            ->withToastSuccess('Welcome Back Dear'.' '.auth()->user()->fullName);
+            ->withToastSuccess('Welcome Back Dear' . ' ' . auth()->user()->fullName());
     }
 
     public function destroy(Request $request)

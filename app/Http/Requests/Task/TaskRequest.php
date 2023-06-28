@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Task;
 
+use App\Http\Requests\Trait\RequestTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TaskRequest extends FormRequest
 {
+    use RequestTrait;
+
     public function authorize()
     {
         return true;
@@ -14,8 +17,8 @@ class TaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'min:1', 'max:128'],
-            'description' => ['nullable', 'string', 'min:4', 'max:512'],
+            'name' => array_merge(['required'], $this->taskNameRule),
+            'description' => $this->taskDescriptionRule,
             'due_date' => ['nullable', 'date'],
             'reminder' => ['nullable'],
             'group_id' => ['required', 'exists:groups,id'],

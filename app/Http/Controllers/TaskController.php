@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TaskRequest;
-use App\Http\Requests\TaskUpdateRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use App\Http\Requests\Task\TaskRequest;
+use App\Http\Requests\Task\TaskUpdateRequest;
 
 class TaskController extends Controller
 {
