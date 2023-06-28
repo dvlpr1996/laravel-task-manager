@@ -1,35 +1,31 @@
-@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;1,300&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* @font-face {
-  font-family: Nunito-Light;
-  src: url('../fonts/Nunito-Light.ttf');
-} */
 
 @layer base {
-	::placeholder {
-		@apply capitalize text-sm;
-	}
+  ::placeholder {
+    @apply capitalize text-sm;
+  }
 
-	::-webkit-scrollbar {
-		width: 10px;
-	}
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
 
-	::-webkit-scrollbar-track {
-		background: #181818;
-	}
+  ::-webkit-scrollbar-track {
+    background: #181818;
+  }
 
-	::-webkit-scrollbar-thumb {
-		background: #6d6b6b;
-		border-radius: 5px;
-	}
+  ::-webkit-scrollbar-thumb {
+    background: #6d6b6b;
+    border-radius: 5px;
+  }
 
-	html {
-		font-family: 'Open Sans', sans-serif;
-	}
+  html {
+    @apply font-['Ubuntu'];
+  }
 
 	body {
 		@apply capitalize bg-gray-100 dark:bg-slate-900 max-h-screen;
@@ -55,26 +51,10 @@
 		@apply text text-base font-semibold leading-8;
 	}
 
-	.bg-color{
-		@apply dark:bg-slate-800 bg-white shadow-md;
-	}
-
-	.text {
-		@apply text-gray-500 dark:text-gray-400;
-	}
-
 	a,
 	i,
 	.link {
 		@apply text cursor-pointer text-base font-medium transition-colors duration-150 dark:hover:opacity-50 hover:opacity-70;
-	}
-
-	.hr {
-		@apply border-b dark:border-b-white border-b-slate-500;
-	}
-
-	.round {
-		@apply rounded-xl;
 	}
 
 	label {
@@ -171,5 +151,23 @@
 
 	.modal-btn {
 		@apply bg-transparent hover:bg-transparent text-left link m-2 block;
+	}
+}
+
+@layer utilities {
+  .hr {
+		@apply border-b dark:border-b-white border-b-slate-500;
+	}
+
+	.round {
+		@apply rounded-xl;
+	}
+
+  .bg-color{
+		@apply dark:bg-slate-800 bg-white shadow-md;
+	}
+
+	.text {
+		@apply text-gray-500 dark:text-gray-400;
 	}
 }
