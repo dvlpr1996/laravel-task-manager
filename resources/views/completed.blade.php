@@ -11,6 +11,6 @@
 				<hr class="hr">
 		</section>
 
-		<x-completed-tasks></x-completed-tasks>
+		<x-task.completed-tasks />
 
 @endsection
