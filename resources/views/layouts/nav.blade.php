@@ -22,7 +22,7 @@
 								x-bind:class="{ 'hidden': !open }">
 
 								@can('create', App\Models\Task::class)
-										<x-add-task modalType="modal-btn"></x-add-task>
+										<x-task.add-task modalType="modal-btn"></x-add-task>
 								@endcan
 
 								@can('update', auth()->user())

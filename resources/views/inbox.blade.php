@@ -16,8 +16,8 @@
 						<x-auth-validation-errors class="round mb-2 bg-red-400 p-2" :errors="$errors" />
 
 						@can('create', App\Models\Task::class)
-								<x-add-task modalType="btn order-1 py-2 sm:order-2 sm:w-max w-full">
-								</x-add-task>
+								<x-task.add-task modalType="btn order-1 py-2 sm:order-2 sm:w-max w-full">
+								</x-task.add-task>
 						@endcan
 				</div>
 
