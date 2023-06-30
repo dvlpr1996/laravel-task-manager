@@ -6,7 +6,7 @@
 
 		<section class="space-y-8">
 				<h2>your tomorrow tasks</h2>
-				<x-search></x-search>
+				<x-app.search />
 		</section>
 
 		<section class="space-y-2">
@@ -14,7 +14,7 @@
 				<hr class="hr">
 		</section>
 
-    {{-- tommorrow tasks tables --}}
+		{{-- tommorrow tasks tables --}}
 		<x-tomorrow-tasks></x-tomorrow-tasks>
 
 @endsection

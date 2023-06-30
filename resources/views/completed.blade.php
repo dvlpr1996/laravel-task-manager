@@ -3,7 +3,7 @@
 @section('main-content')
 		<section class="space-y-8">
 				<h2>your completed tasks</h2>
-				<x-search></x-search>
+				<x-app.search />
 		</section>
 
 		<section class="space-y-2">

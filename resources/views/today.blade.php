@@ -5,7 +5,7 @@
 @section('main-content')
 		<section class="space-y-8">
 				<h2>your today tasks</h2>
-				<x-search></x-search>
+				<x-app.search />
 		</section>
 
 		<section class="space-y-2">
@@ -13,7 +13,7 @@
 				<hr class="hr">
 		</section>
 
-    {{-- today tasks tables --}}
+		{{-- today tasks tables --}}
 		<x-today-tasks></x-today-tasks>
 
 @endsection

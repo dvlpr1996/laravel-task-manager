@@ -6,7 +6,7 @@
 
 		<section class="space-y-8">
 				<h2>your inbox - all your tasks</h2>
-				<x-search></x-search>
+				<x-app.search />
 		</section>
 
 		<section class="space-y-5">
@@ -18,7 +18,7 @@
 
 						@can('create', App\Models\Task::class)
 								<x-add-task modalType="btn order-1 py-2 sm:order-2 sm:w-max w-full">
-                </x-add-task>
+								</x-add-task>
 						@endcan
 				</div>
 
