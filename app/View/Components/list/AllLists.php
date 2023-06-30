@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\list;
 
 use Illuminate\View\Component;
 
@@ -15,6 +15,6 @@ class AllLists extends Component
 
     public function render()
     {
-        return view('components.all-lists');
+        return view('components.list.all-lists');
     }
 }

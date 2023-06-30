@@ -22,7 +22,7 @@
 				</div>
 		</section>
 
-		<x-all-lists></x-all-lists>
+		<x-list.all-lists />
 
 		<section class="space-y-3">
 				<h4>Unfinished tasks</h4>
@@ -53,10 +53,10 @@
 																		</a>
 																</td>
 																<td class="flex items-center gap-2 py-3 px-6">
-																	<a href="{{ route('priorities.index', $task->priority->id) }}">
-																		<i class="{{ $task->priority->icon }} mr-2"></i>
-																		{{ $task->priority->level }}
-																</a>
+																		<a href="{{ route('priorities.index', $task->priority->id) }}">
+																				<i class="{{ $task->priority->icon }} mr-2"></i>
+																				{{ $task->priority->level }}
+																		</a>
 																</td>
 																<td class="py-3 px-6">{{ $task->status }}</td>
 																<td class="py-3 px-6">{{ $task->due_date }}</td>
@@ -129,7 +129,7 @@
 										</tbody>
 								</table>
 						@else
-						<div class="box text-center">
+								<div class="box text-center">
 										<p>not task added yet</p>
 								</div>
 						@endif
@@ -145,7 +145,7 @@
 								<p>Once you delete your account, there
 										is no going back. Please be certain.</p>
 								<a href="{{ route('dashboard.destroyUser', auth()->user()->id) }}" onclick="return confirm('are you sure?');"
-										class="btn w-full bg-rose-600 py-2 text-base hover:bg-rose-700 sm:w-max dark:text-white">
+										class="btn w-full bg-rose-600 py-2 text-base hover:bg-rose-700 dark:text-white sm:w-max">
 										Delete your account
 								</a>
 						</div>
