@@ -23,7 +23,7 @@
 		</section>
 
 		<x-all-lists></x-all-lists>
-		
+
 		<section class="space-y-3">
 				<h4>Unfinished tasks</h4>
 				<div class="overflow-x-auto rounded-xl bg-white p-2 shadow-md dark:bg-gray-800">
@@ -133,7 +133,7 @@
 										<p>not task added yet</p>
 								</div>
 						@endif
-						{{ $unfinishedTasks->links('components.pagination') }}
+						{{ $unfinishedTasks->links('components.app.pagination') }}
 				</div>
 		</section>
 

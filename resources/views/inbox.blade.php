@@ -128,7 +128,7 @@
 										<p>not task added yet</p>
 								</div>
 						@endif
-						{{ $allTasks->links('components.pagination') }}
+						{{ $allTasks->links('components.app.pagination') }}
 				</div>
 
 

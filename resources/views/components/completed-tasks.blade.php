@@ -42,5 +42,5 @@
 						<p>not task completed yet</p>
 				</div>
 		@endif
-		{{ $completedTasks->links('components.pagination') }}
+		{{ $completedTasks->links('components.app.pagination') }}
 </div>

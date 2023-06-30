@@ -95,7 +95,7 @@
 										@endforeach
 								</tbody>
 						</table>
-						{{ $allLists->links('components.pagination') }}
+						{{ $allLists->links('components.app.pagination') }}
 				@else
 				<div class="box text-center">
 								<p>not list added yet</p>

@@ -6,4 +6,4 @@
 		</div>
 @endforelse
 
-{{ $todayTasks->links('components.pagination') }}
+{{ $todayTasks->links('components.app.pagination') }}
