@@ -10,7 +10,7 @@
 		</section>
 
 		<section class="space-y-2">
-				<x-filter></x-filter>
+				<x-app.filter />
 				<hr class="hr">
 		</section>
 

@@ -12,8 +12,7 @@
 		<section class="space-y-5">
 				<div class="flex flex-col justify-center gap-5 sm:flex-row sm:items-end sm:justify-between">
 
-						<x-filter direction="order-2 justify-center sm:order-1"></x-filter>
-
+						<x-app.filter class="order-2 justify-center sm:order-1" />
 						<x-auth-validation-errors class="round mb-2 bg-red-400 p-2" :errors="$errors" />
 
 						@can('create', App\Models\Task::class)

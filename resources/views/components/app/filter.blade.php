@@ -1,4 +1,4 @@
-<div class="flex items-center gap-2 {{ $direction }}">
+<div {{ $attributes->merge(['class' => 'flex items-center gap-2']) }}>
 		<p>Sort :</p>
 		<a href="?sort=ascending">
 				<i class="fas fa-sort-alpha-down ml-1"></i> AS
