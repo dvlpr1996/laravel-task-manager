@@ -8,7 +8,7 @@
 				<div class="form-wrapper w-[330px] px-5">
 
 						<div class="mb-7 text-center">
-								{{-- <x-app-logo class="mx-auto block"></x-app-logo> --}}
+								<x-app.logo class="mx-auto block" />
 								<span class="text italic">Entering task manager</span>
 						</div>
 

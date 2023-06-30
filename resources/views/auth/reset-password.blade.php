@@ -15,7 +15,6 @@
 						<form class="space-y-4" method="POST" action="{{ route('password.update') }}">
 								@csrf
 								@method('put')
-								{{-- Password Reset Token --}}
 								<input type="hidden" name="token" value="{{ $request->route('token') }}">
 
 								<div>

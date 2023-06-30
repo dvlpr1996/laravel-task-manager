@@ -1,5 +1,5 @@
 <div class="flex flex-col items-center justify-center gap-3 sm:flex-row">
-		<img src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo"class="rounded-full w-12 h-12" loading="lazy">
+		<x-app.logo />
 		<h1>laravel task manager</h1>
 </div>
 

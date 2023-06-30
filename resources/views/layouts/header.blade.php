@@ -33,4 +33,3 @@
 $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)));">
 
 		<div x-bind:class="{ 'dark': darkMode === true }">
-

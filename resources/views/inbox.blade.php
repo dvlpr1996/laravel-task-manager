@@ -3,11 +3,10 @@
 @section('title', strtoupper('inbox'))
 
 @section('main-content')
+
 		<section class="space-y-8">
 				<h2>your inbox - all your tasks</h2>
-
 				<x-search></x-search>
-
 		</section>
 
 		<section class="space-y-5">
@@ -18,9 +17,9 @@
 						<x-auth-validation-errors class="round mb-2 bg-red-400 p-2" :errors="$errors" />
 
 						@can('create', App\Models\Task::class)
-								<x-add-task modalType="btn order-1 py-2 sm:order-2 sm:w-max w-full"></x-add-task>
+								<x-add-task modalType="btn order-1 py-2 sm:order-2 sm:w-max w-full">
+                </x-add-task>
 						@endcan
-
 				</div>
 
 				<hr class="hr">

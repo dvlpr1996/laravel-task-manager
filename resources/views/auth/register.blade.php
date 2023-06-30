@@ -9,7 +9,7 @@
 						<div class="form-wrapper w-[370px] px-5 py-2">
 
 								<div class="mb-7 mt-2 text-center">
-										{{-- <x-app-logo class="mx-auto block"></x-app-logo> --}}
+										<x-app.logo class="block mx-auto"/>
 										<span class="text italic">Join task manager</span>
 								</div>
 
@@ -68,7 +68,7 @@
 										<button type="submit" class="btn w-full py-2">registered</button>
 
 										<a href="{{ route('login.create') }}" class="my-5 inline-block text-sm">
-											already have an account
+												already have an account
 										</a>
 								</form>
 						</div>

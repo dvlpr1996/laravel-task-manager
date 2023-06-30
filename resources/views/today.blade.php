@@ -1,5 +1,7 @@
 @extends('layouts.master')
+
 @section('title', strtoupper('today tasks'))
+
 @section('main-content')
 		<section class="space-y-8">
 				<h2>your today tasks</h2>
@@ -11,6 +13,7 @@
 				<hr class="hr">
 		</section>
 
+    {{-- today tasks tables --}}
 		<x-today-tasks></x-today-tasks>
 
 @endsection
