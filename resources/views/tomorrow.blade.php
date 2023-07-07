@@ -15,6 +15,6 @@
 		</section>
 
 		{{-- tommorrow tasks tables --}}
-		<x-tomorrow-tasks></x-tomorrow-tasks>
+		<x-task.tomorrow-tasks />
 
 @endsection

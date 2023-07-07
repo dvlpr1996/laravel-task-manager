@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\task;
 
 use App\Models\Task;
 use Carbon\Carbon;
@@ -19,6 +19,6 @@ class TomorrowTasks extends Component
 
     public function render()
     {
-        return view('components.tomorrow-tasks');
+        return view('components.task.tomorrow-tasks');
     }
 }
