@@ -16,8 +16,7 @@
 						<x-auth-validation-errors class="round mb-2 bg-red-400 p-2" :errors="$errors" />
 
 						@can('create', App\Models\Task::class)
-								<x-task.add-task modalType="btn order-1 py-2 sm:order-2 sm:w-max w-full">
-								</x-task.add-task>
+								<x-task.add-task modalType="btn order-1 py-2 sm:order-2 sm:w-max w-full" />
 						@endcan
 				</div>
 
@@ -55,14 +54,13 @@
 																				{{ $task->priority->level }}
 																		</a>
 																</td>
-																<td class="py-3 px-6">{{ $task->status }}</td>
+																<td class="py-3 px-6 text-rose-700">{{ $task->status }}</td>
 																<td class="py-3 px-6">{{ $task->due_date }}</td>
 																<td class="py-3 px-6">{{ $task->created_at }}</td>
 																<td class="flex items-center space-x-3 py-3 px-6">
-
 																		<x-modal-box>
 																				<x-slot:modalBtn>
-																						<i class="fas fa-edit" x-on:click="toggle()">
+																						<i class="fas fa-edit text-green-700" x-on:click="toggle()">
 																						</i>
 																				</x-slot:modalBtn>
 
@@ -116,7 +114,7 @@
 																		</x-modal-box>
 
 																		<a href="{{ route('tasks.destroy', $task->id) }}" onclick="return confirm('Are you sure?')">
-																				<i class="fas fa-trash"></i>
+																				<i class="fas fa-trash text-rose-700"></i>
 																		</a>
 																</td>
 														</tr>

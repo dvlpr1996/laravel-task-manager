@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\task;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -17,6 +17,6 @@ class todayTasks extends Component
 
     public function render()
     {
-        return view('components.today-tasks');
+        return view('components.task.today-tasks');
     }
 }

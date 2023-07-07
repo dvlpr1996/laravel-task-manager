@@ -1,7 +1,8 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\task;
 
+use App\Models\Task;
 use Illuminate\View\Component;
 
 class singleTask extends Component

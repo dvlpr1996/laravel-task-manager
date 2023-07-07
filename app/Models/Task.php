@@ -59,21 +59,17 @@ class Task extends Model
 
     public function scopeSort(Builder $query, array $params)
     {
-        if (isset($params['q'])) {
+        if (isset($params['q']))
             $query->where('name', 'like', '%' . $params['q'] . '%');
-        }
 
-        if (isset($params['sort']) && $params['sort'] == 'ascending') {
+        if (isset($params['sort']) && $params['sort'] == 'ascending')
             $query->orderBy('name', 'asc');
-        }
 
-        if (isset($params['sort']) && $params['sort'] == 'descending') {
+        if (isset($params['sort']) && $params['sort'] == 'descending')
             $query->orderByDesc('name');
-        }
 
-        if (isset($params['sort']) && $params['sort'] == 'dueDate') {
+        if (isset($params['sort']) && $params['sort'] == 'dueDate')
             $query->orderByDesc('due_date');
-        }
 
         return $query;
     }

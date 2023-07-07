@@ -11,7 +11,7 @@ class TaskController extends Controller
 {
     public function index(Request $request)
     {
-        $allTasks = Task::authUser()->sort($request->all())->paginate(10)->withQueryString();
+        $allTasks = Task::authUser()->unDone()->sort($request->all())->paginate(10)->withQueryString();
 
         return view('inbox', compact('allTasks'));
     }

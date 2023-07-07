@@ -5,7 +5,6 @@
 
 <div class="relative mx-auto sm:w-4/6 md:w-3/5">
 		<form action="#" method="GET">
-				@csrf
 				<input type="text" name="q" class="form-control" placeholder="Search Your Tasks" autocomplete="off"
 						value="{{ request()->query('q') }}">
 		</form>
