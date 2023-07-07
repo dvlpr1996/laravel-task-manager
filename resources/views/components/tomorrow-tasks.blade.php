@@ -1,5 +1,5 @@
 @forelse ($tomorrowTasks as $task)
-		<x-single-task :task="$task"></x-single-task>
+		<x-task.single-task :task="$task" />
 @empty
 		<div class="box text-center">
 				<p>no task here yet for {{ Carbon\Carbon::tomorrow()->toFormattedDateString() }}</p>

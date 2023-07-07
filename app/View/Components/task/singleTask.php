@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 
 class singleTask extends Component
 {
-    public $task;
+    public Task $task;
 
     public function __construct($task)
     {
@@ -15,6 +15,6 @@ class singleTask extends Component
 
     public function render()
     {
-        return view('components.single-task');
+        return view('components.task.single-task');
     }
 }
