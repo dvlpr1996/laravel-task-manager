@@ -36,12 +36,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('/tomorrow', 'tomorrow')->name('tomorrow.index');
     Route::view('/completed', 'completed')->name('completed.index');
 
-    Route::Get('/priorities/{priority}', [PriorityController::class, 'index'])->name('priorities.index');
     Route::Get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+
+    Route::controller(PriorityController::class)->group(function () {
+        Route::Get('/priorities/{priority}', 'index')->name('priorities.index');
+    });
 });
 
 Route::fallback(function () {
     return view('fallback');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
