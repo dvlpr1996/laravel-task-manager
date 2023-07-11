@@ -13,7 +13,7 @@
 				<div class="flex flex-col justify-center gap-5 sm:flex-row sm:items-end sm:justify-between">
 
 						<x-app.filter class="order-2 justify-center sm:order-1" />
-						<x-auth-validation-errors class="round mb-2 bg-red-400 p-2" :errors="$errors" />
+						<x-auth.auth-validation-errors class="round mb-2 bg-red-400 p-2" :errors="$errors" />
 
 						@can('create', App\Models\Task::class)
 								<x-task.add-task modalType="btn order-1 py-2 sm:order-2 sm:w-max w-full" />

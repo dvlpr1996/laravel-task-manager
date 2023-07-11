@@ -13,7 +13,7 @@
 						</div>
 
 						<x-auth.auth-session-status class="mb-4" :status="session('status')" />
-						{{-- <x-auth-validation-errors class="round mb-2 bg-red-400 p-2" :errors="$errors" /> --}}
+						<x-auth.auth-validation-errors class="round mb-2 bg-red-400 p-2" :errors="$errors" />
 
 						<form class="space-y-3" method="POST" action={{ route('login.store') }}>
 								@csrf

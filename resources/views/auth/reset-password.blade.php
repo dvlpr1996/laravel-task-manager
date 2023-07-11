@@ -8,7 +8,7 @@
 
 				<div class="form-wrapper w-[450px] bg-slate-800">
 
-						<x-auth-validation-errors class="round mb-4 bg-red-400 p-4" :errors="$errors" />
+          <x-auth.auth-validation-errors class="round mb-4 bg-red-400 p-4" :errors="$errors" />
 
 						<h3 class="text-center">Reset Password</h3>
 

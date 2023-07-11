@@ -13,7 +13,7 @@
 										<span class="text italic">Join task manager</span>
 								</div>
 
-								<x-auth-validation-errors class="round mb-2 bg-red-400 p-2" :errors="$errors" />
+								<x-auth.auth-validation-errors class="round mb-2 bg-red-400 p-2" :errors="$errors" />
 
 								<form class="space-y-5" method="POST" action="{{ route('register.store') }}">
 										@csrf
