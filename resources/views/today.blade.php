@@ -14,6 +14,6 @@
 		</section>
 
 		{{-- today tasks tables --}}
-		<x-task.today-tasks></x-task.today-tasks>
+		<x-task.today-tasks />
 
 @endsection

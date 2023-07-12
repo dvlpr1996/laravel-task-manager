@@ -53,7 +53,7 @@
 	a,
 	i,
 	.link {
-		@apply text cursor-pointer text-base font-medium transition-colors duration-150 dark:hover:opacity-50 hover:opacity-70;
+		@apply text cursor-pointer text-base font-medium transition-colors duration-150 dark:hover:opacity-50 hover:opacity-70 select-none;
 	}
 
 	label {
@@ -87,6 +87,14 @@
 	table a {
 		@apply decoration-slate-800 dark:decoration-slate-400 underline underline-offset-8;
 	}
+
+  td {
+    @apply text-center sm:text-left;
+  }
+
+  th {
+    @apply text-[0.75rem] text-center sm:text-left sm:text-base;
+  }
 
 	aside {
 		@apply z-10 lg:z-0 p-5 w-48 absolute bottom-0 top-0 lg:static bg-color shadow overflow-hidden

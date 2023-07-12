@@ -2,7 +2,7 @@
 		<div class="flex items-center gap-5">
 				<i id="sidebarToggle" class="fas fa-bars text-2xl font-semibold"></i>
 
-				<a href="#" class="flex items-center gap-2">
+				<a href="{{ route('dashboard.index') }}" class="flex items-center gap-2">
 						<x-app.logo />
 						<span class="hidden md:block">Laravel Task Manager</span>
 				</a>

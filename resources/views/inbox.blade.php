@@ -23,7 +23,7 @@
 				<hr class="hr">
 
 				<div class="overflow-x-auto rounded-xl bg-white p-2 shadow-md dark:bg-gray-800">
-						@if (count($allTasks) > 0)
+						@if (count($tasks) > 0)
 								<table>
 										<thead>
 												<tr>
@@ -39,7 +39,7 @@
 										</thead>
 
 										<tbody>
-												@foreach ($allTasks as $index => $task)
+												@foreach ($tasks as $index => $task)
 														<tr>
 																<td class="py-3 px-6">{{ ++$index }}</td>
 																<td class="py-3 px-6">{{ $task->name }}</td>
@@ -126,7 +126,7 @@
 										<p>not task added yet</p>
 								</div>
 						@endif
-						{{ $allTasks->links('components.app.pagination') }}
+						{{ $tasks->links('components.app.pagination') }}
 				</div>
 
 
