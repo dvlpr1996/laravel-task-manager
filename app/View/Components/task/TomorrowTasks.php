@@ -14,7 +14,7 @@ class TomorrowTasks extends Component
     public function __construct(Request $request)
     {
         $this->tomorrowTasks = Task::authUser()->sort($request->all())->unDone()->where('due_date', Carbon::tomorrow())
-            ->paginate(10);
+            ->paginate(PAGINATION_NUMBER);
     }
 
     public function render()

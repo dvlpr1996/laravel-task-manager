@@ -10,7 +10,7 @@ class AllLists extends Component
 
     public function __construct()
     {
-        $this->allLists = auth()->user()->groups()->paginate(10);
+        $this->allLists = auth()->user()->groups()->paginate(PAGINATION_NUMBER);
     }
 
     public function render()

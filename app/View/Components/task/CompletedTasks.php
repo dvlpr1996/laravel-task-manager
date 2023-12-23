@@ -31,7 +31,7 @@ class CompletedTasks extends Component
         } catch (ValidationException $e) {
         }
         $sortType = request('sort', 'ascending');
-        return Task::authUser()->done()->sort([$sortType])->paginate(10);
+        return Task::authUser()->done()->sort([$sortType])->paginate(PAGINATION_NUMBER);
     }
 
     public function render()

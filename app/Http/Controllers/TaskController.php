@@ -13,7 +13,8 @@ class TaskController extends Controller
     public function index(User $user)
     {
         $this->authorize('view');
-        $tasks = $user->tasks()->unDone()->paginate(10)->withQueryString();
+
+        $tasks = $user->tasks()->unDone()->paginate(PAGINATION_NUMBER)->withQueryString();
         return view('inbox', compact('allTasks'));
     }
 
