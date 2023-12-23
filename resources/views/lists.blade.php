@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', strtoupper('lists'))
+@section('pageTitle', __('app.title.lists'))
 
 @section('main-content')
 		<h2>{{ $group->name }} list tasks</h2>
@@ -10,7 +10,7 @@
 		@empty
 				<div class="box">
 						<p class="py-2 px-5 text-center text-lg capitalize">
-								not tasks found for this list
+              {{ __('app.empty msg.not tasks found') }}
 						</p>
 				</div>
 		@endforelse

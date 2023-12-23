@@ -21,7 +21,7 @@ class TaskController extends Controller
     public function store(TaskRequest $request)
     {
         $this->authorize('create', Task::class);
-
+        
         if (!$request->has('reminder')) {
             $request->reminder = 0;
         }

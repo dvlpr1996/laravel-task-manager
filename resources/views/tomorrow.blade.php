@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
-@section('title', strtoupper('Tomorrow tasks'))
+@section('pageTitle', __('app.title.tomorrow tasks'))
 
 @section('main-content')
 
 		<section class="space-y-8">
-				<h2>your tomorrow tasks</h2>
+				<h2>{{ __('app.header.your tomorrow tasks') }}</h2>
 				<x-app.search />
 		</section>
 

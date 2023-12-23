@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
-@section('title', strtoupper('dashboard'))
+@section('pageTitle', __('app.title.dashboard'))
 
 @section('main-content')
-		<h2>Task Manager - Dashboard</h2>
+		<h2>{{ __('app.header.task manager - dashboard') }}</h2>
 		<section class="grid gap-2 xs:grid-cols-2 sm:grid-cols-4">
 				<div class="box text-center">
 						<p>{{ auth()->user()->calculateDaysWithUs() }} with us</p>

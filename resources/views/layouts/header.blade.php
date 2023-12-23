@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 
 <head>
-		<title>Task Manager - @yield('pageTitle', 'Task Manager')</title>
+		<title>@yield('pageTitle', 'Task Manager')</title>
 		<meta charset="UTF-8">
 		<meta name="language" content="en">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

@@ -2,7 +2,7 @@
 
 <section>
 		<p class="text-2xl italic">
-				your account was deleted
+				{{ __('app.msg.delete account successfully') }}
 		</p>
 </section>
 
