@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Task\TaskRequest;
 use App\Http\Requests\Task\TaskUpdateRequest;
 
 class TaskController extends Controller
 {
-    public function index(Request $request)
+    public function index(User $user)
     {
-        $allTasks = Task::authUser()->unDone()->sort($request->all())->paginate(10)->withQueryString();
-
+        $this->authorize('view');
+        $tasks = $user->tasks()->unDone()->paginate(10)->withQueryString();
         return view('inbox', compact('allTasks'));
     }
 
@@ -20,17 +21,17 @@ class TaskController extends Controller
     {
         $this->authorize('create', Task::class);
 
-        if (! $request->has('reminder')) {
+        if (!$request->has('reminder')) {
             $request->reminder = 0;
         }
 
         $task = auth()->user()->tasks()->create($request->all());
 
-        if (! $task) {
+        if (!$task) {
             abort(404);
         }
 
-        return redirect()->route('inbox.index')->withToastSuccess(__('app.taskSuccessCreated'));
+        return redirect()->route('task.index')->withToastSuccess(__('app.taskSuccessCreated'));
     }
 
     public function destroy(Task $task)
@@ -60,7 +61,7 @@ class TaskController extends Controller
             'priority_id' => $request->priority_id,
         ]);
 
-        if (! $task) {
+        if (!$task) {
             abort(404);
         }
 
@@ -70,7 +71,7 @@ class TaskController extends Controller
     public function done(Task $task)
     {
         $task = $task->update(['status' => 1]);
-        if (! $task) {
+        if (!$task) {
             abort(404);
         }
 

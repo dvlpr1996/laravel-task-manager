@@ -25,10 +25,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::controller(GroupController::class)->group(function () {
-        Route::Get('/lists/{group:name}', 'index')->name('lists.index');
-        Route::GET('/lists/delete/{group}', 'destroy')->name('lists.destroy');
-        Route::PUT('/lists/update/{group}', 'update')->name('lists.update');
-        Route::POST('/lists', 'store')->name('lists.store');
+        Route::get('/lists/{group:name}', 'index')->name('lists.index');
+        Route::get('/lists/delete/{group}', 'destroy')->name('lists.destroy');
+        Route::put('/lists/update/{group}', 'update')->name('lists.update');
+        Route::post('/lists', 'store')->name('lists.store');
     });
 
     Route::view('/today', 'today')->name('today.index');

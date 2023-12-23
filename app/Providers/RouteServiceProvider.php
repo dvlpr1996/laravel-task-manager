@@ -26,10 +26,10 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
 
-        Route::pattern('user','[\d]+');
-        Route::pattern('task','[\d]+');
-        Route::pattern('group','[\d]+');
-        Route::pattern('priority','[\d]+');
+        // Route::pattern('user','[\d]+');
+        // Route::pattern('task','[\d]+');
+        // Route::pattern('group','[\d]+');
+        // Route::pattern('priority','[\d]+');
     }
 
     /**

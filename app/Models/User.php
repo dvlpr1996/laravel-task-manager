@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use App\Models\Trait\ModelTrait;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -41,6 +42,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function fullName()
     {
         return $this->fname . ' ' . $this->lname;
+    }
+
+    public function slug()
+    {
+        return Str::slug($this->fname . ' ' . $this->lname);
     }
 
     public function calculateDaysWithUs()
