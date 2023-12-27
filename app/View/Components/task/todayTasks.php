@@ -12,7 +12,7 @@ class todayTasks extends Component
 
     public function __construct(Request $request)
     {
-        $this->todayTasks = Task::authUser()->unDone()->where('due_date', date('Y-m-d'))->sort($request->all())->paginate(PAGINATION_NUMBER);
+        $this->todayTasks = Task::where('user_id', auth()->user()->id)->unDone()->where('due_date', date('Y-m-d'))->sort($request->all())->paginate(PAGINATION_NUMBER);
     }
 
     public function render()

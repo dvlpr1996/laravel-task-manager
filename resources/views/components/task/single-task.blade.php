@@ -5,9 +5,9 @@
 								<a href="{{ route('tasks.done', $task->id) }}" class="select-none hover:text-green-600">
 										<i class="fas fa-dot-circle hover:fa-check-circle"></i>
 								</a>
+						@else
+								<i class="fa fa-check text-green-400"></i>
 						@endif
-						<i class="fa fa-check text-green-400"></i>
-
 						<h2 class="text-left font-semibold">{{ $task->name }}</h2>
 				</div>
 

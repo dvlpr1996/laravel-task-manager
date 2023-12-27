@@ -60,7 +60,7 @@ class Task extends Model
     public function scopeSort(Builder $query, array $params)
     {
         if (isset($params['q']))
-            $query->where('name', 'like', '%' . $params['q'] . '%');
+            $query->where('name', 'like', '%' . sanitizeQueryStringFiled($params['q']) . '%');
 
         if (isset($params['sort']) && $params['sort'] == 'ascending')
             $query->orderBy('name', 'asc');
@@ -74,13 +74,6 @@ class Task extends Model
         return $query;
     }
 
-    public static function authUser()
-    {
-        $user = auth()->user()->id;
-
-        return Task::with('user')->where('tasks.user_id', $user);
-    }
-
     public static function scopeUndone(Builder $query)
     {
         return $query->where('status', '!=', '1');
@@ -91,8 +84,13 @@ class Task extends Model
         return $query->where('status', '1');
     }
 
+    public function scopeTomorrow(Builder $query)
+    {
+        $query->where('due_date', Carbon::tomorrow());
+    }
+
     public function isDone(): bool
     {
-        return $this->status;
+        return $this->status === 'done';
     }
 }

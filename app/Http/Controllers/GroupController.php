@@ -10,7 +10,7 @@ class GroupController extends Controller
 {
     public function index(Group $group)
     {
-        $tasks = Task::authUser()->where('group_id', $group->id)->get();
+        $tasks = Task::where('user_id', auth()->user()->id)->where('group_id', $group->id)->get();
         return view('lists', compact('tasks', 'group'));
     }
 

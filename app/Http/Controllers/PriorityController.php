@@ -9,7 +9,7 @@ class PriorityController extends Controller
 {
     public function index(Priority $priority)
     {
-        $tasks = Task::authUser()->undone()->where('priority_id', $priority->id)->paginate(PAGINATION_NUMBER);
+        $tasks = Task::where('user_id', auth()->user()->id)->undone()->where('priority_id', $priority->id)->paginate(PAGINATION_NUMBER);
 
         return view('priorities', compact('tasks'));
     }

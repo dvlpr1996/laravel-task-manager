@@ -8,7 +8,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $unfinishedTasks = Task::authUser()->undone()->paginate(PAGINATION_NUMBER);
+        $unfinishedTasks = Task::where('user_id', auth()->user()->id)->undone()->paginate(PAGINATION_NUMBER);
 
         return view('dashboard', compact('unfinishedTasks'));
     }

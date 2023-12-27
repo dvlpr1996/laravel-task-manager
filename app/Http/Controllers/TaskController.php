@@ -10,9 +10,9 @@ use App\Http\Requests\Task\TaskUpdateRequest;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = auth()->user()->tasks()->unDone()->paginate(PAGINATION_NUMBER)->withQueryString();
+        $tasks = auth()->user()->tasks()->unDone()->sort($request->all())->paginate(PAGINATION_NUMBER)->withQueryString();
         return view('inbox', compact('tasks'));
     }
 

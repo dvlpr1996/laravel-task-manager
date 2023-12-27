@@ -8,7 +8,6 @@ use App\Models\Trait\ModelTrait;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -71,13 +70,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function gravatar()
     {
-        $hash = md5(strtolower($this->attributes['email']));
-
-        return "http://s.gravatar.com/avatar/$hash";
-    }
-
-    public static function authUser()
-    {
-        return auth()->user();
+        return GRAVATAR_PATH . md5(strtolower($this->attributes['email']));
     }
 }
