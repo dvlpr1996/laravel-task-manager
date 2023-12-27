@@ -10,6 +10,16 @@ class TaskPolicy
 {
     use HandlesAuthorization;
 
+    public function viewAny(User $user)
+    {
+        return $user->id === auth()->user()->id;
+    }
+
+    public function view(User $user)
+    {
+        return $user->id === auth()->user()->id;
+    }
+
     public function create(User $user)
     {
         return $user->id === auth()->user()->id;

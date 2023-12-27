@@ -10,18 +10,16 @@ use App\Http\Requests\Task\TaskUpdateRequest;
 
 class TaskController extends Controller
 {
-    public function index(User $user)
+    public function index()
     {
-        $this->authorize('view');
-
-        $tasks = $user->tasks()->unDone()->paginate(PAGINATION_NUMBER)->withQueryString();
-        return view('inbox', compact('allTasks'));
+        $tasks = auth()->user()->tasks()->unDone()->paginate(PAGINATION_NUMBER)->withQueryString();
+        return view('inbox', compact('tasks'));
     }
 
     public function store(TaskRequest $request)
     {
         $this->authorize('create', Task::class);
-        
+
         if (!$request->has('reminder')) {
             $request->reminder = 0;
         }
@@ -32,7 +30,7 @@ class TaskController extends Controller
             abort(404);
         }
 
-        return redirect()->route('task.index')->withToastSuccess(__('app.taskSuccessCreated'));
+        return redirect()->route('inbox.index')->withToastSuccess(__('app.taskSuccessCreated'));
     }
 
     public function destroy(Task $task)

@@ -5,7 +5,7 @@
 @section('main-content')
 
 		<section class="space-y-8">
-				<h2>{{ __route('app.header.your inbox - all your tasks') }}</h2>
+				<h2>{{ __('app.header.your inbox - all your tasks') }}</h2>
 				<x-app.search />
 		</section>
 

@@ -9,7 +9,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class GroupPolicy
 {
     use HandlesAuthorization;
-
+    
     public function create(User $user)
     {
         return $user->id === auth()->user()->id;
