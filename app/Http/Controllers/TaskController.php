@@ -48,6 +48,10 @@ class TaskController extends Controller
     {
         $this->authorize('update', $task);
 
+        if ($task->isDone()) {
+            return back();
+        }
+
         if ($request->has('reminder') && $request->reminder == 'on') {
             $request->reminder = 'on';
         }
@@ -71,6 +75,8 @@ class TaskController extends Controller
 
     public function done(Task $task)
     {
+        $this->authorize('update', $task);
+
         $task = $task->update(['status' => 1]);
         if (!$task) {
             abort(404);
@@ -81,7 +87,13 @@ class TaskController extends Controller
 
     public function toggleReminder(Task $task)
     {
+        $this->authorize('update', $task);
+
         $reminderStatus = $task->reminder;
+
+        if ($task->isDone()) {
+            return back();
+        }
 
         if ($reminderStatus === 'off') {
             $task->update(['reminder' => 'on']);
