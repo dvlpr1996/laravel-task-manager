@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\Group;
+use Illuminate\Support\Str;
 use App\Http\Requests\Group\GroupRequest;
 
 class GroupController extends Controller
 {
     public function index(Group $group)
     {
+        $this->authorize('viewAny', $group);
+
         $tasks = Task::where('user_id', auth()->user()->id)->where('group_id', $group->id)->get();
         return view('lists', compact('tasks', 'group'));
     }
@@ -41,8 +44,10 @@ class GroupController extends Controller
     public function store(GroupRequest $request)
     {
         $this->authorize('create', Group::class);
-
-        $group = auth()->user()->groups()->create($request->all());
+        
+        $group = auth()->user()->groups()->create([
+            'name' => Str::slug($request->name)
+        ]);
 
         if (! $group) {
             abort(404);
