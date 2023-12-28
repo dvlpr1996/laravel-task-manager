@@ -13,7 +13,8 @@ class GroupController extends Controller
     {
         $this->authorize('viewAny', $group);
 
-        $tasks = Task::where('user_id', auth()->user()->id)->where('group_id', $group->id)->get();
+        $tasks = Task::with('group:id,name', 'priority:id,level')->where('user_id', auth()->user()->id)->where('group_id', $group->id)->get();
+
         return view('lists', compact('tasks', 'group'));
     }
 
@@ -34,7 +35,7 @@ class GroupController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
-        if (! $group) {
+        if (!$group) {
             abort(404);
         }
 
@@ -44,12 +45,12 @@ class GroupController extends Controller
     public function store(GroupRequest $request)
     {
         $this->authorize('create', Group::class);
-        
+
         $group = auth()->user()->groups()->create([
             'name' => Str::slug($request->name)
         ]);
 
-        if (! $group) {
+        if (!$group) {
             abort(404);
         }
 

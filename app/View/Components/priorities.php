@@ -14,7 +14,7 @@ class priorities extends Component
     public function __construct($select = '')
     {
         $this->select = $select;
-        $this->allPriority = Priority::select(['id', 'level'])->get();
+        $this->allPriority = Priority::pluck('level', 'id');
     }
 
     public function render()

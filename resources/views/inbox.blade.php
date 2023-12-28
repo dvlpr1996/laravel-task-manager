@@ -3,7 +3,6 @@
 @section('pageTitle', __('app.title.inbox'))
 
 @section('main-content')
-
 		<section class="space-y-8">
 				<h2>{{ __('app.header.your inbox - all your tasks') }}</h2>
 				<x-app.search />
@@ -12,7 +11,7 @@
 		<section class="space-y-5">
 
 				<x-auth.auth-validation-errors class="round mb-2 bg-red-400 p-2" :errors="$errors" />
-        
+
 				<div class="flex flex-col justify-center gap-5 sm:flex-row sm:items-end sm:justify-between">
 						<x-app.filter class="order-2 justify-center sm:order-1" />
 
@@ -45,14 +44,14 @@
 																<td class="px-6 py-3">{{ ++$index }}</td>
 																<td class="px-6 py-3">{{ $task->name }}</td>
 																<td class="px-6 py-3">
-																		<a href="{{ route('lists.index', $task->group->name) }}">
-																				{{ $task->group->name }}
+																		<a href="{{ route('lists.index', $task->group?->name) }}">
+																				{{ $task->group?->name }}
 																		</a>
 																</td>
 																<td class="flex items-center gap-2 px-6 py-3">
-																		<a href="{{ route('priorities.index', $task->priority->id) }}">
-																				<i class="{{ $task->priority->icon }} mr-2"></i>
-																				{{ $task->priority->level }}
+																		<a href="{{ route('priorities.index', $task->priority?->id) }}">
+																				<i class="{{ $task->priority?->icon }} mr-2"></i>
+																				{{ $task->priority?->level }}
 																		</a>
 																</td>
 																<td class="px-6 py-3 text-rose-700">{{ $task->status }}</td>
@@ -129,29 +128,5 @@
 						@endif
 						{{ $tasks->links('components.app.pagination') }}
 				</div>
-
-
-				{{-- <div>
-						<nav>
-								<ul class="pagination">
-										<li class="page-item">
-												<a class="nav-link" href="#">Pre</a>
-										</li>
-										<li class="page-item">
-												<a class="nav-link" href="#">1</a>
-										</li>
-										<li class="page-item">
-												<a class="nav-link" href="#">2</a>
-										</li>
-										<li class="page-item">
-												<a class="nav-link" href="#">3</a>
-										</li>
-										<li class="page-item">
-												<a class="nav-link" href="#">Next</a>
-										</li>
-								</ul>
-						</nav>
-				</div> --}}
-
 		</section>
 @endsection

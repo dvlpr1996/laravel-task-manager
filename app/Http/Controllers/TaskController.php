@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Task\TaskRequest;
 use App\Http\Requests\Task\TaskUpdateRequest;
 
@@ -14,8 +15,12 @@ class TaskController extends Controller
     {
         $this->authorize('viewAny', Task::class);
 
-        $tasks = auth()->user()->tasks()->unDone()->sort($request->all())->paginate(PAGINATION_NUMBER)->withQueryString();
-        return view('inbox', compact('tasks'));
+        $tasks = Task::with(['group:id,name', 'priority:id,level,icon'])
+        ->where('user_id', auth()->user()->id)->unDone()->sort($request->all());
+
+        return view('inbox', [
+            'tasks' => $tasks->paginate(PAGINATION_NUMBER)
+        ]);
     }
 
     public function store(TaskRequest $request)

@@ -2,6 +2,7 @@
 
 namespace App\View\Components\list;
 
+use App\Models\Group;
 use Illuminate\View\Component;
 
 class AllLists extends Component
@@ -10,7 +11,7 @@ class AllLists extends Component
 
     public function __construct()
     {
-        $this->allLists = auth()->user()->groups()->paginate(PAGINATION_NUMBER);
+        $this->allLists = Group::where('user_id', auth()->user()->id)->paginate(PAGINATION_NUMBER);
     }
 
     public function render()
