@@ -87,7 +87,7 @@ class TaskController extends Controller
             abort(404);
         }
 
-        return back();
+        return back()->withToastSuccess(__('app.task change status successfully'));
     }
 
     public function toggleReminder(Task $task)
@@ -108,6 +108,6 @@ class TaskController extends Controller
             $task->update(['reminder' => 'off']);
         }
 
-        return back();
+        return back()->withToastSuccess(__('app.successfully set reminder'));
     }
 }

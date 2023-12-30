@@ -4,7 +4,7 @@
 
 @section('authContent')
 		<main class="flex min-h-screen flex-col items-center justify-center">
-				<div class="form-wrapper w-[450px] space-y-5 bg-slate-800">
+				<div class="form-wrapper w-[450px] space-y-5">
 
 						@if (session('status') == 'verification-link-sent')
 								<div class="mb-4 rounded-lg bg-green-300 p-4 text-center text-sm font-medium text-green-900">

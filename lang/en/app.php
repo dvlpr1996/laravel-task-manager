@@ -9,6 +9,8 @@ return [
     'taskSuccessUpdated' => 'Your Task Successfully Updated',
     'userSuccessUpdated' => 'Your information Successfully Updated',
     'successLogout' => 'You Successfully Logout',
+    'task change status successfully' => 'task change status successfully',
+    'successfully set reminder' => 'successfully set reminder',
 
     'header' => [
         'your tomorrow tasks' => 'your tomorrow tasks',

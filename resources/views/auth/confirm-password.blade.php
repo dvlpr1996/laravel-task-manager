@@ -6,7 +6,7 @@
 
 		<main class="flex min-h-screen flex-col items-center justify-center">
 
-				<div class="form-wrapper w-[450px] bg-slate-800 space-y-5">
+				<div class="form-wrapper w-[450px] space-y-5">
 
 						<x-auth.auth-validation-errors class="mb-4" :errors="$errors" />
 

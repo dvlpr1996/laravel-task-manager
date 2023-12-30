@@ -1,7 +1,7 @@
 <section class="space-y-3">
 
 		<x-auth.auth-validation-errors class="round my-2 w-full bg-red-400 p-2" :errors="$errors" />
-    
+
 		<div class="flex flex-row items-center justify-between">
 				<h4>your all lists</h4>
 				<div>

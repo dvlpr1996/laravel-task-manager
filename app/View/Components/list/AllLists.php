@@ -11,7 +11,8 @@ class AllLists extends Component
 
     public function __construct()
     {
-        $this->allLists = Group::where('user_id', auth()->user()->id)->paginate(PAGINATION_NUMBER);
+        $this->allLists = Group::with('tasks:id,group_id')
+            ->where('user_id', auth()->user()->id)->paginate(PAGINATION_NUMBER);
     }
 
     public function render()

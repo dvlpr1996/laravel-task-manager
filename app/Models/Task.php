@@ -89,6 +89,13 @@ class Task extends Model
         $query->where('due_date', Carbon::tomorrow());
     }
 
+    public function scopeTaskInfo(Builder $query)
+    {
+        $query->select(
+            ['name', 'status', 'due_date', 'created_at', 'user_id', 'group_id', 'priority_id', 'id']
+        );
+    }
+
     public function isDone(): bool
     {
         return $this->status === 'done';

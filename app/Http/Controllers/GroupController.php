@@ -13,9 +13,11 @@ class GroupController extends Controller
     {
         $this->authorize('viewAny', $group);
 
-        $tasks = Task::with('group:id,name', 'priority:id,level')->where('user_id', auth()->user()->id)->where('group_id', $group->id)->get();
+        $tasks = Task::taskInfo()->where('user_id', auth()->user()->id)->where('group_id', $group->id)->with('group:id,name', 'priority:id,level')->get();
 
-        return view('lists', compact('tasks', 'group'));
+        $groupName = $group->name;
+
+        return view('lists', compact('tasks', 'groupName'));
     }
 
     public function destroy(Group $group)
